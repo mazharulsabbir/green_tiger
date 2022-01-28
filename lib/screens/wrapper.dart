@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import '/screens/auth/auth.dart';
 import '/controller/auth_controller.dart';
 import '/controller/home_controller.dart';
-import '/screens/auth/sign_in.dart';
 import '/screens/home/home.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class Wrapper extends StatelessWidget {
             Get.put(HomeController());
             return const HomePage();
           } else {
-            return const SignInPage();
+            return const AuthPage();
           }
         });
   }
