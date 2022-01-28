@@ -1,5 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:get/get.dart';
+import 'package:green_tiger/screens/auth/sign_in.dart';
 import '/constraints/index.dart';
 import '/screens/auth/widget/social_media_login_widget.dart';
 import '/utils/button/index.dart';
@@ -39,12 +42,21 @@ class _SignUpPageState extends State<SignUpPage> {
             RichText(
               text: TextSpan(
                 text: 'Already have an account?',
-                children: const [
-                  TextSpan(text: 'Login'),
+                children: [
+                  TextSpan(
+                    text: ' Login',
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.off(() => const SignInPage()),
+                  ),
                 ],
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
               ),
             ),
