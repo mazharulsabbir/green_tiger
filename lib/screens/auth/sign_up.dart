@@ -2,7 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/screens/auth/sign_in.dart';
+import '/screens/auth/otp_verification.dart';
+import '/screens/auth/sign_in.dart';
 import '/constraints/index.dart';
 import '/screens/auth/widget/social_media_login_widget.dart';
 import '/utils/button/index.dart';
@@ -48,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: Theme.of(context).textTheme.bodyText1?.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => Get.off(() => const SignInPage()),
@@ -56,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       color: Colors.black,
-                      fontSize: 12,
+                      fontSize: 14,
                     ),
               ),
             ),
@@ -94,7 +95,12 @@ class _SignUpPageState extends State<SignUpPage> {
               keyboardType: TextInputType.visiblePassword,
             ),
             const SizedBox(height: 10),
-            const PrimaryButtonWidget(text: 'Register'),
+            PrimaryButtonWidget(
+              text: 'Register',
+              onPressed: () => Get.to(
+                () => const OtpVerificationPage(),
+              ),
+            ),
           ],
         ),
       ),

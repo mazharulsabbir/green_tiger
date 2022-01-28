@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/constraints/index.dart';
-import 'package:green_tiger/utils/button/index.dart';
+import '/constraints/index.dart';
+import '/utils/button/index.dart';
 
 import 'sign_up.dart';
 import 'widget/social_media_login_widget.dart';
