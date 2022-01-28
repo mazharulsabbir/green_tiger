@@ -18,7 +18,13 @@ class _SplashState extends State<Splash> {
     super.initState();
     if (SchedulerBinding.instance != null) {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-        Get.off(() => const Wrapper());
+        if (timeStamp.inSeconds < 3) {
+          Future.delayed(Duration(seconds: 3 - timeStamp.inSeconds), () {
+            Get.off(() => const Wrapper());
+          });
+        } else {
+          Get.off(() => const Wrapper());
+        }
       });
     }
   }
@@ -26,8 +32,17 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Image.asset(appIconTransparent),
+      body: Padding(
+        padding: const EdgeInsets.all(50.0),
+        child: Center(
+          child: Hero(
+            tag: appIconTransparent,
+            child: Image.asset(
+              appIconTransparent,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+        ),
       ),
     );
   }

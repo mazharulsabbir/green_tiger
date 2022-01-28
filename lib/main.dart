@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_mobile_template/constraints/strings.dart';
-import 'package:flutter_mobile_template/globals/bindings.dart';
-import 'package:flutter_mobile_template/screens/splash.dart';
+import '/constraints/strings.dart';
+import '/globals/bindings.dart';
+import '/screens/splash.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
