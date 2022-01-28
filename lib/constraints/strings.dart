@@ -1,5 +1,5 @@
-const String appName = "My App";
-const String dbName = "_template_data_container";
+const String appName = "Green Tiger";
+const String dbName = "_green_tiger_db";
 
 const String companyThemeText = 'Your E-Bike\nin one app';
 const String agentSignupString = 'Become Our Partner';

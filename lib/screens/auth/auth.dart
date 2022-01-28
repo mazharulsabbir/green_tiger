@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/screens/auth/sign_up_agent.dart';
 import 'sign_up.dart';
 import '/utils/button/index.dart';
 import '/constraints/index.dart';
@@ -107,28 +108,32 @@ class BottomWidget extends StatelessWidget {
           onPressed: () => Get.to(() => const SignInPage()),
         ),
         const SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              agentSignupString,
-              style: TextStyle(
-                color: primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+        InkWell(
+          onTap: () => Get.to(() => const AgentSignUpPage()),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                agentSignupString,
+                style: TextStyle(
+                  color: primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            CircleAvatar(
-              child: const Icon(
-                Icons.keyboard_arrow_right,
-                color: Colors.white,
-                size: 18,
-              ),
-              backgroundColor: primaryColor,
-              radius: 15,
-            )
-          ],
+              const SizedBox(width: 10),
+              CircleAvatar(
+                child: const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.white,
+                  size: 18,
+                ),
+                backgroundColor: primaryColor,
+                radius: 15,
+              )
+            ],
+          ),
         )
       ],
     );
