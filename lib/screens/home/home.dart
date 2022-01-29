@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import '/screens/catelog/product_catelog.dart';
+import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
@@ -62,10 +62,10 @@ class HomePage extends GetView<HomeController> {
           index: controller.currentIndex,
           children: const [
             ProductCatelogScreen(),
-            ProductCatelogScreen(),
-            ProductCatelogScreen(),
-            ProductCatelogScreen(),
-            ProductCatelogScreen(),
+            ExploreScreen(),
+            CartScreen(),
+            OfferScreen(),
+            AccountScreen(),
           ],
         ),
       ),
@@ -78,23 +78,23 @@ class HomePage extends GetView<HomeController> {
           onTap: controller.setCurrentIndex,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.activity),
+              icon: Icon(PhosphorIcons.house),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.activity),
+              icon: Icon(PhosphorIcons.magnifying_glass),
               label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.activity),
+              icon: Icon(PhosphorIcons.shopping_cart),
               label: 'Cart',
             ),
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.activity),
+              icon: Icon(PhosphorIcons.tag),
               label: 'Offer',
             ),
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.activity),
+              icon: Icon(PhosphorIcons.user),
               label: 'Account',
             ),
           ],
