@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '/constraints/strings.dart';
+import '/constraints/index.dart';
 import '/globals/bindings.dart';
 import '/screens/splash.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'constraints/themes.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {

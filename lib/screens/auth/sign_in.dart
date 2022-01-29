@@ -2,6 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/controller/auth_controller.dart';
+import 'package:green_tiger/screens/home/home.dart';
+import 'package:green_tiger/screens/wrapper.dart';
 import '/constraints/index.dart';
 import '/utils/button/index.dart';
 
@@ -16,6 +19,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  final AuthController _authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +84,13 @@ class _SignInPageState extends State<SignInPage> {
               keyboardType: TextInputType.visiblePassword,
             ),
             const SizedBox(height: 10),
-            const PrimaryButtonWidget(text: 'Login'),
+            PrimaryButtonWidget(
+              text: 'Login',
+              onPressed: () {
+                _authController.setUserLoggedInStatus(true);
+                Get.offAll(() => const Wrapper());
+              },
+            ),
           ],
         ),
       ),

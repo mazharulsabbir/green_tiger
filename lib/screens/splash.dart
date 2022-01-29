@@ -20,7 +20,7 @@ class _SplashState extends State<Splash> {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
         if (timeStamp.inSeconds < 3) {
           Future.delayed(Duration(seconds: 3 - timeStamp.inSeconds), () {
-            Get.off(() => const Wrapper());
+            Get.offAll(() => const Wrapper());
           });
         } else {
           Get.off(() => const Wrapper());
