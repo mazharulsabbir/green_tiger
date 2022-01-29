@@ -5,6 +5,8 @@ import '../data/remote/home_api.dart';
 
 class HomeController extends GetxController with StateMixin<List<Post>> {
   final HomeApi _api = HomeApi();
+  final _index = 0.obs;
+  int get currentIndex => _index.value;
 
   @override
   void onInit() {
@@ -18,4 +20,9 @@ class HomeController extends GetxController with StateMixin<List<Post>> {
       );
 
   Future<void> refreshPosts() => _posts();
+
+  void setCurrentIndex(int index) {
+    _index.value = index;
+    update();
+  }
 }
