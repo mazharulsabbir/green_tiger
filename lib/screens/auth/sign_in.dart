@@ -2,9 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/controller/auth_controller.dart';
-import 'package:green_tiger/screens/home/home.dart';
-import 'package:green_tiger/screens/wrapper.dart';
+import '/controller/auth_controller.dart';
+import '/screens/wrapper.dart';
 import '/constraints/index.dart';
 import '/utils/button/index.dart';
 

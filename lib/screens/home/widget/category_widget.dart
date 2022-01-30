@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:green_tiger/data/model/category/category.dart';
+import '/constraints/index.dart';
+import '/data/model/category/category.dart';
 
 class CategoryWidget extends StatelessWidget {
   final CategoryModel category;
@@ -14,7 +15,7 @@ class CategoryWidget extends StatelessWidget {
           width: 100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: const Color(0xFFf4fafa),
+            color: productBackgroundColor,
           ),
           margin: const EdgeInsets.only(right: 10),
           padding: const EdgeInsets.all(20),

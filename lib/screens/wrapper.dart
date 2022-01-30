@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/screens/auth/auth.dart';
 import '/controller/auth_controller.dart';
 import '/controller/home_controller.dart';
-import '/screens/home/home.dart';
+import 'main/main.dart';
 import 'package:get/get.dart';
 
 class Wrapper extends StatelessWidget {

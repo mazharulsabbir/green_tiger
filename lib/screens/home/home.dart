@@ -1,104 +1,140 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'index.dart';
-import '/controller/auth_controller.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-import 'package:get/get.dart';
+import 'widget/product_widget.dart';
+import '/constraints/index.dart';
+import '/screens/main/widget/offer_carousel_builder_widget.dart';
+import 'widget/category_widget.dart';
+import 'widget/product_list_tile_widget.dart';
 
-import '/controller/home_controller.dart';
-
-class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final AuthController _authController = Get.find<AuthController>();
-
-    return Scaffold(
-      appBar: AppBar(
-        // title: const Text('Home'),
-        elevation: 0.4,
-        title: const TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(Icons.search),
-            hintText: 'Search product or dealers',
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      child: Column(
+        children: [
+          Container(
+            child: const OfferCarouselWidget(
+              height: 180,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.amberAccent,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            // margin: const EdgeInsets.all(10),
           ),
-        ),
-        backgroundColor: Colors.white,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Badge(
-              badgeContent: const Text('3'),
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: -5, end: -5),
-              child: const Icon(
-                PhosphorIcons.shopping_cart,
-                color: Colors.black,
+          const SizedBox(height: 40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Category',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: null,
+                child: Text('Sell All'),
+              )
+            ],
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                productCategories.length,
+                (index) => CategoryWidget(
+                  category: productCategories[index],
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Badge(
-              // badgeContent: const Text('3'),
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: 0, end: 0),
-              child: const Icon(
-                PhosphorIcons.bell,
-                color: Colors.black,
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Latest E-bikes',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: null,
+                child: Text('Sell All'),
+              )
+            ],
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                products.length,
+                (index) => ProductWidget(
+                  product: products[index],
+                ),
               ),
             ),
           ),
-          // IconButton(
-          //   icon: const Icon(PhosphorIcons.sign_out, color: Colors.black),
-          //   onPressed: () => _authController.setUserLoggedInStatus(false),
-          // ),
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Electric Bicycle',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: null,
+                child: Text('Sell All'),
+              )
+            ],
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                cycleProducts.length,
+                (index) => ProductWidget(
+                  product: cycleProducts[index],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 30),
+          Container(
+            child: const OfferCarouselWidget(
+              enableIndicator: false,
+              height: 160,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.amberAccent,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            // margin: const EdgeInsets.all(10),
+          ),
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Latest Arrivals',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                onPressed: null,
+                child: Text('Sell All'),
+              )
+            ],
+          ),
+          const SizedBox(height: 30),
+          Column(
+            children: List.generate(
+              cycleProducts.length,
+              (index) => ProductListTileWidget(
+                product: cycleProducts[index],
+              ),
+            ),
+          ),
         ],
-      ),
-      body: Obx(
-        () => IndexedStack(
-          index: controller.currentIndex,
-          children: const [
-            ProductCatelogScreen(),
-            ExploreScreen(),
-            CartScreen(),
-            OfferScreen(),
-            AccountScreen(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black.withOpacity(0.5),
-          type: BottomNavigationBarType.fixed,
-          currentIndex: controller.currentIndex,
-          onTap: controller.setCurrentIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.house),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.magnifying_glass),
-              label: 'Explore',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.shopping_cart),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.tag),
-              label: 'Offer',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.user),
-              label: 'Account',
-            ),
-          ],
-        ),
       ),
     );
   }

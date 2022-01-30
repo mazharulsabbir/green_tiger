@@ -4,7 +4,10 @@ import 'offer_carousel_item_widget.dart';
 
 class OfferCarouselWidget extends StatefulWidget {
   final double height;
-  const OfferCarouselWidget({Key? key, this.height = 200}) : super(key: key);
+  final bool enableIndicator;
+  const OfferCarouselWidget(
+      {Key? key, this.height = 200, this.enableIndicator = true})
+      : super(key: key);
 
   @override
   State<OfferCarouselWidget> createState() => _OfferCarouselWidgetState();
@@ -43,18 +46,19 @@ class _OfferCarouselWidgetState extends State<OfferCarouselWidget>
             controller: _tabController,
           ),
         ),
-        Positioned(
-          bottom: -30,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: TabPageSelector(
-              controller: _tabController,
-              color: Colors.white,
-              selectedColor: Colors.black,
+        if (widget.enableIndicator)
+          Positioned(
+            bottom: -30,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: TabPageSelector(
+                controller: _tabController,
+                color: Colors.white,
+                selectedColor: Colors.black,
+              ),
             ),
           ),
-        ),
       ]),
     );
   }
