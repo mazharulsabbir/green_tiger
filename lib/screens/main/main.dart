@@ -60,11 +60,11 @@ class HomePage extends GetView<HomeController> {
       body: Obx(
         () => IndexedStack(
           index: controller.currentIndex,
-          children: const [
-            HomeScreen(),
-            ExploreScreen(),
-            CartScreen(),
-            OfferScreen(),
+          children: [
+            const HomeScreen(),
+            const ExploreScreen(),
+            const CartScreen(),
+            const OfferScreen(),
             AccountScreen(),
           ],
         ),

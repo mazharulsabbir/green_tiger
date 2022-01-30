@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       initialBinding: GlobalBindings(),
       home: const Splash(),
       theme: theme(),
-      darkTheme: darkTheme(),
+      // darkTheme: darkTheme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget!),
         maxWidth: 1200,

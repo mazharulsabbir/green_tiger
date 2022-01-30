@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'index.dart';
+
 ThemeData theme() => ThemeData(
       brightness: Brightness.light,
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.grey[100],
       backgroundColor: Colors.white,
       textTheme: const TextTheme(
         bodyText1: TextStyle(color: Colors.black),
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: primaryColor,
       ),
     );
 

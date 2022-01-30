@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+import 'package:green_tiger/controller/auth_controller.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+  AccountScreen({Key? key}) : super(key: key);
+
+  final AuthController _controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +55,14 @@ class AccountScreen extends StatelessWidget {
           const ListTile(
             leading: Icon(PhosphorIcons.wallet),
             title: Text('Payment'),
-          )
+          ),
+          const SizedBox(height: 100),
+          ListTile(
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text('Logout'),
+            onTap: () => _controller.setUserLoggedInStatus(false),
+          ),
+          const SizedBox(height: 100),
         ],
       ),
     );
