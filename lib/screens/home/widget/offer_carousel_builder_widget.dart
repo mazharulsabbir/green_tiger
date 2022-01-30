@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'offer_carousel_item_widget.dart';
+
 class OfferCarouselWidget extends StatefulWidget {
-  const OfferCarouselWidget({Key? key}) : super(key: key);
+  final double height;
+  const OfferCarouselWidget({Key? key, this.height = 200}) : super(key: key);
 
   @override
   State<OfferCarouselWidget> createState() => _OfferCarouselWidgetState();
@@ -27,13 +30,13 @@ class _OfferCarouselWidgetState extends State<OfferCarouselWidget>
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 200,
+      height: widget.height,
       child: Stack(clipBehavior: Clip.none, children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TabBarView(
             children: const [
-              Center(child: Text('A')),
+              Center(child: OfferCarouselItemWidget()),
               Center(child: Text('B')),
               Center(child: Text('C')),
             ],
