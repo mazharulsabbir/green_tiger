@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               height: 180,
             ),
             decoration: BoxDecoration(
-              color: Colors.amberAccent,
+              color: Colors.green,
               borderRadius: BorderRadius.circular(8),
             ),
             // margin: const EdgeInsets.all(10),
@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           Column(
             children: List.generate(
               cycleProducts.length,

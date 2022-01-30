@@ -25,7 +25,7 @@ List<ProductModel> products = [
     discount: 10.2,
     imageUrl: bikeImage,
     name: 'GT-Vive',
-    rating: 5.0,
+    rating: 3.0,
     ratingCount: 10,
     isFav: false,
   ),
@@ -45,7 +45,7 @@ List<ProductModel> products = [
     discount: 10.2,
     imageUrl: bikeImage,
     name: 'GT-Vive',
-    rating: 5.0,
+    rating: 4.5,
     ratingCount: 10,
     isFav: false,
   ),
@@ -60,7 +60,6 @@ List<ProductModel> products = [
     isFav: false,
   ),
 ];
-
 
 List<ProductModel> cycleProducts = [
   ProductModel(

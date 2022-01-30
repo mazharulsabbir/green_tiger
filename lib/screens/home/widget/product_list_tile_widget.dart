@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
 
@@ -10,18 +12,22 @@ class ProductListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: productBackgroundColor,
-      ),
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(10),
+      //   color: productBackgroundColor,
+      // ),
       margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(12.0),
+      // padding: const EdgeInsets.all(12.0),
       child: Row(
         children: [
           Container(
             height: 100,
             width: 100,
             padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: productBackgroundColor,
+            ),
             child: Image.asset(
               "${product.imageUrl}",
               // fit: BoxFit.cover,
@@ -39,14 +45,14 @@ class ProductListTileWidget extends StatelessWidget {
                 ),
                 child: const Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical:4.0,horizontal: 8.0),
-                      child: Text(
-                  '-12%',
-                  style: TextStyle(
+                  padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                  child: Text(
+                    '-12%',
+                    style: TextStyle(
                       color: Colors.white,
+                    ),
                   ),
-                ),
-                    )),
+                )),
               ),
               Text(
                 "${product.name}",
@@ -61,7 +67,41 @@ class ProductListTileWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 16, color: primaryColor),
               ),
               const SizedBox(height: 4),
-              const Text('Rating (10)'),
+              Row(
+                children: [
+                  RatingBar(
+                    initialRating: product.rating ?? 0,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    maxRating: 5,
+                    minRating: 0,
+                    itemSize: 12,
+                    unratedColor: primaryColor,
+                    ignoreGestures: true,
+                    ratingWidget: RatingWidget(
+                      full: Icon(
+                        PhosphorIcons.star_fill,
+                        color: primaryColor,
+                      ),
+                      half: Icon(
+                        PhosphorIcons.star_half,
+                        color: primaryColor,
+                      ),
+                      empty: Icon(
+                        PhosphorIcons.star,
+                        color: primaryColor,
+                      ),
+                    ),
+                    itemPadding: const EdgeInsets.only(right: 2.0),
+                    onRatingUpdate: (rating) {
+                      print(rating);
+                    },
+                  ),
+                  const SizedBox(width: 4),
+                  Text('(${product.ratingCount})'),
+                ],
+              ),
             ],
           )
         ],

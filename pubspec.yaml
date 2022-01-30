@@ -26,6 +26,7 @@ dependencies:
   loading_overlay: ^0.3.0
   # carousel_slider: ^4.0.0
   badges: ^2.0.2
+  flutter_rating_bar: ^4.0.0
 
   # state management
   get: ^4.6.1
