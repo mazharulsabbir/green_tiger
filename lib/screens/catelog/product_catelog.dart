@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '/constraints/index.dart';
 import '/screens/home/widget/offer_carousel_builder_widget.dart';
+import 'widget/category_widget.dart';
 
 class ProductCatelogScreen extends StatelessWidget {
   const ProductCatelogScreen({Key? key}) : super(key: key);
@@ -11,7 +13,9 @@ class ProductCatelogScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            child: const OfferCarouselWidget(),
+            child: const OfferCarouselWidget(
+              height: 180,
+            ),
             decoration: BoxDecoration(
               color: Colors.amberAccent,
               borderRadius: BorderRadius.circular(8),
@@ -36,18 +40,9 @@ class ProductCatelogScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
-                10,
-                (index) => Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.blueAccent,
-                  ),
-                  margin: const EdgeInsets.only(right: 10),
-                  child: Center(
-                    child: Text(index.toString()),
-                  ),
+                productCategories.length,
+                (index) => CategoryWidget(
+                  category: productCategories[index],
                 ),
               ),
             ),

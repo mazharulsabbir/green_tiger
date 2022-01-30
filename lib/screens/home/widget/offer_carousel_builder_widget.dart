@@ -13,10 +13,11 @@ class OfferCarouselWidget extends StatefulWidget {
 class _OfferCarouselWidgetState extends State<OfferCarouselWidget>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
+  final int _carouseLength = 7;
 
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: _carouseLength, vsync: this);
     _tabController?.addListener(() {
       setState(() {
         // _selectedIndex = _controller.index;
@@ -35,11 +36,10 @@ class _OfferCarouselWidgetState extends State<OfferCarouselWidget>
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TabBarView(
-            children: const [
-              Center(child: OfferCarouselItemWidget()),
-              Center(child: Text('B')),
-              Center(child: Text('C')),
-            ],
+            children: List.generate(
+              _carouseLength,
+              (index) => const OfferCarouselItemWidget(),
+            ),
             controller: _tabController,
           ),
         ),

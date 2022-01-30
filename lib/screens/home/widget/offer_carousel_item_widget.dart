@@ -34,7 +34,10 @@ class OfferCarouselItemWidget extends StatelessWidget {
             ],
           ),
         ),
-        Image.asset(bikeImage),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(bikeImage),
+        ),
       ],
     );
   }
