@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '/data/local/fake_data_repository.dart';
 import 'widget/product_widget.dart';
-import '/constraints/index.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
 import 'widget/category_widget.dart';
 import 'widget/product_list_tile_widget.dart';
