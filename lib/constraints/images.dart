@@ -3,6 +3,7 @@ const String appLogoTransparent = "assets/images/logo.png";
 const String bikeImage = "assets/images/bike.png";
 const String cycleImage = "assets/images/cycle.png";
 const String bikeBackgroundImage = "assets/images/bike_background.png";
+const String profilePictureImage = "assets/images/profile_picture.png";
 
 const String eBikeCategoryImage = "assets/category/electric-motor.png";
 const String eCycleCategoryImage = "assets/category/electric-bicycle.png";
