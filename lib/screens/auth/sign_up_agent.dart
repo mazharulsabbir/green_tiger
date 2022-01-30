@@ -74,7 +74,9 @@ class _AgentSignUpPageState extends State<AgentSignUpPage> {
                 _userTypes.length,
                 (index) => Container(
                   decoration: BoxDecoration(
-                    border: _selectedIndex == index ? Border.all() : null,
+                    border: _selectedIndex == index
+                        ? Border.all(color: primaryColor)
+                        : Border.all(color: Colors.grey.withOpacity(0.3)),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.grey.withOpacity(0.2),
                   ),
