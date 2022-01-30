@@ -117,7 +117,10 @@ class ProductWidget extends StatelessWidget {
                 },
               ),
               const SizedBox(width: 4),
-              Text('(${product.ratingCount})'),
+              Text(
+                '(${product.ratingCount})',
+                style: TextStyle(color: primaryColor),
+              ),
             ],
           ),
           Text(
