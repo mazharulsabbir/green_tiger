@@ -16,8 +16,8 @@ class ProductWidget extends StatelessWidget {
       //   borderRadius: BorderRadius.circular(10),
       //   color: productBackgroundColor,
       // ),
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(12.0),
+      margin: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.all(4.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

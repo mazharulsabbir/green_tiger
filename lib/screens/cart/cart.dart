@@ -17,7 +17,9 @@ class CartScreen extends StatelessWidget {
         children: [
           Text(
             'Your Cart',
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headline6?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 20),
           Column(

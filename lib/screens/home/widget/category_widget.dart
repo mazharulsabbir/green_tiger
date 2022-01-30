@@ -26,7 +26,7 @@ class CategoryWidget extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           category.name,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
         ),
       ],
     );
