@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/auth_controller.dart';
+import 'package:green_tiger/screens/order/order.dart';
 
 class AccountScreen extends StatelessWidget {
   AccountScreen({Key? key}) : super(key: key);
@@ -44,9 +45,10 @@ class AccountScreen extends StatelessWidget {
             leading: Icon(PhosphorIcons.user),
             title: Text('Profile'),
           ),
-          const ListTile(
-            leading: Icon(PhosphorIcons.shopping_bag),
-            title: Text('My Orders'),
+          ListTile(
+            leading: const Icon(PhosphorIcons.shopping_bag),
+            title: const Text('My Orders'),
+            onTap: () => Get.to(() => const OrderScreen()),
           ),
           const ListTile(
             leading: Icon(PhosphorIcons.map_pin),
@@ -56,7 +58,7 @@ class AccountScreen extends StatelessWidget {
             leading: Icon(PhosphorIcons.wallet),
             title: Text('Payment'),
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 20),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),

@@ -1,4 +1,5 @@
 import 'package:green_tiger/data/model/cart/cart.dart';
+import 'package:green_tiger/data/model/order/order.dart';
 
 import '/constraints/index.dart';
 import '/data/model/category/category.dart';
@@ -121,5 +122,24 @@ List<CartModel> cartProducts = [
     total: '10.2',
     imageUrl: cycleImage,
     quantity: '1',
+  ),
+];
+
+List<Order> orderList = const [
+  Order(
+    id: 1,
+    orderNumber: 'LQNSU346JK',
+    date: '12/12/2020',
+    quantity: 2,
+    status: 'Pending',
+    price: '75000.0',
+  ),
+  Order(
+    id: 1,
+    orderNumber: 'LQNSU346JK',
+    date: '12/12/2020',
+    quantity: 2,
+    status: 'Pending',
+    price: '75000.0',
   ),
 ];
