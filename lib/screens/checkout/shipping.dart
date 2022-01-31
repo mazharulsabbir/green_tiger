@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:green_tiger/screens/checkout/order_success.dart';
 import '/screens/cart/widget/cart_price_widget.dart';
 import '/utils/button/index.dart';
 import 'widget/payment_method.dart';
@@ -19,15 +21,20 @@ class ShippingAddress extends StatelessWidget {
           vertical: 20,
         ),
         child: Column(
-          children: const [
-            ShippingAddressWidget(),
-            SizedBox(height: 20),
-            CartPricingWidget(),
-            SizedBox(height: 20),
-            PaymentMethodWidget(),
-            SizedBox(height: 50),
-            PrimaryButtonWidget(text: 'Next'),
-            SizedBox(height: 50),
+          children: [
+            const ShippingAddressWidget(),
+            const SizedBox(height: 20),
+            const CartPricingWidget(),
+            const SizedBox(height: 20),
+            const PaymentMethodWidget(),
+            const SizedBox(height: 50),
+            PrimaryButtonWidget(
+              text: 'Next',
+              onPressed: () => Get.off(
+                () => const OrderSuccessScreen(),
+              ),
+            ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
