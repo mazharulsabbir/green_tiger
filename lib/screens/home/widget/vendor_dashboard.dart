@@ -44,15 +44,16 @@ class _VendorHomepageScreenState extends State<VendorHomepageScreen>
           controller: _tabController,
           indicator: CustomTabIndicator(),
         ),
-        SizedBox(height: MediaQuery.of(context).size.height*0.7,child: TabBarView(
-          children: [
-            Container(
-              color: Colors.amber,
-              child: const Text('Food')),
-            const Text('Drink'),
-          ],
-          controller: _tabController,
-        ),)
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.7,
+          child: TabBarView(
+            children: [
+              Container(color: Colors.amber, child: const Text('Food')),
+              const Text('Drink'),
+            ],
+            controller: _tabController,
+          ),
+        )
       ],
     );
   }
