@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -42,6 +44,7 @@ class ProductWidget extends StatelessWidget {
                   bottom: -20,
                   right: 0,
                   child: FloatingActionButton.small(
+                    heroTag: "product_${Random().nextInt(100)}",
                     elevation: 1,
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.white,

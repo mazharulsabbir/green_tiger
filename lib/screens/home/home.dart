@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_tiger/screens/home/widget/customer_homepage.dart';
 
 import 'widget/vendor_dashboard.dart';
 
@@ -7,6 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const VendorHomepageScreen();
+    return const CustomerHomeScreen();
   }
 }

@@ -1,4 +1,5 @@
 import '../controller/ads_controller.dart';
+import '../controller/checkout_controller.dart';
 import '../controller/device_info_controller.dart';
 import '../controller/notification_controller.dart';
 
@@ -12,5 +13,6 @@ class GlobalBindings extends Bindings {
     Get.put(PushNotificationController());
     Get.put(AdsController());
     Get.put(AuthController());
+    Get.put(CheckoutController());
   }
 }

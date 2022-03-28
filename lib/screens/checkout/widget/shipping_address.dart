@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+
+import 'address_form_widget.dart';
 
 class ShippingAddressWidget extends StatelessWidget {
   const ShippingAddressWidget({Key? key}) : super(key: key);
@@ -26,17 +29,20 @@ class ShippingAddressWidget extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const Spacer(),
-              Row(
-                children: const [
-                  Text('EDIT'),
-                  SizedBox(width: 5),
-                  Icon(
-                    PhosphorIcons.pencil,
-                    size: 16,
-                  ),
-                  SizedBox(width: 15),
-                  Icon(PhosphorIcons.trash)
-                ],
+              InkWell(
+                onTap: () => Get.to(() => const AddressFormWidget()),
+                child: Row(
+                  children: const [
+                    Text('EDIT'),
+                    SizedBox(width: 5),
+                    Icon(
+                      PhosphorIcons.pencil,
+                      size: 16,
+                    ),
+                    SizedBox(width: 15),
+                    Icon(PhosphorIcons.trash)
+                  ],
+                ),
               )
             ],
           ),
