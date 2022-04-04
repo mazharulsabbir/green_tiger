@@ -16,7 +16,7 @@ abstract class MySnackBar {
     return Get.snackbar(title, boyMessage,
         duration: const Duration(seconds: 2),
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red.shade800,
         colorText: Colors.white);
   }
 }

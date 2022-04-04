@@ -21,6 +21,9 @@ class AuthController extends GetxController {
 
   AuthController() {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
+    if (_isLoggedIn.value) {
+      _coockie = StorageUtils.getCookie();
+    }
   }
 
   void setUserLoggedInStatus(bool status) {
@@ -78,6 +81,8 @@ class AuthController extends GetxController {
         if (data["result"] != null) {
           _coockie = response.headers['set-cookie']?.split(';').first;
           print('Response Headers: $_coockie');
+          StorageUtils.setCookie(_coockie);
+
           setUserLoggedInStatus(true);
 
           return Future.value('Success');
