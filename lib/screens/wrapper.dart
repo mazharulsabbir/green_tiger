@@ -10,7 +10,7 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthController>(
+    return GetX<AuthController>(
         init: AuthController(),
         builder: (controller) {
           if (controller.isUserLoggedIn) {

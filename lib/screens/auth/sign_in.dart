@@ -105,12 +105,10 @@ class _SignInPageState extends State<SignInPage> {
                             .loginWithEmailAndPass(
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim())
-                            .onError((error, stackTrace) =>
-                                MySnackBar.erorrSnackBar(error.toString()))
                             .then((value) {
-                          print('Logging in');
-                          // Get.offAll(() => const Wrapper());
-                        });
+                          Get.offAll(() => const Wrapper());
+                        }).catchError((error, stackTrace) =>
+                                MySnackBar.erorrSnackBar(error.toString()));
                       }
                       // _authController.setUserLoggedInStatus(true);
                       // Get.offAll(() => const Wrapper());

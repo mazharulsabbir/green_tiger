@@ -12,8 +12,12 @@ class AuthController extends GetxController {
   final _isLoggedIn = false.obs;
   final _isLoading = false.obs;
 
+  String? _coockie;
+
   bool get isUserLoggedIn => _isLoggedIn.value;
   bool get isLoading => _isLoading.value;
+
+  String? get coocke => _coockie;
 
   AuthController() {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
@@ -67,12 +71,21 @@ class AuthController extends GetxController {
       _setLoading(true);
       final response =
           await AuthApiServices.login(email: email, password: password);
+
       _setLoading(false);
       if (response != null) {
         final data = jsonDecode(response.body);
-        return Future.value(data);
+        if (data["result"] != null) {
+          _coockie = response.headers['set-cookie']?.split(';').first;
+          print('Response Headers: $_coockie');
+          setUserLoggedInStatus(true);
+
+          return Future.value('Success');
+        } else {
+          return Future.error('Wrong credential. Try again.');
+        }
       } else {
-        return Future.error('No responce');
+        return Future.error('Wrong credential');
       }
     } catch (e) {
       _setLoading(false);

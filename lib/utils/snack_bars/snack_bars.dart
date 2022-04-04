@@ -13,12 +13,10 @@ abstract class MySnackBar {
   }
 
   static erorrSnackBar(String boyMessage, [String title = 'Failed']) {
-    return Get.snackbar(
-      title,
-      boyMessage,
-      duration: const Duration(seconds: 2),
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.red,
-    );
+    return Get.snackbar(title, boyMessage,
+        duration: const Duration(seconds: 2),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white);
   }
 }
