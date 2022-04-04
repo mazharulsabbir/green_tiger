@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:green_tiger/controller/category_controller.dart';
+import 'package:green_tiger/data/remote/home_api.dart';
 import '/data/local/fake_data_repository.dart';
 import 'product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
 import 'category_widget.dart';
 import 'product_list_tile_widget.dart';
 
-class CustomerHomeScreen extends StatelessWidget {
+class CustomerHomeScreen extends GetView<CategoryController> {
   const CustomerHomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -38,17 +41,26 @@ class CustomerHomeScreen extends StatelessWidget {
               )
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(
-                productCategories.length,
-                (index) => CategoryWidget(
-                  category: productCategories[index],
-                ),
+          controller.obx(
+              (state) => SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: state != null
+                        ? Row(
+                            children: List.generate(
+                              state.length,
+                              (index) => CategoryWidget(
+                                category: state[index],
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            child: Text('No data'),
+                          ),
+                  ),
+              onLoading: const SizedBox(
+                child: Text('Loading'),
               ),
-            ),
-          ),
+              onError: (e) => Text(e.toString())),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

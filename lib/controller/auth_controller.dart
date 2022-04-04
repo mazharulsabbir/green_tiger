@@ -17,7 +17,9 @@ class AuthController extends GetxController {
   bool get isUserLoggedIn => _isLoggedIn.value;
   bool get isLoading => _isLoading.value;
 
-  String? get coocke => _coockie;
+  String? get coockie => _coockie;
+
+  static AuthController get to => Get.find();
 
   AuthController() {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
