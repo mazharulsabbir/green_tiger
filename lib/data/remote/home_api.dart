@@ -3,7 +3,6 @@ import 'package:green_tiger/data/model/category/category.dart';
 import 'package:green_tiger/data/remote/url.dart';
 import '/data/model/post/post.dart';
 import 'package:get/get.dart';
-import 'dart:convert' as convert;
 
 class HomeApi extends GetConnect {
   Future<List<Post>> posts() async {
@@ -51,12 +50,12 @@ class HomeApi extends GetConnect {
             'Content-Type': 'application/json'
           },
         );
+        List<CategoryModel> categoryList =
+            (response.body['result'] as List<dynamic>)
+                .map((e) => CategoryModel.fromJson(e))
+                .toList();
 
-        // var data = convert.jsonDecode(response.body);
-        print(response.body);
-        return (response.body['result'] as List<dynamic>)
-            .map((e) => CategoryModel.fromJson(e))
-            .toList();
+        return categoryList;
       } else {
         return [];
       }

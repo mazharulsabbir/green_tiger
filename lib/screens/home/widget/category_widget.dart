@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '/constraints/index.dart';
 import '/data/model/category/category.dart';
@@ -19,14 +20,22 @@ class CategoryWidget extends StatelessWidget {
           ),
           margin: const EdgeInsets.only(right: 10),
           padding: const EdgeInsets.all(20),
-          child: Image.asset(
-            category.image,
+          child: CachedNetworkImage(
+            imageUrl: category.image,
           ),
         ),
-        const SizedBox(height: 6),
-        Text(
-          category.name,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+        // const SizedBox(height: 3),
+        SizedBox(
+          width: 70,
+          child: Text(
+            category.name,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
         ),
       ],
     );

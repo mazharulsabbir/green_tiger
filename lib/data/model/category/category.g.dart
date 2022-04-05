@@ -10,12 +10,12 @@ _$_CategoryModel _$$_CategoryModelFromJson(Map<String, dynamic> json) =>
     _$_CategoryModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: json['image'] as String,
+      image: json['image_1024'] as String,
     );
 
 Map<String, dynamic> _$$_CategoryModelToJson(_$_CategoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image': instance.image,
+      'image_1024': instance.image,
     };

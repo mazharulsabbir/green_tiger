@@ -53,14 +53,10 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                               ),
                             ),
                           )
-                        : const SizedBox(
-                            child: Text('No data'),
-                          ),
+                        : const SizedBox(),
                   ),
-              onLoading: const SizedBox(
-                child: Text('Loading'),
-              ),
-              onError: (e) => Text(e.toString())),
+              onLoading: const SizedBox(),
+              onError: (e) => const SizedBox()),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
