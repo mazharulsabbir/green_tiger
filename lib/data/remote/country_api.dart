@@ -10,7 +10,7 @@ class CountryApi extends GetConnect {
   Future<List<Country>> countries() async {
     final response = await post(
       "http://139.162.16.146:8069/api/v1/global/public/get",
-      jsonEncode({
+      {
         "params": {
           "data": {
             "model": "res.country",
@@ -40,7 +40,7 @@ class CountryApi extends GetConnect {
             ]
           }
         }
-      }),
+      },
     );
 
     debugPrint(response.bodyString ?? "None");
@@ -48,7 +48,8 @@ class CountryApi extends GetConnect {
 
     if (response.status.hasError) {
       debugPrint("Error to get countries: ${response.statusCode}");
-      return Future.error("Error to get countries: ${response.statusText}");
+      // return Future.error("Error to get countries: ${response.statusText}");
+      return [];
     }
 
     final _response = (response.body['result'] as List<dynamic>)

@@ -46,6 +46,7 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                     scrollDirection: Axis.horizontal,
                     child: state != null
                         ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: List.generate(
                               state.length,
                               (index) => CategoryWidget(
