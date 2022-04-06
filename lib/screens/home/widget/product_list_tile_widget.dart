@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -28,10 +29,12 @@ class ProductListTileWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: productBackgroundColor,
             ),
-            child: Image.asset(
-              "${product.imageUrl}",
-              // fit: BoxFit.cover,
-            ),
+            child: product.imageUrl == null
+                ? Image.asset(
+                    'assets/images/cycle.png',
+                    // fit: BoxFit.cover,
+                  )
+                : CachedNetworkImage(imageUrl: '${product.imageUrl}'),
           ),
           const SizedBox(width: 10),
           Column(
@@ -54,16 +57,21 @@ class ProductListTileWidget extends StatelessWidget {
                   ),
                 )),
               ),
-              Text(
-                "${product.name}",
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: Text(
+                  "${product.name}",
+                  maxLines: 2,
+                  style: const TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
-                "${product.price} BDT",
+                "${product.price ?? 0.0} BDT",
                 style: TextStyle(fontSize: 16, color: primaryColor),
               ),
               const SizedBox(height: 4),
@@ -100,7 +108,7 @@ class ProductListTileWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    '(${product.ratingCount})',
+                    '(${product.ratingCount ?? 0})',
                     style: TextStyle(color: primaryColor),
                   ),
                 ],

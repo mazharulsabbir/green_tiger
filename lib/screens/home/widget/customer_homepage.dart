@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/category_controller.dart';
-import 'package:green_tiger/data/remote/home_api.dart';
+import 'package:green_tiger/controller/product_controller.dart';
 import '/data/local/fake_data_repository.dart';
 import 'product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
@@ -134,16 +134,31 @@ class CustomerHomeScreen extends GetView<CategoryController> {
             ],
           ),
           const SizedBox(height: 10),
-          Column(
-            children: List.generate(
-              cycleProducts.length,
-              (index) => ProductListTileWidget(
-                product: cycleProducts[index],
-              ),
-            ),
-          ),
+          const _ProdcutListWidget(),
         ],
       ),
     );
+  }
+}
+
+class _ProdcutListWidget extends GetView<ProductController> {
+  const _ProdcutListWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return controller.obx(
+        (state) => state != null
+            ? Column(
+                children: List.generate(
+                  state.length,
+                  (index) => ProductListTileWidget(
+                    product: state[index],
+                  ),
+                ),
+              )
+            : const SizedBox(),
+        onLoading: const SizedBox(),
+        onEmpty: const SizedBox(),
+        onError: (e) => const SizedBox());
   }
 }
