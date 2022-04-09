@@ -30,7 +30,7 @@ class ShippingAddressWidget extends StatelessWidget {
               ),
               const Spacer(),
               InkWell(
-                onTap: () => Get.to(() => const AddressFormWidget()),
+                onTap: () => Get.to(() => AddressFormWidget()),
                 child: Row(
                   children: const [
                     Text('EDIT'),

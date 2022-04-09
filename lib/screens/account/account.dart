@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/auth_controller.dart';
+import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/screens/order/order.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -50,9 +51,10 @@ class AccountScreen extends StatelessWidget {
             title: const Text('My Orders'),
             onTap: () => Get.to(() => const OrderScreen()),
           ),
-          const ListTile(
-            leading: Icon(PhosphorIcons.map_pin),
-            title: Text('Address'),
+          ListTile(
+            leading: const Icon(PhosphorIcons.map_pin),
+            title: const Text('Address'),
+            onTap: () => Get.to(() => const ShippingAddress()),
           ),
           const ListTile(
             leading: Icon(PhosphorIcons.wallet),
