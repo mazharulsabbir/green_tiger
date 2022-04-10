@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+import 'package:green_tiger/controller/checkout_controller.dart';
 
 import 'address_form_widget.dart';
 
-class ShippingAddressWidget extends StatelessWidget {
+class ShippingAddressWidget extends GetView<CheckoutController> {
   const ShippingAddressWidget({Key? key}) : super(key: key);
 
   @override
@@ -22,36 +23,49 @@ class ShippingAddressWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Nahid',
+                controller.shippingAddress.firstName!,
                 style: Theme.of(context)
                     .textTheme
                     .headline6
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               const Spacer(),
-              InkWell(
-                onTap: () => Get.to(() => AddressFormWidget()),
-                child: Row(
-                  children: const [
-                    Text('EDIT'),
-                    SizedBox(width: 5),
-                    Icon(
-                      PhosphorIcons.pencil,
-                      size: 16,
+              Row(
+                children: [
+                  InkWell(
+                    child: Row(
+                      children: const [
+                        Text(
+                          'EDIT',
+                        ),
+                        SizedBox(width: 5),
+                        Icon(
+                          PhosphorIcons.pencil,
+                          size: 16,
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 15),
-                    Icon(PhosphorIcons.trash)
-                  ],
-                ),
+                    onTap: () => Get.to(() => AddressFormWidget()),
+                  ),
+                  const SizedBox(width: 15),
+                  InkWell(
+                    child: const Icon(PhosphorIcons.trash),
+                    onTap: controller.clearAddress,
+                  )
+                ],
               )
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            'Address: House #12, Road #12, Block #12, Sector #12, Uttara, Dhaka',
-          ),
+          controller.shippingAddress.streetAddress2 == null
+              ? Text(
+                  '${controller.shippingAddress.streetAddress1}',
+                )
+              : Text(
+                  '${controller.shippingAddress.streetAddress1}, ${controller.shippingAddress.streetAddress2}',
+                ),
           const SizedBox(height: 20),
-          const Text('Phone: +880123456789'),
+          Text(controller.shippingAddress.phone!),
         ],
       ),
     );

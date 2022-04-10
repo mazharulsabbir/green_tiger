@@ -1,3 +1,5 @@
+import 'package:green_tiger/data/model/country/country.dart';
+
 class ShippingAddressValidations {
   static String? firstNameValidate(String? value) {
     if (value == null || value.trim() == '') return 'First name is required';
@@ -12,7 +14,8 @@ class ShippingAddressValidations {
   }
 
   static String? streetAdress2Validate(String? value) {
-    if (value == null || value.trim() == '') return 'Last name is required';
+    if (value == null || value.trim() == '')
+      return 'Street Address 2 is required';
   }
 
   static String? cityValidation(String? value) {
@@ -29,5 +32,9 @@ class ShippingAddressValidations {
 
   static String? phoneValidation(String? value) {
     if (value == null || value.trim() == '') return 'Enter phone number';
+  }
+
+  static String? dropdownValidation(Country? value) {
+    if (value == null) return 'Select a country';
   }
 }

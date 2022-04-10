@@ -11,6 +11,7 @@ class AddressStorage {
     if (_addresses != null) {
       _address = ShippingAddress.fromJson(_addresses);
     }
+    print(_address.toString());
 
     return _address;
   }
