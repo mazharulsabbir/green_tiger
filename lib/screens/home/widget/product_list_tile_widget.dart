@@ -16,9 +16,9 @@ class ProductListTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(ProductDetialsScreen(
-          productModel: product,
-        ));
+        Get.to(() => ProductDetialsScreen(
+              productModel: product,
+            ));
       },
       child: Container(
         // decoration: BoxDecoration(

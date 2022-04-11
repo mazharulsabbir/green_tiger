@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -39,15 +41,23 @@ class CartItemWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${cart.name}",
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900],
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: Get.width * 0.5),
+                        child: Text(
+                          "${cart.name}",
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[900],
+                              overflow: TextOverflow.fade),
                         ),
                       ),
-                      const Icon(PhosphorIcons.trash)
+                      GestureDetector(
+                          onTap: () {
+                            CartController.to.removeAnItem(cart);
+                          },
+                          child: const Icon(PhosphorIcons.trash))
                     ],
                   ),
                   const SizedBox(

@@ -4,17 +4,19 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
+import 'package:green_tiger/data/model/cart/cart.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'dart:math' as math;
-
 import 'package:green_tiger/screens/home/widget/product_widget.dart';
+
+String _stataticProductDetails =
+    'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
 
 class ProductDetialsScreen extends StatelessWidget {
   final ProductModel productModel;
   const ProductDetialsScreen({Key? key, required this.productModel})
       : super(key: key);
-  final String stataticProductDetails =
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
   final List<Color> colorDotsColors = const [
     Colors.green,
     Colors.yellow,
@@ -95,7 +97,7 @@ class ProductDetialsScreen extends StatelessWidget {
                       ),
                     ),
                     const _Gap(),
-                    Text(stataticProductDetails),
+                    Text(_stataticProductDetails),
                     const _Gap(
                       times: 2,
                     ),
@@ -130,7 +132,9 @@ class ProductDetialsScreen extends StatelessWidget {
                     const _Gap(
                       times: 2,
                     ),
-                    const _AddToCButton(),
+                    _AddToCButton(
+                      productModel: productModel,
+                    ),
                     const _Gap(),
                     Padding(
                       padding:
@@ -272,7 +276,9 @@ class _ColorDots extends StatelessWidget {
 }
 
 class _AddToCButton extends StatelessWidget {
-  const _AddToCButton({Key? key}) : super(key: key);
+  final ProductModel productModel;
+
+  const _AddToCButton({Key? key, required this.productModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -287,7 +293,15 @@ class _AddToCButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          CartController.to.addAItem(CartModel(
+              name: productModel.name,
+              description: _stataticProductDetails,
+              price: productModel.price?.toString(),
+              imageUrl: productModel.imageUrl,
+              quantity: 1.toString(),
+              total: productModel.price?.toString()));
+        },
         child: const Text(
           'ADD TO CART',
           style: TextStyle(fontSize: 14),
