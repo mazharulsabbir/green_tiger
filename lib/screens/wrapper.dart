@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/controller/category_controller.dart';
 import 'package:green_tiger/controller/product_controller.dart';
 import '/screens/auth/auth.dart';
@@ -19,6 +20,7 @@ class Wrapper extends StatelessWidget {
             Get.put(HomeController());
             Get.put(CategoryController());
             Get.put(ProductController());
+            Get.put(CartController());
             return const HomePage();
           } else {
             return const AuthPage();

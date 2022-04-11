@@ -34,10 +34,12 @@ class ProductWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Image.asset(
-                      "${product.imageUrl}",
-                      height: 140,
-                    ),
+                    child: product.imageUrl == null
+                        ? Image.asset(eBikeCategoryImage)
+                        : Image.asset(
+                            "${product.imageUrl}",
+                            height: 140,
+                          ),
                   ),
                 ),
                 Positioned(

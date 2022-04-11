@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
 import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
@@ -29,14 +30,25 @@ class HomePage extends GetView<HomeController> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Badge(
-              badgeContent: const Text('3'),
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: -5, end: -5),
-              child: const Icon(
-                PhosphorIcons.shopping_cart,
-                color: Colors.black,
-              ),
+            child: GetX<CartController>(
+              builder: (controller) {
+                if (controller.cartItems.isEmpty) {
+                  return const Icon(
+                    PhosphorIcons.shopping_cart,
+                    color: Colors.black,
+                  );
+                } else {
+                  return Badge(
+                    badgeContent: Text(controller.cartItems.length.toString()),
+                    padding: const EdgeInsets.all(4),
+                    position: BadgePosition.topEnd(top: -5, end: -5),
+                    child: const Icon(
+                      PhosphorIcons.shopping_cart,
+                      color: Colors.black,
+                    ),
+                  );
+                }
+              },
             ),
           ),
           Padding(
