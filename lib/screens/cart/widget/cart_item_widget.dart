@@ -5,7 +5,7 @@ import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
 
-class CartItemWidget extends StatelessWidget {
+class CartItemWidget extends GetView<CartController> {
   final CartModel cart;
   const CartItemWidget({Key? key, required this.cart}) : super(key: key);
 
@@ -55,7 +55,7 @@ class CartItemWidget extends StatelessWidget {
                       ),
                       GestureDetector(
                           onTap: () {
-                            CartController.to.removeAnItem(cart);
+                            controller.removeAnItem(cart);
                           },
                           child: const Icon(PhosphorIcons.trash))
                     ],
@@ -75,17 +75,22 @@ class CartItemWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Container(
-                            width: 30,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey.withOpacity(0.3),
+                          InkWell(
+                            onTap: () {
+                              controller.decreaseQ(cart);
+                            },
+                            child: Container(
+                              width: 30,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
                               ),
-                            ),
-                            child: const Icon(
-                              PhosphorIcons.minus,
-                              size: 16,
+                              child: const Icon(
+                                PhosphorIcons.minus,
+                                size: 16,
+                              ),
                             ),
                           ),
                           Container(
@@ -99,17 +104,22 @@ class CartItemWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 30,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey.withOpacity(0.3),
+                          InkWell(
+                            onTap: () {
+                              controller.increaseItemQ(cart);
+                            },
+                            child: Container(
+                              width: 30,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
                               ),
-                            ),
-                            child: const Icon(
-                              PhosphorIcons.plus,
-                              size: 16,
+                              child: const Icon(
+                                PhosphorIcons.plus,
+                                size: 16,
+                              ),
                             ),
                           )
                         ],

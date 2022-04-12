@@ -9,14 +9,11 @@ final _box = GetStorage(dbName);
 class CartStorgae {
   static List<CartModel> getCartItems() {
     final _cartList = _box.read('_cartItems');
-    print('Getting cartItems');
-    print(_cartList);
     if (_cartList == null) return [];
     List<CartModel> _cartItems = [];
     for (final e in _cartList) {
       _cartItems.add(CartModel.fromJson(e));
     }
-    print('List legnth ater for loop ${_cartItems.length}');
     return _cartItems;
   }
 
@@ -33,13 +30,11 @@ class CartStorgae {
       });
     }
 
-    print('Now stored list $rawData');
     await _box.write('_cartItems', rawData);
   }
 
   static Future<dynamic> addAItem(CartModel cartModel) async {
     var availbleItems = getCartItems();
-    print('Already avaiable ${availbleItems.length}');
     if (availbleItems.contains(cartModel)) {
       return Future.error('Sorry already added');
     }

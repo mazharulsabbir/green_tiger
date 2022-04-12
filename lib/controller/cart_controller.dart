@@ -33,7 +33,6 @@ class CartController extends GetxController {
   void addAItem(CartModel cartModel) async {
     CartStorgae.addAItem(cartModel).then((value) {
       _cartItems.add(cartModel);
-      print('Present list number${_cartItems.length}');
       MySnackBar.successSnackBar(value);
       update();
     }).onError((e, t) {
@@ -45,10 +44,7 @@ class CartController extends GetxController {
     CartStorgae.editAnItem(cartModel).then((_) {
       _cartItems.value = CartStorgae.getCartItems();
       update();
-      MySnackBar.successSnackBar('Added successfully');
-    }).onError((e, t) {
-      MySnackBar.erorrSnackBar(t.toString());
-    });
+    }).onError((e, t) {});
   }
 
   void removeAnItem(CartModel cartModel) async {
@@ -59,6 +55,19 @@ class CartController extends GetxController {
     }).onError((e, t) {
       MySnackBar.erorrSnackBar(t.toString());
     });
+  }
+
+  void increaseItemQ(CartModel cartModel) {
+    CartModel newModel = cartModel.copyWith(
+        quantity: (int.parse(cartModel.quantity ?? '1') + 1).toString());
+    editAnItem(newModel);
+  }
+
+  void decreaseQ(CartModel cartModel) {
+    if ((cartModel.quantity ?? '1') == '1') return;
+    CartModel newModel = cartModel.copyWith(
+        quantity: (int.parse(cartModel.quantity!) - 1).toString());
+    editAnItem(newModel);
   }
 
   void clearItems() {
