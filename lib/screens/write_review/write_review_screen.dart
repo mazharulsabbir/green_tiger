@@ -98,7 +98,7 @@ class WriteReviewScreen extends StatelessWidget {
                 children: [
                   const Gap(),
                   const Text(
-                    'Please erite overall level of satisfication with your shipping / Delivery Service',
+                    'Please write overall level of satisfication with your shipping / Delivery Service',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const Gap(),
