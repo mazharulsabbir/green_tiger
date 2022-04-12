@@ -3,7 +3,6 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
-import 'package:green_tiger/data/local/fake_data_repository.dart';
 import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/screens/cart/widget/no_item_widget.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';

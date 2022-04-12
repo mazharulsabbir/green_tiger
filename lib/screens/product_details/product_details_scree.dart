@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/common_widgets/common_gap.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
 import 'package:green_tiger/data/model/product/product.dart';
+import 'package:green_tiger/data/model/product_details/more_time.dart';
 import 'dart:math' as math;
 import 'package:green_tiger/screens/home/widget/product_widget.dart';
+import 'package:green_tiger/screens/write_review/write_review_screen.dart';
 
 String _stataticProductDetails =
     'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
 
 class ProductDetialsScreen extends StatelessWidget {
   final ProductModel productModel;
-  const ProductDetialsScreen({Key? key, required this.productModel})
+  ProductDetialsScreen({Key? key, required this.productModel})
       : super(key: key);
   final List<Color> colorDotsColors = const [
     Colors.green,
@@ -23,10 +26,10 @@ class ProductDetialsScreen extends StatelessWidget {
     Colors.blue,
     Colors.blueAccent
   ];
-  final List<Map<String, dynamic>> moreTiles = const [
-    {'Item details': null},
-    {'Shipping info': null},
-    {'Reviews': null}
+  final List<MoreTileModel> moreTiles = [
+    const MoreTileModel(title: 'Item details', navTo: null),
+    const MoreTileModel(title: 'Shipping info', navTo: null),
+    MoreTileModel(title: 'Reviews', navTo: WriteReviewScreen()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class ProductDetialsScreen extends StatelessWidget {
                           )),
                 ),
               ),
-              const _Gap(),
+              const Gap(),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
@@ -88,7 +91,7 @@ class ProductDetialsScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const _Gap(),
+                    const Gap(),
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: _StarReview(
@@ -96,9 +99,9 @@ class ProductDetialsScreen extends StatelessWidget {
                         reviewNumber: 10,
                       ),
                     ),
-                    const _Gap(),
+                    const Gap(),
                     Text(_stataticProductDetails),
-                    const _Gap(
+                    const Gap(
                       times: 2,
                     ),
                     const Align(
@@ -109,33 +112,38 @@ class ProductDetialsScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                     ),
-                    const _Gap(),
+                    const Gap(),
                     Row(
                       children: colorDotsColors
                           .map((e) => _ColorDots(color: e))
                           .toList(),
                     ),
-                    const _Gap(),
+                    const Gap(),
                     Column(
                       children: ListTile.divideTiles(
                           context: context,
                           tiles: Iterable.generate(moreTiles.length, (index) {
                             return ListTile(
-                              title: Text(moreTiles[index].keys.first),
+                              title: Text(moreTiles[index].title),
                               trailing: Transform.rotate(
                                 angle: math.pi,
                                 child: const Icon(Icons.arrow_back_ios),
                               ),
+                              onTap: () {
+                                Get.to(() => WriteReviewScreen());
+                              },
                             );
-                          })).toList(),
+                          })).toList()
+                        ..insert(moreTiles.length, const Divider())
+                        ..insert(0, const Divider()),
                     ),
-                    const _Gap(
+                    const Gap(
                       times: 2,
                     ),
                     _AddToCButton(
                       productModel: productModel,
                     ),
-                    const _Gap(),
+                    const Gap(),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: Get.width * 0.3),
@@ -148,7 +156,7 @@ class ProductDetialsScreen extends StatelessWidget {
                         height: 20, // The divider's height extent.
                       ),
                     ),
-                    const _Gap(
+                    const Gap(
                       times: 2,
                     ),
                     const Align(
@@ -159,7 +167,7 @@ class ProductDetialsScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
-                    const _Gap(),
+                    const Gap(),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -199,18 +207,6 @@ class _ProductImageWidget extends StatelessWidget {
   }
 }
 
-class _Gap extends StatelessWidget {
-  final int times;
-  const _Gap({Key? key, this.times = 1}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: times * 20,
-    );
-  }
-}
-
 class _StarReview extends StatelessWidget {
   final double rating;
   final int reviewNumber;
@@ -247,9 +243,7 @@ class _StarReview extends StatelessWidget {
             ),
           ),
           itemPadding: const EdgeInsets.only(right: 2.0),
-          onRatingUpdate: (rating) {
-            print(rating);
-          },
+          onRatingUpdate: (rating) {},
         ),
         Text(
           '($reviewNumber)',
