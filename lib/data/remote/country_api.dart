@@ -8,7 +8,7 @@ class CountryApi extends GetConnect {
     String? cookie = AuthController.to.coockie;
     if (cookie != null) {
       final response = await post(
-        "http://139.162.16.146:8069/api/v1/global/public/get",
+        "http://139.162.16.146:8069/api/v1/global/get",
         {
           "params": {
             "data": {

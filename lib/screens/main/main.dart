@@ -1,5 +1,5 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:green_tiger/common_widgets/common_search_appbar.dart';
 import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
@@ -15,48 +15,7 @@ class HomePage extends GetView<HomeController> {
     final AuthController _authController = Get.find<AuthController>();
 
     return Scaffold(
-      appBar: AppBar(
-        // title: const Text('Home'),
-        elevation: 0.4,
-        title: const TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(Icons.search),
-            hintText: 'Search product or dealers',
-          ),
-        ),
-        backgroundColor: Colors.white,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Badge(
-              badgeContent: const Text('3'),
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: -5, end: -5),
-              child: const Icon(
-                PhosphorIcons.shopping_cart,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Badge(
-              // badgeContent: const Text('3'),
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: 0, end: 0),
-              child: const Icon(
-                PhosphorIcons.bell,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          // IconButton(
-          //   icon: const Icon(PhosphorIcons.sign_out, color: Colors.black),
-          //   onPressed: () => _authController.setUserLoggedInStatus(false),
-          // ),
-        ],
-      ),
+      appBar: const SearchProductAppBar(),
       body: Obx(
         () => IndexedStack(
           index: controller.currentIndex,

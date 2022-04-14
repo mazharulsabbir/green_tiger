@@ -100,3 +100,7 @@ Update `ios/Runner/Info.plist` with the following:
 ```
 
 ### 1.4 [Facebook Sign-in](https://facebook.meedu.app/docs/intro)
+
+### 1.5 App Login
+User: aistiak6@gmail.com
+Password: 1

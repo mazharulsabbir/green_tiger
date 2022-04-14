@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_tiger/screens/home/widget/customer_homepage.dart';
 
-import 'widget/vendor_dashboard.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

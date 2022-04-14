@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:green_tiger/controller/auth_controller.dart';
 import '/constraints/index.dart';
 import '/data/model/category/category.dart';
 
-class CategoryWidget extends StatelessWidget {
+class CategoryWidget extends GetView<AuthController> {
   final CategoryModel category;
   const CategoryWidget({Key? key, required this.category}) : super(key: key);
 
@@ -21,10 +23,15 @@ class CategoryWidget extends StatelessWidget {
           margin: const EdgeInsets.only(right: 10),
           padding: const EdgeInsets.all(20),
           child: CachedNetworkImage(
+            httpHeaders: {'Cookie': "${controller.coockie}"},
             imageUrl: category.image,
+            errorWidget: (_, msg, __) {
+              debugPrint(msg.toString());
+              return const Icon(Icons.error);
+            },
           ),
         ),
-        // const SizedBox(height: 3),
+        const SizedBox(height: 6),
         SizedBox(
           width: 70,
           child: Text(

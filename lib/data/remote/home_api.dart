@@ -41,7 +41,7 @@ class HomeApi extends GetConnect {
     try {
       String? cookie = AuthController.to.coockie;
       if (cookie != null) {
-        final _url = urlBuilder('api/v1/global/public/get');
+        final _url = urlBuilder('api/v1/global/get');
         Response response = await post(
           _url,
           _body,
@@ -83,7 +83,7 @@ class HomeApi extends GetConnect {
     try {
       String? cookie = AuthController.to.coockie;
       if (cookie != null) {
-        final _url = urlBuilder('api/v1/global/public/get');
+        final _url = urlBuilder('api/v1/global/get');
         Response response = await post(
           _url,
           _body,

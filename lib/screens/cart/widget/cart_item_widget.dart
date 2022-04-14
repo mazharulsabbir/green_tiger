@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
 
-class CartItemWidget extends StatelessWidget {
+class CartItemWidget extends GetView<CartController> {
   final CartModel cart;
   const CartItemWidget({Key? key, required this.cart}) : super(key: key);
 
@@ -39,15 +41,23 @@ class CartItemWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "${cart.name}",
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue[900],
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: Get.width * 0.5),
+                        child: Text(
+                          "${cart.name}",
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[900],
+                              overflow: TextOverflow.fade),
                         ),
                       ),
-                      const Icon(PhosphorIcons.trash)
+                      GestureDetector(
+                          onTap: () {
+                            controller.removeAnItem(cart);
+                          },
+                          child: const Icon(PhosphorIcons.trash))
                     ],
                   ),
                   const SizedBox(
@@ -65,17 +75,22 @@ class CartItemWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Container(
-                            width: 30,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey.withOpacity(0.3),
+                          InkWell(
+                            onTap: () {
+                              controller.decreaseQ(cart);
+                            },
+                            child: Container(
+                              width: 30,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
                               ),
-                            ),
-                            child: const Icon(
-                              PhosphorIcons.minus,
-                              size: 16,
+                              child: const Icon(
+                                PhosphorIcons.minus,
+                                size: 16,
+                              ),
                             ),
                           ),
                           Container(
@@ -89,17 +104,22 @@ class CartItemWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 30,
-                            height: 25,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey.withOpacity(0.3),
+                          InkWell(
+                            onTap: () {
+                              controller.increaseItemQ(cart);
+                            },
+                            child: Container(
+                              width: 30,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey.withOpacity(0.3),
+                                ),
                               ),
-                            ),
-                            child: const Icon(
-                              PhosphorIcons.plus,
-                              size: 16,
+                              child: const Icon(
+                                PhosphorIcons.plus,
+                                size: 16,
+                              ),
                             ),
                           )
                         ],
