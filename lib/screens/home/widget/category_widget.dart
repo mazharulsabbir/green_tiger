@@ -23,7 +23,7 @@ class CategoryWidget extends GetView<AuthController> {
           margin: const EdgeInsets.only(right: 10),
           padding: const EdgeInsets.all(20),
           child: CachedNetworkImage(
-            httpHeaders: {'Cookie': "${controller.coockie}"},
+            httpHeaders: {'Cookie': "${controller.cookie}"},
             imageUrl: category.image,
             errorWidget: (_, msg, __) {
               debugPrint(msg.toString());

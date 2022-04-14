@@ -1,15 +1,18 @@
-import 'package:flutter/foundation.dart';
-import 'package:green_tiger/controller/auth_controller.dart';
+import 'package:green_tiger/data/local/storage_utils.dart';
+import 'package:green_tiger/data/remote/api_service.dart';
 import '/data/model/country/country.dart';
-import 'package:get/get.dart';
 
-class CountryApi extends GetConnect {
+import 'package:dio/dio.dart' as dio;
+
+class AddressRepository {
   Future<List<Country>> countries() async {
-    String? cookie = AuthController.to.coockie;
+    final _dio = dio.Dio();
+    String? cookie = StorageUtils.getCookie();
     if (cookie != null) {
-      final response = await post(
-        "http://139.162.16.146:8069/api/v1/global/get",
-        {
+      final response = await ApiService.post(
+        "/api/v1/global/get",
+        _dio,
+        body: {
           "params": {
             "data": {
               "model": "res.country",
@@ -47,21 +50,13 @@ class CountryApi extends GetConnect {
         },
       );
 
-      debugPrint(response.request?.url.toString() ?? "Url not found");
+      List<dynamic> _result = response.data;
 
-      if (response.status.hasError) {
-        debugPrint("Error to get countries: ${response.statusCode}");
-        // return Future.error("Error to get countries: ${response.statusText}");
-        return [];
-      }
-
-      final _response = (response.body['result'] as List<dynamic>)
-          .map((e) => Country.fromJson(e))
-          .toList();
+      final _response = _result.map((e) => Country.fromJson(e)).toList();
 
       return _response;
     } else {
-      return [];
+      return Future.error("Unauthorized!");
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:green_tiger/data/remote/auth_api.dart';
+import 'package:green_tiger/data/repository/auth_repo.dart';
 
 import '/data/local/storage_utils.dart';
 import 'package:get/get.dart';
@@ -12,19 +12,19 @@ class AuthController extends GetxController {
   final _isLoggedIn = false.obs;
   final _isLoading = false.obs;
 
-  String? _coockie;
+  String? _cookie;
 
   bool get isUserLoggedIn => _isLoggedIn.value;
   bool get isLoading => _isLoading.value;
 
-  String? get coockie => _coockie;
+  String? get cookie => _cookie;
 
   static AuthController get to => Get.find();
 
   AuthController() {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
     if (_isLoggedIn.value) {
-      _coockie = StorageUtils.getCookie();
+      _cookie = StorageUtils.getCookie();
     }
   }
 
@@ -70,35 +70,30 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<dynamic> loginWithEmailAndPass(
-      {required String email, required String password}) async {
+  Future<dynamic> loginWithEmailAndPass({
+    required String email,
+    required String password,
+  }) async {
     try {
       _setLoading(true);
-      final response =
-          await AuthApiServices.login(email: email, password: password);
+      final _cookie = await AuthRepository().login(
+        email: email,
+        password: password,
+      );
 
+      StorageUtils.setCookie(_cookie);
+      setUserLoggedInStatus(true);
+      return Future.value('Login Successful!');
+    } on Exception catch (e) {
       _setLoading(false);
-      if (response != null) {
-        final data = jsonDecode(response.body);
-        if (data["result"] != null) {
-          _coockie = response.headers['set-cookie']?.split(';').first;
-          print('Response Headers: $_coockie');
-          StorageUtils.setCookie(_coockie);
-
-          setUserLoggedInStatus(true);
-
-          return Future.value('Success');
-        } else {
-          return Future.error('Wrong credential. Try again.');
-        }
-      } else {
-        return Future.error('Wrong credential');
-      }
-    } catch (e) {
-      _setLoading(false);
+      debugPrint("${e}");
       return Future.error(e.toString());
     } finally {
       _setLoading(false);
     }
+  }
+
+  void logout() {
+    // todo: logout
   }
 }

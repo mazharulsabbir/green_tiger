@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:green_tiger/data/model/product/product.dart';
-import '../data/remote/home_api.dart';
+import 'package:green_tiger/data/repository/product_repo.dart';
 
 class ProductController extends GetxController
     with StateMixin<List<ProductModel>> {
-  final HomeApi _api = HomeApi();
+  final ProductRepository _api = ProductRepository();
   static ProductController get to => Get.find();
 
   @override

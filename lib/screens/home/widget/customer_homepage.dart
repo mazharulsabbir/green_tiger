@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/category_controller.dart';
 import 'package:green_tiger/controller/product_controller.dart';
+import '../../../controller/product_by_category_controller.dart';
 import '/data/local/fake_data_repository.dart';
 import 'product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
@@ -72,17 +73,7 @@ class CustomerHomeScreen extends GetView<CategoryController> {
               )
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(
-                products.length,
-                (index) => ProductWidget(
-                  product: products[index],
-                ),
-              ),
-            ),
-          ),
+          _ProductByCategoryListWidget(categoryId: 10.toString()),
           const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,17 +88,7 @@ class CustomerHomeScreen extends GetView<CategoryController> {
               )
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(
-                cycleProducts.length,
-                (index) => ProductWidget(
-                  product: cycleProducts[index],
-                ),
-              ),
-            ),
-          ),
+          _ProductByCategoryListWidget(categoryId: 16.toString()),
           const SizedBox(height: 30),
           Container(
             child: const OfferCarouselWidget(
@@ -135,31 +116,59 @@ class CustomerHomeScreen extends GetView<CategoryController> {
             ],
           ),
           const SizedBox(height: 10),
-          const _ProdcutListWidget(),
+          const _ProductListWidget(),
         ],
       ),
     );
   }
 }
 
-class _ProdcutListWidget extends GetView<ProductController> {
-  const _ProdcutListWidget({Key? key}) : super(key: key);
+class _ProductListWidget extends GetView<ProductController> {
+  const _ProductListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-        (state) => state != null
-            ? Column(
-                children: List.generate(
-                  state.length,
-                  (index) => ProductListTileWidget(
-                    product: state[index],
-                  ),
-                ),
-              )
-            : const SizedBox(),
-        onLoading: const SizedBox(),
-        onEmpty: const SizedBox(),
-        onError: (e) => const SizedBox());
+      (state) => ListView.builder(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        itemCount: state?.length,
+        itemBuilder: ((context, index) => ProductListTileWidget(
+              product: state?[index],
+            )),
+      ),
+      onLoading: const Center(child: CircularProgressIndicator()),
+      onEmpty: const Center(child: Text('No Products')),
+      onError: (e) => Center(child: Text(e.toString())),
+    );
+  }
+}
+
+class _ProductByCategoryListWidget
+    extends GetView<ProductByCategoryController> {
+  final String? categoryId;
+  const _ProductByCategoryListWidget({
+    Key? key,
+    required this.categoryId,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return controller.obx(
+      (state) => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: List.generate(
+            state?.length ?? 0,
+            (index) => ProductWidget(
+              product: state?[index],
+            ),
+          ),
+        ),
+      ),
+      onLoading: const Center(child: CircularProgressIndicator()),
+      onEmpty: const Center(child: Text('No Products')),
+      onError: (e) => Center(child: Text(e.toString())),
+    );
   }
 }

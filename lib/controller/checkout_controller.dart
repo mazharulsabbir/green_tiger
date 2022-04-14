@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:green_tiger/data/local/address_storage.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
-import 'package:green_tiger/data/remote/country_api.dart';
+
+import '../data/repository/address_repo.dart';
 
 class CheckoutController extends GetxController {
   static CheckoutController get to => Get.find();
-  final CountryApi _api = CountryApi();
+  final AddressRepository _api = AddressRepository();
 
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
