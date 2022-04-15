@@ -8,7 +8,7 @@ class SocialMediaLoginWidget extends StatelessWidget {
   SocialMediaLoginWidget({Key? key}) : super(key: key);
 
   final AuthController _authController = Get.find<AuthController>();
-  final AdsController _adsController = Get.find<AdsController>();
+  // final AdsController _adsController = Get.find<AdsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SocialMediaLoginWidget extends StatelessWidget {
                 onPressed: () async {
                   try {
                     final _login = await _authController.signInWithFacebook();
-                    _adsController.showInterstitialAd();
+                    // _adsController.showInterstitialAd();
                   } catch (e) {
                     debugPrint("$e");
                   }
@@ -42,7 +42,7 @@ class SocialMediaLoginWidget extends StatelessWidget {
                 onPressed: () async {
                   try {
                     final _login = await _authController.signInWithGoogle();
-                    _adsController.showInterstitialAd();
+                    // _adsController.showInterstitialAd();
                   } catch (e) {
                     debugPrint("$e");
                   }

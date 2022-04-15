@@ -18,15 +18,18 @@ import '/controller/home_controller.dart';
 class GlobalBindings extends Bindings {
   @override
   void dependencies() {
+    // repositories
     Get.put(AuthRepository());
     Get.put(ProductRepository());
     Get.put(AddressRepository());
 
-    Get.put(DeviceInfoController());
-    Get.put(PushNotificationController());
-    Get.put(AdsController());
+    // controllers
+    // Get.put(DeviceInfoController());
+    // Get.put(PushNotificationController());
+    // Get.put(AdsController());
     Get.put(AuthController());
 
+    // lazy controllers
     Get.lazyPut(() => CheckoutController(), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
     Get.lazyPut(() => CategoryController(), fenix: true);

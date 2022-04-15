@@ -24,7 +24,7 @@ class CategoryWidget extends GetView<AuthController> {
           padding: const EdgeInsets.all(20),
           child: CachedNetworkImage(
             httpHeaders: {'Cookie': "${controller.cookie}"},
-            imageUrl: category.image,
+            imageUrl: "${category.image}",
             errorWidget: (_, msg, __) {
               debugPrint(msg.toString());
               return const Icon(Icons.error);
@@ -35,7 +35,7 @@ class CategoryWidget extends GetView<AuthController> {
         SizedBox(
           width: 70,
           child: Text(
-            category.name,
+            "${category.name}",
             maxLines: 2,
             textAlign: TextAlign.center,
             style: const TextStyle(

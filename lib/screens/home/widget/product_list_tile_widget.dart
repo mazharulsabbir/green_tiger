@@ -4,6 +4,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/screens/product_details/product_details_scree.dart';
+import '../../../data/local/storage_utils.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
 
@@ -42,7 +43,10 @@ class ProductListTileWidget extends StatelessWidget {
                       'assets/images/cycle.png',
                       // fit: BoxFit.cover,
                     )
-                  : CachedNetworkImage(imageUrl: '${product?.imageUrl}'),
+                  : CachedNetworkImage(
+                      imageUrl: '${product?.imageUrl}',
+                      httpHeaders: {"Cookie": "${StorageUtils.getCookie()}"},
+                    ),
             ),
             const SizedBox(width: 10),
             Column(

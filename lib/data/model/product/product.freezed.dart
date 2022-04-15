@@ -24,11 +24,11 @@ class _$ProductModelTearOff {
   _ProductModel call(
       {int? id,
       String? name,
-      double? price,
+      @JsonKey(name: 'list_price', defaultValue: 0.0) double? price,
       double? discount,
-      String? imageUrl,
-      double? rating,
-      int? ratingCount,
+      @JsonKey(name: 'image_1920') String? imageUrl,
+      @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? rating,
+      @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount,
       bool? isFav}) {
     return _ProductModel(
       id: id,
@@ -54,11 +54,15 @@ const $ProductModel = _$ProductModelTearOff();
 mixin _$ProductModel {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'list_price', defaultValue: 0.0)
   double? get price => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_1920')
   String? get imageUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rating_avg', defaultValue: 0.0)
   double? get rating => throw _privateConstructorUsedError;
-  int? get ratingCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rating_count', defaultValue: 0.0)
+  double? get ratingCount => throw _privateConstructorUsedError;
   bool? get isFav => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -75,11 +79,11 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      double? price,
+      @JsonKey(name: 'list_price', defaultValue: 0.0) double? price,
       double? discount,
-      String? imageUrl,
-      double? rating,
-      int? ratingCount,
+      @JsonKey(name: 'image_1920') String? imageUrl,
+      @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? rating,
+      @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount,
       bool? isFav});
 }
 
@@ -130,7 +134,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       ratingCount: ratingCount == freezed
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       isFav: isFav == freezed
           ? _value.isFav
           : isFav // ignore: cast_nullable_to_non_nullable
@@ -149,11 +153,11 @@ abstract class _$ProductModelCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      double? price,
+      @JsonKey(name: 'list_price', defaultValue: 0.0) double? price,
       double? discount,
-      String? imageUrl,
-      double? rating,
-      int? ratingCount,
+      @JsonKey(name: 'image_1920') String? imageUrl,
+      @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? rating,
+      @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount,
       bool? isFav});
 }
 
@@ -206,7 +210,7 @@ class __$ProductModelCopyWithImpl<$Res> extends _$ProductModelCopyWithImpl<$Res>
       ratingCount: ratingCount == freezed
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       isFav: isFav == freezed
           ? _value.isFav
           : isFav // ignore: cast_nullable_to_non_nullable
@@ -221,11 +225,11 @@ class _$_ProductModel implements _ProductModel {
   _$_ProductModel(
       {this.id,
       this.name,
-      this.price,
+      @JsonKey(name: 'list_price', defaultValue: 0.0) this.price,
       this.discount,
-      this.imageUrl,
-      this.rating,
-      this.ratingCount,
+      @JsonKey(name: 'image_1920') this.imageUrl,
+      @JsonKey(name: 'rating_avg', defaultValue: 0.0) this.rating,
+      @JsonKey(name: 'rating_count', defaultValue: 0.0) this.ratingCount,
       this.isFav});
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -236,15 +240,19 @@ class _$_ProductModel implements _ProductModel {
   @override
   final String? name;
   @override
+  @JsonKey(name: 'list_price', defaultValue: 0.0)
   final double? price;
   @override
   final double? discount;
   @override
+  @JsonKey(name: 'image_1920')
   final String? imageUrl;
   @override
+  @JsonKey(name: 'rating_avg', defaultValue: 0.0)
   final double? rating;
   @override
-  final int? ratingCount;
+  @JsonKey(name: 'rating_count', defaultValue: 0.0)
+  final double? ratingCount;
   @override
   final bool? isFav;
 
@@ -296,11 +304,11 @@ abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
       {int? id,
       String? name,
-      double? price,
+      @JsonKey(name: 'list_price', defaultValue: 0.0) double? price,
       double? discount,
-      String? imageUrl,
-      double? rating,
-      int? ratingCount,
+      @JsonKey(name: 'image_1920') String? imageUrl,
+      @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? rating,
+      @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount,
       bool? isFav}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -311,15 +319,19 @@ abstract class _ProductModel implements ProductModel {
   @override
   String? get name;
   @override
+  @JsonKey(name: 'list_price', defaultValue: 0.0)
   double? get price;
   @override
   double? get discount;
   @override
+  @JsonKey(name: 'image_1920')
   String? get imageUrl;
   @override
+  @JsonKey(name: 'rating_avg', defaultValue: 0.0)
   double? get rating;
   @override
-  int? get ratingCount;
+  @JsonKey(name: 'rating_count', defaultValue: 0.0)
+  double? get ratingCount;
   @override
   bool? get isFav;
   @override

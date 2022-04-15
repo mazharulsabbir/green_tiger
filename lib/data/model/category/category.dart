@@ -7,9 +7,9 @@ part 'category.g.dart';
 class CategoryModel with _$CategoryModel {
   const CategoryModel._();
   const factory CategoryModel({
-    required int id,
-    required String name,
-    required String image,
+    int? id,
+    String? name,
+    @JsonKey(name: 'image_1024') String? image,
   }) = _CategoryModel;
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);

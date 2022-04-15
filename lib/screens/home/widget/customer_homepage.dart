@@ -4,8 +4,8 @@ import 'package:green_tiger/controller/category_controller.dart';
 import 'package:green_tiger/controller/product_controller.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
-import '../../../controller/product_by_category_controller.dart';
-import '/data/local/fake_data_repository.dart';
+import '../../../common_widgets/category_loading_widget.dart';
+import '../../../common_widgets/product_loading_widget.dart';
 import 'product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
 import 'category_widget.dart';
@@ -76,8 +76,12 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                   ),
               ],
             ),
-            onLoading: const SizedBox(),
-            onError: (e) => const SizedBox(),
+            onLoading: const SingleChildScrollView(
+              child: CategoryHorizontalShimmerLoadingWidget(),
+            ),
+            onError: (e) => Center(
+              child: Text('$e'),
+            ),
           ),
           Container(
             child: const OfferCarouselWidget(
@@ -184,7 +188,7 @@ class _ProductByCategoryListWidget extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const ProductHorizontalShimmerLoadingWidget();
         }
 
         if (snapshot.hasError) {
