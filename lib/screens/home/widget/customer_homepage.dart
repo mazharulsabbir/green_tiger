@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/controller/category_controller.dart';
-import 'package:green_tiger/controller/product_controller.dart';
+import 'package:green_tiger/controller/product/category_controller.dart';
+import 'package:green_tiger/controller/product/product_controller.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
 import '../../../common_widgets/category_loading_widget.dart';
@@ -16,101 +16,104 @@ class CustomerHomeScreen extends GetView<CategoryController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-      child: Column(
-        children: [
-          Container(
-            child: const OfferCarouselWidget(
-              height: 180,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            // margin: const EdgeInsets.all(10),
-          ),
-          const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                'Category',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return RefreshIndicator(
+      onRefresh: controller.refreshHome,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+        child: Column(
+          children: [
+            Container(
+              child: const OfferCarouselWidget(
+                height: 180,
               ),
-              TextButton(
-                onPressed: null,
-                child: Text('Sell All'),
-              )
-            ],
-          ),
-          controller.obx(
-            (state) => Column(
-              children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: state != null
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: List.generate(
-                            state.length,
-                            (index) => CategoryWidget(
-                              category: state[index],
-                            ),
-                          ),
-                        )
-                      : const SizedBox(),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              // margin: const EdgeInsets.all(10),
+            ),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Category',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 30),
-                if (state != null)
-                  ...List.generate(
-                    state.length,
-                    (index) => Column(
-                      children: [
-                        _ProductByCategoryListWidget(
-                          categoryId: state[index].id,
-                          categoryName: 'Latest ${state[index].name}',
-                        ),
-                      ],
-                    ),
-                  ),
+                TextButton(
+                  onPressed: null,
+                  child: Text('Sell All'),
+                )
               ],
             ),
-            onLoading: const SingleChildScrollView(
-              child: CategoryHorizontalShimmerLoadingWidget(),
-            ),
-            onError: (e) => Center(
-              child: Text('$e'),
-            ),
-          ),
-          Container(
-            child: const OfferCarouselWidget(
-              enableIndicator: false,
-              height: 160,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.amberAccent,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            // margin: const EdgeInsets.all(10),
-          ),
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                'Latest Arrivals',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            controller.obx(
+              (state) => Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: state != null
+                        ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(
+                              state.length,
+                              (index) => CategoryWidget(
+                                category: state[index],
+                              ),
+                            ),
+                          )
+                        : const SizedBox(),
+                  ),
+                  const SizedBox(height: 30),
+                  if (state != null)
+                    ...List.generate(
+                      state.length,
+                      (index) => Column(
+                        children: [
+                          _ProductByCategoryListWidget(
+                            categoryId: state[index].id,
+                            categoryName: 'Latest ${state[index].name}',
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
               ),
-              TextButton(
-                onPressed: null,
-                child: Text('Sell All'),
-              )
-            ],
-          ),
-          const SizedBox(height: 10),
-          const _ProductListWidget(),
-        ],
+              onLoading: const SingleChildScrollView(
+                child: CategoryHorizontalShimmerLoadingWidget(),
+              ),
+              onError: (e) => Center(
+                child: Text('$e'),
+              ),
+            ),
+            Container(
+              child: const OfferCarouselWidget(
+                enableIndicator: false,
+                height: 160,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.amberAccent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              // margin: const EdgeInsets.all(10),
+            ),
+            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Latest Arrivals',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: null,
+                  child: Text('Sell All'),
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
+            const _ProductListWidget(),
+          ],
+        ),
       ),
     );
   }
@@ -126,9 +129,9 @@ class _ProductListWidget extends GetView<ProductController> {
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         itemCount: state?.length,
-        itemBuilder: ((context, index) => ProductListTileWidget(
-              product: state?[index],
-            )),
+        itemBuilder: (context, index) => ProductListTileWidget(
+          product: state?[index],
+        ),
       ),
       onLoading: const Center(child: CircularProgressIndicator()),
       onEmpty: const Center(child: Text('No Products')),

@@ -17,4 +17,6 @@ class CategoryController extends GetxController
         (response) => change(response, status: RxStatus.success()),
         onError: (err) => change(null, status: RxStatus.error(err)),
       );
+
+  Future<void> refreshHome() async => await getCategories();
 }

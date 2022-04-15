@@ -8,11 +8,11 @@ import '../controller/notification_controller.dart';
 
 import '../controller/auth_controller.dart';
 import 'package:get/get.dart';
-import '../controller/product_by_category_controller.dart';
+import '../controller/product/product_by_category_controller.dart';
 import '../data/repository/address_repo.dart';
 import '/controller/cart_controller.dart';
-import '/controller/category_controller.dart';
-import '/controller/product_controller.dart';
+import '../controller/product/category_controller.dart';
+import '../controller/product/product_controller.dart';
 import '/controller/home_controller.dart';
 
 class GlobalBindings extends Bindings {
