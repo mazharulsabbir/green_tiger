@@ -140,7 +140,7 @@ class ProductRepository {
     }
   }
 
-  Future<List<ProductModel>> productsByCategory(int categoryId) async {
+  Future<List<ProductModel>> productsByCategory(int? categoryId) async {
     final _body = {
       "params": {
         "data": {

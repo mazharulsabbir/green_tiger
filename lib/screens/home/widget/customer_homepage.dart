@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/category_controller.dart';
 import 'package:green_tiger/controller/product_controller.dart';
+import 'package:green_tiger/data/model/product/product.dart';
+import 'package:green_tiger/data/repository/product_repo.dart';
 import '../../../controller/product_by_category_controller.dart';
 import '/data/local/fake_data_repository.dart';
 import 'product_widget.dart';
@@ -43,53 +45,40 @@ class CustomerHomeScreen extends GetView<CategoryController> {
             ],
           ),
           controller.obx(
-              (state) => SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: state != null
-                        ? Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: List.generate(
-                              state.length,
-                              (index) => CategoryWidget(
-                                category: state[index],
-                              ),
+            (state) => Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: state != null
+                      ? Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(
+                            state.length,
+                            (index) => CategoryWidget(
+                              category: state[index],
                             ),
-                          )
-                        : const SizedBox(),
+                          ),
+                        )
+                      : const SizedBox(),
+                ),
+                const SizedBox(height: 30),
+                if (state != null)
+                  ...List.generate(
+                    state.length,
+                    (index) => Column(
+                      children: [
+                        _ProductByCategoryListWidget(
+                          categoryId: state[index].id,
+                          categoryName: 'Latest ${state[index].name}',
+                        ),
+                      ],
+                    ),
                   ),
-              onLoading: const SizedBox(),
-              onError: (e) => const SizedBox()),
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                'Latest E-bikes',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              TextButton(
-                onPressed: null,
-                child: Text('Sell All'),
-              )
-            ],
+              ],
+            ),
+            onLoading: const SizedBox(),
+            onError: (e) => const SizedBox(),
           ),
-          _ProductByCategoryListWidget(categoryId: 10.toString()),
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                'Electric Bicycle',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              TextButton(
-                onPressed: null,
-                child: Text('Sell All'),
-              )
-            ],
-          ),
-          _ProductByCategoryListWidget(categoryId: 16.toString()),
-          const SizedBox(height: 30),
           Container(
             child: const OfferCarouselWidget(
               enableIndicator: false,
@@ -144,31 +133,66 @@ class _ProductListWidget extends GetView<ProductController> {
   }
 }
 
-class _ProductByCategoryListWidget
-    extends GetView<ProductByCategoryController> {
-  final String? categoryId;
+class _ProductByCategoryListWidget extends StatelessWidget {
+  final int? categoryId;
+  final String? categoryName;
   const _ProductByCategoryListWidget({
     Key? key,
     required this.categoryId,
+    required this.categoryName,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return controller.obx(
-      (state) => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: List.generate(
-            state?.length ?? 0,
-            (index) => ProductWidget(
-              product: state?[index],
-            ),
-          ),
-        ),
-      ),
-      onLoading: const Center(child: CircularProgressIndicator()),
-      onEmpty: const Center(child: Text('No Products')),
-      onError: (e) => Center(child: Text(e.toString())),
+    return FutureBuilder(
+      future: ProductRepository().productsByCategory(categoryId),
+      builder: ((context, snapshot) {
+        if (snapshot.hasData) {
+          final state = snapshot.data as List<ProductModel>?;
+          if (state?.isEmpty == true) return const SizedBox();
+
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "$categoryName",
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const TextButton(
+                    onPressed: null,
+                    child: Text('Sell All'),
+                  )
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    state?.length ?? 0,
+                    (index) => ProductWidget(
+                      product: state?[index],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+            ],
+          );
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        } else {
+          return const SizedBox();
+        }
+      }),
     );
   }
 }
