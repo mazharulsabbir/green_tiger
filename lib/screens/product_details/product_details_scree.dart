@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/common_widgets/common_gap.dart';
+import '../../utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/cart_controller.dart';

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/controller/checkout_controller.dart';
 import 'package:green_tiger/screens/checkout/order_success.dart';
+import '../../controller/user/shipping_address_controller.dart';
 import '/screens/cart/widget/cart_price_widget.dart';
 import '/utils/button/index.dart';
 import 'widget/add_address_button.dart';
 import 'widget/payment_method.dart';
 import 'widget/shipping_address.dart';
 
-class ShippingAddress extends StatelessWidget {
+class ShippingAddress extends GetView<ShippingAddressController> {
   const ShippingAddress({Key? key}) : super(key: key);
 
   @override
@@ -24,11 +24,9 @@ class ShippingAddress extends StatelessWidget {
         ),
         child: Column(
           children: [
-            GetX<CheckoutController>(builder: (controller) {
-              return controller.shippingAddress.firstName == null
-                  ? const EmptyAddressButton()
-                  : const ShippingAddressWidget();
-            }),
+            controller.shippingAddress.firstName == null
+                ? const EmptyAddressButton()
+                : const ShippingAddressWidget(),
             const SizedBox(height: 20),
             const CartPricingWidget(),
             const SizedBox(height: 20),

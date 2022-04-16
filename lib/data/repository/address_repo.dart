@@ -5,13 +5,14 @@ import '/data/model/country/country.dart';
 import 'package:dio/dio.dart' as dio;
 
 class AddressRepository {
-  Future<List<Country>> countries() async {
-    final _dio = dio.Dio();
+  final ApiService _apiService;
+  AddressRepository(this._apiService);
+
+  Future<List<Country>> countries() async {    
     String? cookie = StorageUtils.getCookie();
     if (cookie != null) {
-      final response = await ApiService.post(
+      final response = await _apiService.post(
         "/api/v1/global/get",
-        _dio,
         body: {
           "params": {
             "data": {

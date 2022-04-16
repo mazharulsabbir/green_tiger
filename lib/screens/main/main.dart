@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:green_tiger/common_widgets/common_search_appbar.dart';
 import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 
 import '/controller/home_controller.dart';
+import '/utils/index.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -19,11 +19,11 @@ class HomePage extends GetView<HomeController> {
       body: Obx(
         () => IndexedStack(
           index: controller.currentIndex,
-          children: [
-            const HomeScreen(),
-            const ExploreScreen(),
-            const CartScreen(),
-            const OfferScreen(),
+          children: const [
+            HomeScreen(),
+            ExploreScreen(),
+            CartScreen(),
+            OfferScreen(),
             AccountScreen(),
           ],
         ),

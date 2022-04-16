@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:green_tiger/common_widgets/common_gap.dart';
 import 'package:badges/badges.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
+
+import '../../utils/common_widgets/common_gap.dart';
 
 class WriteReviewScreen extends StatelessWidget {
   WriteReviewScreen({Key? key}) : super(key: key);

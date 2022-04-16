@@ -3,10 +3,11 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/checkout_controller.dart';
+import 'package:green_tiger/controller/user/shipping_address_controller.dart';
 
 import 'address_form_widget.dart';
 
-class ShippingAddressWidget extends GetView<CheckoutController> {
+class ShippingAddressWidget extends GetView<ShippingAddressController> {
   const ShippingAddressWidget({Key? key}) : super(key: key);
 
   @override

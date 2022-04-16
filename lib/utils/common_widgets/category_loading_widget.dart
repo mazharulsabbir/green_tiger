@@ -1,7 +1,7 @@
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 
-import '../constraints/index.dart';
+import '../../constraints/index.dart';
 
 class CategoryHorizontalShimmerLoadingWidget extends StatelessWidget {
   const CategoryHorizontalShimmerLoadingWidget({Key? key}) : super(key: key);

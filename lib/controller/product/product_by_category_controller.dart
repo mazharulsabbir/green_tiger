@@ -6,7 +6,9 @@ import '../../data/model/category/category.dart';
 
 class ProductByCategoryController extends GetxController
     with StateMixin<List<ProductModel>> {
-  final ProductRepository _api = ProductRepository();
+  final ProductRepository _repository;
+  ProductByCategoryController(this._repository);
+
   static ProductByCategoryController get to => Get.find();
   CategoryModel? _category;
   CategoryModel? get category => _category;
@@ -16,7 +18,7 @@ class ProductByCategoryController extends GetxController
   ) async {
     _category = category;
     change(null, status: RxStatus.loading());
-    await _api.productsByCategory(category.id).then(
+    await _repository.productsByCategory(category.id).then(
           (response) => change(
             response,
             status: response.isEmpty ? RxStatus.empty() : RxStatus.success(),

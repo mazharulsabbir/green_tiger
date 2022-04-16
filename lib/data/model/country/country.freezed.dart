@@ -24,7 +24,7 @@ class _$CountryTearOff {
   _Country call(
       {int? id,
       String? name,
-      String? phoneCode,
+      @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states}) {
     return _Country(
@@ -48,6 +48,7 @@ const $Country = _$CountryTearOff();
 mixin _$Country {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone_code')
   String? get phoneCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_id')
   Currency? get currency => throw _privateConstructorUsedError;
@@ -66,7 +67,7 @@ abstract class $CountryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      String? phoneCode,
+      @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states});
 
@@ -133,7 +134,7 @@ abstract class _$CountryCopyWith<$Res> implements $CountryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      String? phoneCode,
+      @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states});
 
@@ -190,7 +191,7 @@ class _$_Country extends _Country {
   const _$_Country(
       {this.id,
       this.name,
-      this.phoneCode,
+      @JsonKey(name: 'phone_code') this.phoneCode,
       @JsonKey(name: 'currency_id') this.currency,
       @JsonKey(name: 'state_ids') this.states})
       : super._();
@@ -203,6 +204,7 @@ class _$_Country extends _Country {
   @override
   final String? name;
   @override
+  @JsonKey(name: 'phone_code')
   final String? phoneCode;
   @override
   @JsonKey(name: 'currency_id')
@@ -252,7 +254,7 @@ abstract class _Country extends Country {
   const factory _Country(
       {int? id,
       String? name,
-      String? phoneCode,
+      @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states}) = _$_Country;
   const _Country._() : super._();
@@ -264,6 +266,7 @@ abstract class _Country extends Country {
   @override
   String? get name;
   @override
+  @JsonKey(name: 'phone_code')
   String? get phoneCode;
   @override
   @JsonKey(name: 'currency_id')

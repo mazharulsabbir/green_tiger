@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/common_widgets/common_loading.dart';
+import '/utils/index.dart';
 import 'package:green_tiger/utils/snack_bars/snack_bars.dart';
 import '/controller/auth_controller.dart';
 import '/screens/wrapper.dart';

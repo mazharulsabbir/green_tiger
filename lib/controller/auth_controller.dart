@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:green_tiger/data/repository/auth_repo.dart';
+import 'package:green_tiger/screens/splash.dart';
 
 import '/data/local/storage_utils.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
+  final AuthRepository _repository;
   final _isLoggedIn = false.obs;
   final _isLoading = false.obs;
 
@@ -21,7 +23,7 @@ class AuthController extends GetxController {
 
   static AuthController get to => Get.find();
 
-  AuthController() {
+  AuthController(this._repository) {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
     if (_isLoggedIn.value) {
       _cookie = StorageUtils.getCookie();
@@ -76,7 +78,7 @@ class AuthController extends GetxController {
   }) async {
     try {
       _setLoading(true);
-      final _cookie = await AuthRepository().login(
+      final _cookie = await _repository.login(
         email: email,
         password: password,
       );

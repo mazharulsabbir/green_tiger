@@ -4,8 +4,8 @@ import 'package:green_tiger/controller/product/category_controller.dart';
 import 'package:green_tiger/controller/product/product_controller.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
-import '../../../common_widgets/category_loading_widget.dart';
-import '../../../common_widgets/product_loading_widget.dart';
+import '../../../utils/common_widgets/product_loading_widget.dart';
+import '/utils/index.dart';
 import 'product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
 import 'category_widget.dart';
@@ -152,7 +152,7 @@ class _ProductByCategoryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ProductRepository().productsByCategory(categoryId),
+      future: ProductRepository(Get.find()).productsByCategory(categoryId),
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
           final state = snapshot.data as List<ProductModel>?;

@@ -2,7 +2,8 @@ import 'package:dio/dio.dart' as dio;
 import 'package:green_tiger/data/remote/api_service.dart';
 
 class AuthRepository {
-  final _dio = dio.Dio();
+  final ApiService _apiService;
+  AuthRepository(this._apiService);
 
   Future<dynamic> login({
     required String email,
@@ -13,9 +14,8 @@ class AuthRepository {
     };
 
     try {
-      final response = await ApiService.login(
-        '/web/session/authenticate',
-        _dio,
+      final response = await _apiService.login(
+        '/web/session/authenticate',        
         body: _body,
         headers: {
           'Accept': 'application/json',
