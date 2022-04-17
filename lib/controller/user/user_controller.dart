@@ -12,14 +12,15 @@ class UserController extends GetxController with StateMixin<UserModel> {
   @override
   void onInit() {
     super.onInit();
-    _getUserProfile();
+    getUserProfile();
   }
 
-  Future<void> _getUserProfile() async {
+  Future<void> getUserProfile() async {
     int? _uid = StorageUtils.loggedInUserId();
     if (_uid == null) return;
 
     _repository.getUserProfileById(_uid).then((user) {
+      // todo: cache user info
       change(user, status: RxStatus.success());
     }).catchError((error) {
       change(null, status: RxStatus.error(error));
@@ -28,7 +29,7 @@ class UserController extends GetxController with StateMixin<UserModel> {
 
   void refreshUserProfile() async {
     change(null, status: RxStatus.loading());
-    await _getUserProfile();
+    await getUserProfile();
   }
 
   void logout() {

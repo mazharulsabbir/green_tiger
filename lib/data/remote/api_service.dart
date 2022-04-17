@@ -121,6 +121,10 @@ class ApiService {
 
           List<String>? _cookie = response.headers['set-cookie'];
           String? cookie = _cookie?.first.split(';').first.toString();
+
+          // get user info
+          // store user info into cache
+          // use user info from cache in further.
           return cookie;
         }
       } else {
