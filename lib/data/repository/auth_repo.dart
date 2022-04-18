@@ -15,7 +15,7 @@ class AuthRepository {
 
     try {
       final response = await _apiService.login(
-        '/web/session/authenticate',        
+        '/web/session/authenticate',
         body: _body,
         headers: {
           'Accept': 'application/json',
@@ -24,6 +24,8 @@ class AuthRepository {
       );
       return response;
     } catch (e) {
+      print('Error cought');
+      print(e.toString());
       return Future.error("$e");
     }
   }

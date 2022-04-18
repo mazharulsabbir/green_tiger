@@ -27,6 +27,7 @@ class AuthController extends GetxController {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
     if (_isLoggedIn.value) {
       _cookie = StorageUtils.getCookie();
+      print('The cookie we get.$_cookie');
     }
   }
 

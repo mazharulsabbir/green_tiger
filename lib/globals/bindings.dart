@@ -4,12 +4,7 @@ import 'package:green_tiger/data/remote/api_service.dart';
 import 'package:green_tiger/data/repository/auth_repo.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
 import 'package:green_tiger/data/repository/user_repo.dart';
-
-import '../controller/ads_controller.dart';
 import '../controller/checkout_controller.dart';
-import '../controller/device_info_controller.dart';
-import '../controller/notification_controller.dart';
-
 import '../controller/auth_controller.dart';
 import 'package:get/get.dart';
 import '../controller/product/product_by_category_controller.dart';

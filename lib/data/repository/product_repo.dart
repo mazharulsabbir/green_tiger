@@ -7,7 +7,7 @@ import 'package:dio/dio.dart' as dio;
 
 class ProductRepository {
   final ApiService _apiService;
-  ProductRepository(this._apiService);  
+  ProductRepository(this._apiService);
   final String? _cookie = StorageUtils.getCookie();
 
   Future<List<CategoryModel>> categories() async {
@@ -31,9 +31,9 @@ class ProductRepository {
     };
 
     try {
-      if (_cookie != null) {        
+      if (_cookie != null) {
         final response = await _apiService.post(
-          '/api/v1/global/get',          
+          '/api/v1/global/get',
           body: _body,
           headers: {
             'Cookie': _cookie,
@@ -43,6 +43,8 @@ class ProductRepository {
         );
 
         final _result = response as List<dynamic>;
+        print('Printing categories');
+        print(_result);
         final _response =
             _result.map((e) => CategoryModel.fromJson(e)).toList();
         return _response;

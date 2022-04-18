@@ -1,3 +1,5 @@
+import 'package:green_tiger/data/model/user/user.dart';
+
 import '/constraints/strings.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -27,5 +29,15 @@ class StorageUtils {
   static int? loggedInUserId() => _box.read<int>('logged_in_user_id');
   static void setLoggedInUserId(int? id) {
     _box.write('logged_in_user_id', id);
+  }
+
+  static Future<UserModel?> getUser() async {
+    var _rawUser = await _box.read('user');
+    if (_rawUser == null) return null;
+    return UserModel.fromJson(_rawUser);
+  }
+
+  static Future<void> setUser(UserModel userModel) async {
+    await _box.write('user', userModel.toJson());
   }
 }

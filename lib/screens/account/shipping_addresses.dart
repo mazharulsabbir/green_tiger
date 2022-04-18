@@ -13,23 +13,33 @@ class ShippingAddresses extends GetView<ShippingAddressController> {
       appBar: AppBar(title: const Text('Addresses')),
       body: LoadingOverlay(
         isLoading: controller.isLoading,
-        child: ListView.builder(
-          itemCount: controller.shippingAddress.length,
-          itemBuilder: (context, index) {
-            final shippingAddress = controller.shippingAddresses[index];
-            return ListTile(
-              title: Text(shippingAddress.firstName),
-              subtitle: Text(shippingAddress.lastName),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () => controller.deleteShippingAddress(
-                  shippingAddress.id,
-                  index,
-                ),
+        child: ListTile(
+          title: Text(controller.shippingAddress.firstName ?? 'Unavilbale'),
+          subtitle: Text(controller.shippingAddress.lastName ?? 'Unavilble'),
+          trailing: IconButton(icon: const Icon(Icons.delete), onPressed: () {}
+              //  controller.deleteShippingAddress(
+              //   shippingAddress.id,
+              //   index,
+              // ),
               ),
-            );
-          },
         ),
+        //  ListView.builder(
+        //   itemCount: controller.shippingAddress.length,
+        //   itemBuilder: (context, index) {
+        //     final shippingAddress = controller.shippingAddresses[index];
+        //     return ListTile(
+        //       title: Text(shippingAddress.firstName),
+        //       subtitle: Text(shippingAddress.lastName),
+        //       trailing: IconButton(
+        //         icon: const Icon(Icons.delete),
+        //         onPressed: () => controller.deleteShippingAddress(
+        //           shippingAddress.id,
+        //           index,
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
       ),
     );
   }

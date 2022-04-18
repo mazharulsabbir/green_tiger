@@ -8,7 +8,7 @@ class AddressRepository {
   final ApiService _apiService;
   AddressRepository(this._apiService);
 
-  Future<List<Country>> countries() async {    
+  Future<List<Country>> countries() async {
     String? cookie = StorageUtils.getCookie();
     if (cookie != null) {
       final response = await _apiService.post(
@@ -50,8 +50,10 @@ class AddressRepository {
           'Content-Type': 'application/json'
         },
       );
+      print('Response for countries we get');
+      print(response);
 
-      List<dynamic> _result = response.data;
+      List<dynamic> _result = response as List;
 
       final _response = _result.map((e) => Country.fromJson(e)).toList();
 

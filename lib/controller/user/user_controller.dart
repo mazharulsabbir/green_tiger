@@ -21,6 +21,11 @@ class UserController extends GetxController with StateMixin<UserModel> {
 
     _repository.getUserProfileById(_uid).then((user) {
       // todo: cache user info
+      if (user == null) {
+        change(null, status: RxStatus.error('No user found'));
+        return;
+      }
+      StorageUtils.setUser(user);
       change(user, status: RxStatus.success());
     }).catchError((error) {
       change(null, status: RxStatus.error(error));
