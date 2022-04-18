@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/screens/product_details/product_details_scree.dart';
+import 'package:green_tiger/screens/product/product_details.dart';
 import '../../../data/local/storage_utils.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
@@ -16,16 +16,12 @@ class ProductListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(() => ProductDetialsScreen(
-              productModel: product,
-            ));
-      },
+      onTap: () => Get.to(() => ProductDetailsScreen(productModel: product)),
       child: Container(
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(10),
-        //   color: productBackgroundColor,
-        // ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          // color: productBackgroundColor,
+        ),
         margin: const EdgeInsets.only(bottom: 10),
         // padding: const EdgeInsets.all(12.0),
         child: Row(

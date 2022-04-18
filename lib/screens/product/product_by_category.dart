@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/product/product_by_category_controller.dart';
-import '../home/widget/product_list_tile_widget.dart';
+import 'widget/product_list_tile_widget.dart';
 
 class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
   const ProductByCategoryScreen({Key? key}) : super(key: key);

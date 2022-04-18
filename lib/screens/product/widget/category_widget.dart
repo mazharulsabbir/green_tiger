@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/auth_controller.dart';
 import 'package:green_tiger/controller/product/product_by_category_controller.dart';
-import '../../product/product_by_category.dart';
+import '../product_by_category.dart';
 import '/constraints/index.dart';
 import '/data/model/category/category.dart';
 

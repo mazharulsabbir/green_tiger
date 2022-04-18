@@ -6,10 +6,10 @@ import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
 import '../../../utils/common_widgets/product_loading_widget.dart';
 import '/utils/index.dart';
-import 'product_widget.dart';
+import '../../product/widget/product_widget.dart';
 import '/screens/main/widget/offer_carousel_builder_widget.dart';
-import 'category_widget.dart';
-import 'product_list_tile_widget.dart';
+import '../../product/widget/category_widget.dart';
+import '../../product/widget/product_list_tile_widget.dart';
 
 class CustomerHomeScreen extends GetView<CategoryController> {
   const CustomerHomeScreen({Key? key}) : super(key: key);
