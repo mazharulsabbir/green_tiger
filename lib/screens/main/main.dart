@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_tiger/common_widgets/common_search_appbar.dart';
+import 'package:green_tiger/utils/common_widgets/common_search_appbar.dart';
 import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
