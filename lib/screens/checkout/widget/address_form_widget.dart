@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/controller/checkout_controller.dart';
+import 'package:green_tiger/controller/user/shipping_address_controller.dart';
+import '/utils/index.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
 import 'package:green_tiger/utils/common_widgets/common_loading.dart';
 import 'package:green_tiger/utils/validations/shipping_address_validation.dart';
 import '../../../constraints/styles.dart';
 
-class AddressFormWidget extends GetView<CheckoutController> {
+class AddressFormWidget extends GetView<ShippingAddressController> {
   AddressFormWidget({Key? key}) : super(key: key);
+
   final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNmaeController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController street1Controller = TextEditingController();
   final TextEditingController street2Controller = TextEditingController();
   final TextEditingController stateController = TextEditingController();
@@ -45,6 +47,8 @@ class AddressFormWidget extends GetView<CheckoutController> {
                             controller.shippingAddress.firstName == null
                         ? null
                         : controller.country,
+                    decoration: textInputDecoration,
+                    isDense: true,
                     items: List.generate(
                         controller.countries.length,
                         (index) => DropdownMenuItem(
@@ -68,7 +72,7 @@ class AddressFormWidget extends GetView<CheckoutController> {
                   const Text('Last Name'),
                   const SizedBox(height: 10),
                   TextFormField(
-                    controller: lastNmaeController
+                    controller: lastNameController
                       ..text = controller.shippingAddress.lastName ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
@@ -82,7 +86,8 @@ class AddressFormWidget extends GetView<CheckoutController> {
                       ..text = controller.shippingAddress.streetAddress1 ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
-                    validator: ShippingAddressValidations.streetAdress1Validate,
+                    validator:
+                        ShippingAddressValidations.streetAddress1Validate,
                   ),
                   const SizedBox(height: 10),
                   const Text('Street Address 2'),
@@ -92,7 +97,8 @@ class AddressFormWidget extends GetView<CheckoutController> {
                       ..text = controller.shippingAddress.streetAddress2 ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
-                    validator: ShippingAddressValidations.streetAdress2Validate,
+                    validator:
+                        ShippingAddressValidations.streetAddress2Validate,
                   ),
                   const SizedBox(height: 10),
                   const Text('City'),
@@ -136,28 +142,30 @@ class AddressFormWidget extends GetView<CheckoutController> {
                   ),
                   const SizedBox(height: 10),
                   Align(
-                      alignment: Alignment.center,
-                      child: ElevatedButton(
-                          onPressed: () async {
-                            if ((_formKey.currentState != null) &&
-                                (_formKey.currentState!.validate())) {
-                              ShippingAddress shippingAddress = ShippingAddress(
-                                lastName: lastNmaeController.text,
-                                firstName: firstNameController.text,
-                                streetAddress1: street1Controller.text,
-                                streetAddress2: street2Controller.text,
-                                state: stateController.text,
-                                country: controller.country.name,
-                                zipCode: zipController.text,
-                                city: cityController.text,
-                                phone: phoneController.text,
-                              );
-                              // print(shippingAddress.toJson());
-                              await controller.saveAddress(shippingAddress);
-                              Get.back();
-                            }
-                          },
-                          child: const Text('Save')))
+                    alignment: Alignment.center,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        if ((_formKey.currentState != null) &&
+                            (_formKey.currentState!.validate())) {
+                          ShippingAddress shippingAddress = ShippingAddress(
+                            lastName: lastNameController.text,
+                            firstName: firstNameController.text,
+                            streetAddress1: street1Controller.text,
+                            streetAddress2: street2Controller.text,
+                            state: stateController.text,
+                            country: controller.country.name,
+                            zipCode: zipController.text,
+                            city: cityController.text,
+                            phone: phoneController.text,
+                          );
+                          // print(shippingAddress.toJson());
+                          await controller.saveAddress(shippingAddress);
+                          Get.back();
+                        }
+                      },
+                      child: const Text('Save'),
+                    ),
+                  )
                 ],
               ),
             ),

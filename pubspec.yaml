@@ -59,6 +59,10 @@ dependencies:
   url_launcher: ^6.0.17
   device_info: ^2.0.3
 
+  # network
+  dio: ^4.0.6
+  shimmer: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

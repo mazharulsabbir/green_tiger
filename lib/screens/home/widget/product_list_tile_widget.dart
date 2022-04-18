@@ -4,11 +4,12 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/screens/product_details/product_details_scree.dart';
+import '../../../data/local/storage_utils.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
 
 class ProductListTileWidget extends StatelessWidget {
-  final ProductModel product;
+  final ProductModel? product;
   const ProductListTileWidget({Key? key, required this.product})
       : super(key: key);
 
@@ -37,12 +38,15 @@ class ProductListTileWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: productBackgroundColor,
               ),
-              child: product.imageUrl == null
+              child: product?.imageUrl == null
                   ? Image.asset(
                       'assets/images/cycle.png',
                       // fit: BoxFit.cover,
                     )
-                  : CachedNetworkImage(imageUrl: '${product.imageUrl}'),
+                  : CachedNetworkImage(
+                      imageUrl: '${product?.imageUrl}',
+                      httpHeaders: {"Cookie": "${StorageUtils.getCookie()}"},
+                    ),
             ),
             const SizedBox(width: 10),
             Column(
@@ -69,7 +73,7 @@ class ProductListTileWidget extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: Text(
-                    "${product.name}",
+                    "${product?.name}",
                     maxLines: 2,
                     style: const TextStyle(
                       overflow: TextOverflow.ellipsis,
@@ -80,14 +84,14 @@ class ProductListTileWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "${product.price ?? 0.0} BDT",
+                  "${product?.price ?? 0.0} BDT",
                   style: TextStyle(fontSize: 16, color: primaryColor),
                 ),
                 const SizedBox(height: 4),
                 Row(
                   children: [
                     RatingBar(
-                      initialRating: product.rating ?? 0,
+                      initialRating: product?.rating ?? 0,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
@@ -117,7 +121,7 @@ class ProductListTileWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '(${product.ratingCount ?? 0})',
+                      '(${product?.ratingCount ?? 0})',
                       style: TextStyle(color: primaryColor),
                     ),
                   ],

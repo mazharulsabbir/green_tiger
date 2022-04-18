@@ -9,10 +9,10 @@ part of 'country.dart';
 _$_Country _$$_CountryFromJson(Map<String, dynamic> json) => _$_Country(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      phoneCode: json['phone_code'].toString(),
+      phoneCode: json['phone_code'] as String?,
       currency: json['currency_id'] == null
           ? null
-          : Currency.fromJson(((json['currency_id']) as List).first),
+          : Currency.fromJson(json['currency_id'] as Map<String, dynamic>),
       states: (json['state_ids'] as List<dynamic>?)
           ?.map((e) => State.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$_CountryToJson(_$_Country instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'phoneCode': instance.phoneCode,
+      'phone_code': instance.phoneCode,
       'currency_id': instance.currency,
       'state_ids': instance.states,
     };

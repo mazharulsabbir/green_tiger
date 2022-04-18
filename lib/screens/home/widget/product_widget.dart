@@ -1,13 +1,15 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:green_tiger/data/local/storage_utils.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
 
 class ProductWidget extends StatelessWidget {
-  final ProductModel product;
+  final ProductModel? product;
   const ProductWidget({Key? key, required this.product}) : super(key: key);
 
   @override
@@ -34,10 +36,13 @@ class ProductWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: product.imageUrl == null
+                    child: product?.imageUrl == null
                         ? Image.asset(eBikeCategoryImage)
-                        : Image.asset(
-                            "${product.imageUrl}",
+                        : CachedNetworkImage(
+                            imageUrl: "${product?.imageUrl}",
+                            httpHeaders: {
+                              "Cookie": "${StorageUtils.getCookie()}"
+                            },
                             height: 140,
                           ),
                   ),
@@ -52,10 +57,10 @@ class ProductWidget extends StatelessWidget {
                     backgroundColor: Colors.white,
                     onPressed: null,
                     child: Icon(
-                      product.isFav ?? false
+                      product?.isFav ?? false
                           ? Icons.favorite
                           : Icons.favorite_border_sharp,
-                      color: product.isFav ?? false
+                      color: product?.isFav ?? false
                           ? Colors.redAccent
                           : Colors.grey,
                     ),
@@ -93,7 +98,7 @@ class ProductWidget extends StatelessWidget {
           Row(
             children: [
               RatingBar(
-                initialRating: product.rating ?? 0,
+                initialRating: product?.rating ?? 0,
                 direction: Axis.horizontal,
                 allowHalfRating: true,
                 itemCount: 5,
@@ -123,18 +128,18 @@ class ProductWidget extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Text(
-                '(${product.ratingCount})',
+                '(${product?.ratingCount})',
                 style: TextStyle(color: primaryColor),
               ),
             ],
           ),
           Text(
-            "${product.name}",
+            "${product?.name}",
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
           Text(
-            "${product.price} BDT",
+            "${product?.price} BDT",
             style: TextStyle(fontSize: 16, color: primaryColor),
           ),
         ],

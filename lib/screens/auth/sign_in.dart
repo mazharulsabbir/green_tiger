@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/utils/common_widgets/common_loading.dart';
+import '/utils/index.dart';
 import 'package:green_tiger/utils/snack_bars/snack_bars.dart';
 import '/controller/auth_controller.dart';
 import '/screens/wrapper.dart';
@@ -107,8 +107,9 @@ class _SignInPageState extends State<SignInPage> {
                                 password: _passwordController.text.trim())
                             .then((value) {
                           Get.offAll(() => const Wrapper());
-                        }).catchError((error, stackTrace) =>
-                                MySnackBar.erorrSnackBar(error.toString()));
+                        }, onError: (error) {
+                          MySnackBar.erorrSnackBar(error.toString());
+                        });
                       }
                       // _authController.setUserLoggedInStatus(true);
                       // Get.offAll(() => const Wrapper());

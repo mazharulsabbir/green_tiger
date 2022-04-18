@@ -5,14 +5,14 @@ part 'product.g.dart';
 
 @freezed
 class ProductModel with _$ProductModel {
-  factory ProductModel({    
+  factory ProductModel({
     int? id,
     String? name,
-    double? price,
+    @JsonKey(name: 'list_price', defaultValue: 0.0) double? price,
     double? discount,
-    String? imageUrl,
-    double? rating,
-    int? ratingCount,
+    @JsonKey(name: 'image_1920') String? imageUrl,
+    @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? rating,
+    @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount,
     bool? isFav,
   }) = _ProductModel;
 

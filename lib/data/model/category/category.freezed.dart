@@ -22,7 +22,7 @@ class _$CategoryModelTearOff {
   const _$CategoryModelTearOff();
 
   _CategoryModel call(
-      {required int id, required String name, required String image}) {
+      {int? id, String? name, @JsonKey(name: 'image_1024') String? image}) {
     return _CategoryModel(
       id: id,
       name: name,
@@ -40,9 +40,10 @@ const $CategoryModel = _$CategoryModelTearOff();
 
 /// @nodoc
 mixin _$CategoryModel {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_1024')
+  String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +56,8 @@ abstract class $CategoryModelCopyWith<$Res> {
   factory $CategoryModelCopyWith(
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res>;
-  $Res call({int id, String name, String image});
+  $Res call(
+      {int? id, String? name, @JsonKey(name: 'image_1024') String? image});
 }
 
 /// @nodoc
@@ -77,15 +79,15 @@ class _$CategoryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -97,7 +99,8 @@ abstract class _$CategoryModelCopyWith<$Res>
           _CategoryModel value, $Res Function(_CategoryModel) then) =
       __$CategoryModelCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String name, String image});
+  $Res call(
+      {int? id, String? name, @JsonKey(name: 'image_1024') String? image});
 }
 
 /// @nodoc
@@ -121,15 +124,15 @@ class __$CategoryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -138,18 +141,19 @@ class __$CategoryModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CategoryModel extends _CategoryModel {
   const _$_CategoryModel(
-      {required this.id, required this.name, required this.image})
+      {this.id, this.name, @JsonKey(name: 'image_1024') this.image})
       : super._();
 
   factory _$_CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String image;
+  @JsonKey(name: 'image_1024')
+  final String? image;
 
   @override
   String toString() {
@@ -186,20 +190,21 @@ class _$_CategoryModel extends _CategoryModel {
 
 abstract class _CategoryModel extends CategoryModel {
   const factory _CategoryModel(
-      {required int id,
-      required String name,
-      required String image}) = _$_CategoryModel;
+      {int? id,
+      String? name,
+      @JsonKey(name: 'image_1024') String? image}) = _$_CategoryModel;
   const _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
       _$_CategoryModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get name;
+  String? get name;
   @override
-  String get image;
+  @JsonKey(name: 'image_1024')
+  String? get image;
   @override
   @JsonKey(ignore: true)
   _$CategoryModelCopyWith<_CategoryModel> get copyWith =>

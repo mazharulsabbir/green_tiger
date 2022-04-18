@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 
+import '../../utils/common_widgets/common_gap.dart';
+
 class WriteReviewScreen extends StatelessWidget {
   WriteReviewScreen({Key? key}) : super(key: key);
   final TextEditingController reviewController = TextEditingController();

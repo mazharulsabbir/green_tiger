@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import '../../utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
@@ -17,7 +18,7 @@ String _stataticProductDetails =
     'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
 
 class ProductDetialsScreen extends StatelessWidget {
-  final ProductModel productModel;
+  final ProductModel? productModel;
   ProductDetialsScreen({Key? key, required this.productModel})
       : super(key: key);
   final List<Color> colorDotsColors = const [
@@ -67,7 +68,7 @@ class ProductDetialsScreen extends StatelessWidget {
                   children: List.generate(
                       3,
                       (index) => _ProductImageWidget(
-                            imagePath: productModel.imageUrl,
+                            imagePath: productModel?.imageUrl,
                           )),
                 ),
               ),
@@ -80,12 +81,12 @@ class ProductDetialsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          productModel.name ?? 'Untitled',
+                          productModel?.name ?? 'Untitled',
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          (productModel.price).toString(),
+                          (productModel?.price).toString(),
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -270,7 +271,7 @@ class _ColorDots extends StatelessWidget {
 }
 
 class _AddToCButton extends StatelessWidget {
-  final ProductModel productModel;
+  final ProductModel? productModel;
 
   const _AddToCButton({Key? key, required this.productModel}) : super(key: key);
 
@@ -289,12 +290,12 @@ class _AddToCButton extends StatelessWidget {
         ),
         onPressed: () {
           CartController.to.addAItem(CartModel(
-              name: productModel.name,
+              name: productModel?.name,
               description: _stataticProductDetails,
-              price: productModel.price?.toString(),
-              imageUrl: productModel.imageUrl,
+              price: productModel?.price?.toString(),
+              imageUrl: productModel?.imageUrl,
               quantity: 1.toString(),
-              total: productModel.price?.toString()));
+              total: productModel?.price?.toString()));
         },
         child: const Text(
           'ADD TO CART',
