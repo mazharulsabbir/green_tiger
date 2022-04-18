@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/common_widgets/common_loading.dart';
 import 'package:green_tiger/controller/checkout_controller.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
+import 'package:green_tiger/utils/common_widgets/common_loading.dart';
 import 'package:green_tiger/utils/validations/shipping_address_validation.dart';
 import '../../../constraints/styles.dart';
 

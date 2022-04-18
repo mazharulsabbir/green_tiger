@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/common_widgets/common_gap.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
@@ -12,6 +11,7 @@ import 'package:green_tiger/data/model/product_details/more_time.dart';
 import 'dart:math' as math;
 import 'package:green_tiger/screens/home/widget/product_widget.dart';
 import 'package:green_tiger/screens/write_review/write_review_screen.dart';
+import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 
 String _stataticProductDetails =
     'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
