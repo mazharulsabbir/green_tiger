@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/data/local/address_storage.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
@@ -40,25 +41,35 @@ class ShippingAddressController extends GetxController {
   }
 
   Future<void> getCountries() async {
-    List<Country> countries = await _repository.countries();
-    _countries.value = countries;
+    try {
+      List<Country> countries = await _repository.countries();
+      _countries.value = countries;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<void> getAddress() async {
-    ShippingAddress? address = AddressStorage.getAvailableAddresses();
-    if (address == null) return;
-    _address.value = address;
-    if (_address.value.country == null) {
-      _country.value = const Country();
-      return;
-    }
+    try {
+      ShippingAddress? address = AddressStorage.getAvailableAddresses();
+      if (address == null) return;
+      _address.value = address;
+      if (_address.value.country == null) {
+        _country.value = const Country();
+        return;
+      }
 
-    Country country = countries
-        .where((element) => element.name == _address.value.country)
-        .first;
-    _country.value = country;
-    print('Getting address ${_address.value} and country ${_country.value}');
-    update();
+      Country country = countries
+          .where((element) => element.name == _address.value.country)
+          .first;
+      _country.value = country;
+      debugPrint(
+        'Getting address ${_address.value} and country ${_country.value}',
+      );
+      update();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<void> saveAddress(ShippingAddress shippingAddress) async {

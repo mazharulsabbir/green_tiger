@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' as dio;
-import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
-import 'package:green_tiger/data/local/storage_utils.dart';
+import 'package:green_tiger/controller/auth_controller.dart';
+import '/data/local/storage_utils.dart';
 
 const _baseUrl = "http://139.162.16.146:8069";
 
@@ -15,16 +15,15 @@ class ApiService {
   }) async {
     try {
       debugPrint(":: Get $url::");
-      debugPrint(":: Response $body ::");
+
       final response = await _client.get(
         _baseUrl + url,
         options: dio.Options(
-          headers: headers ??
-              {
-                'Cookie': StorageUtils.getCookie(),
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
+          headers: {
+            'Cookie': StorageUtils.getCookie(),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
         ),
         queryParameters: body,
       );
@@ -39,10 +38,15 @@ class ApiService {
         } else {
           return response.data?['result'];
         }
+      } else if (response.statusCode == 404) {
+        logout();
       } else {
         debugPrint(response.statusCode.toString());
         return Future.error('Failed to load data');
       }
+    } on dio.DioError catch (e) {
+      debugPrint(e.toString());
+      return Future.error(e.message);
     } catch (e) {
       debugPrint(e.toString());
       return Future.error(e.toString());
@@ -60,25 +64,15 @@ class ApiService {
       final response = await _client.post(
         _baseUrl + url,
         options: dio.Options(
-            headers: headers ??
-                {
-                  'Cookie': StorageUtils.getCookie(),
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                }),
+          headers: {
+            'Cookie': StorageUtils.getCookie(),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        ),
         data: body,
       );
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: $response ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
-      debugPrint(":: Response $url ::");
+
       if (response.statusCode == 200) {
         if (response.data?['error'] != null) {
           debugPrint("${response.data}");
@@ -89,10 +83,15 @@ class ApiService {
         } else {
           return response.data?['result'];
         }
+      } else if (response.statusCode == 404) {
+        logout();
       } else {
         debugPrint(response.statusCode.toString());
         return Future.error('Failed to load data');
       }
+    } on dio.DioError catch (e) {
+      debugPrint(e.toString());
+      return Future.error(e.message);
     } catch (e) {
       debugPrint(e.toString());
       return Future.error(e.toString());
@@ -126,16 +125,14 @@ class ApiService {
           }
         } else {
           int? _uid = response.data?['result']?['partner_id'];
-          StorageUtils.setLoggedInUserId(_uid);
-
           debugPrint("Logged in user id: $_uid");
 
           List<String>? _cookie = response.headers['set-cookie'];
           String? cookie = _cookie?.first.split(';').first.toString();
 
-          // get user info
-          // store user info into cache
-          // use user info from cache in further.
+          StorageUtils.setLoggedInUserId(_uid);
+          StorageUtils.setCookie(cookie);
+
           return cookie;
         }
       } else {
@@ -144,8 +141,15 @@ class ApiService {
               'There was something unexpected happened. Try again later.',
         );
       }
+    } on dio.DioError catch (e) {
+      debugPrint(e.toString());
+      return Future.error(e.message);
     } catch (e) {
       return Future.error(e.toString());
     }
+  }
+
+  void logout() {
+    AuthController.to.logout();
   }
 }

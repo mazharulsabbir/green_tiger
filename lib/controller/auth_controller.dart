@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:green_tiger/data/repository/auth_repo.dart';
 import 'package:green_tiger/screens/splash.dart';
 
+import '../globals/bindings.dart';
 import '/data/local/storage_utils.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
@@ -27,15 +28,15 @@ class AuthController extends GetxController {
     _isLoggedIn.value = StorageUtils.isUserLoggedIn();
     if (_isLoggedIn.value) {
       _cookie = StorageUtils.getCookie();
-      print('The cookie we get.$_cookie');
+      debugPrint('The cookie we get. -> $_cookie');
     }
   }
 
-  void setUserLoggedInStatus(bool status) {
-    _isLoggedIn.value = status;
-    StorageUtils.isUserLoggedIn(status);
-    update();
-  }
+  // void setUserLoggedInStatus(bool status) {
+  //   debugPrint(Get.currentRoute);
+  //   _isLoggedIn.value = status;
+  //   update();
+  // }
 
   void _setLoading(bool state) {
     _isLoading.value = state;
@@ -51,7 +52,7 @@ class AuthController extends GetxController {
       final AccessToken accessToken = result.accessToken!;
       debugPrint("Logged in. Token: $accessToken");
 
-      setUserLoggedInStatus(true);
+      // setUserLoggedInStatus(true);
       return Future.value(accessToken);
     } else {
       debugPrint("${result.status}");
@@ -65,10 +66,10 @@ class AuthController extends GetxController {
     try {
       final _result = await _googleSignIn.signIn();
 
-      setUserLoggedInStatus(true);
+      // setUserLoggedInStatus(true);
       return Future.value(_result);
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
       return Future.error(error);
     }
   }
@@ -85,7 +86,9 @@ class AuthController extends GetxController {
       );
 
       StorageUtils.setCookie(_cookie);
-      setUserLoggedInStatus(true);
+      // setUserLoggedInStatus(true);
+      _isLoggedIn.value = true;
+      update();
       return Future.value('Login Successful!');
     } on Exception catch (e) {
       _setLoading(false);
@@ -97,6 +100,8 @@ class AuthController extends GetxController {
   }
 
   void logout() {
-    // todo: logout
+    StorageUtils.removeLoginStatus();
+    _isLoggedIn.value = false;
+    Get.offAll(() => const Splash(), binding: GlobalBindings());
   }
 }

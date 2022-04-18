@@ -34,6 +34,7 @@ class AccountScreen extends GetView<UserController> {
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
+                  border: Border.all(width: 0.03),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
                       "${state?.avatar}",

@@ -7,11 +7,7 @@ final _box = GetStorage(dbName);
 
 class StorageUtils {
   static bool isUserLoggedIn([bool? status]) {
-    if (status != null) {
-      _box.write('_is_logged_in', status);
-    }
-
-    return _box.read<bool>('_is_logged_in') ?? false;
+    return getCookie() != null;
   }
 
   static void removeLoginStatus() {

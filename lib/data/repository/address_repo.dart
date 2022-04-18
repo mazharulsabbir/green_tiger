@@ -1,16 +1,12 @@
-import 'package:green_tiger/data/local/storage_utils.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 import '/data/model/country/country.dart';
-
-import 'package:dio/dio.dart' as dio;
 
 class AddressRepository {
   final ApiService _apiService;
   AddressRepository(this._apiService);
 
   Future<List<Country>> countries() async {
-    String? cookie = StorageUtils.getCookie();
-    if (cookie != null) {
+    try {
       final response = await _apiService.post(
         "/api/v1/global/get",
         body: {
@@ -44,11 +40,6 @@ class AddressRepository {
             }
           }
         },
-        headers: {
-          'Cookie': cookie,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
       );
 
       List<dynamic> _result = response as List;
@@ -56,8 +47,8 @@ class AddressRepository {
       final _response = _result.map((e) => Country.fromJson(e)).toList();
 
       return _response;
-    } else {
-      return Future.error("Unauthorized!");
+    } catch (e) {
+      return Future.error("$e");
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/local/storage_utils.dart';
 import 'package:green_tiger/data/model/category/category.dart';
 import 'package:green_tiger/data/model/product/product.dart';
@@ -8,7 +9,6 @@ import 'package:dio/dio.dart' as dio;
 class ProductRepository {
   final ApiService _apiService;
   ProductRepository(this._apiService);
-  final String? _cookie = StorageUtils.getCookie();
 
   Future<List<CategoryModel>> categories() async {
     final _body = {
@@ -31,26 +31,16 @@ class ProductRepository {
     };
 
     try {
-      if (_cookie != null) {
-        final response = await _apiService.post(
-          '/api/v1/global/get',
-          body: _body,
-          headers: {
-            'Cookie': _cookie,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        );
+      final response = await _apiService.post(
+        '/api/v1/global/get',
+        body: _body,
+      );
 
-        final _result = response as List<dynamic>;
-        print('Printing categories');
-        print(_result);
-        final _response =
-            _result.map((e) => CategoryModel.fromJson(e)).toList();
-        return _response;
-      } else {
-        return Future.error("Unauthorized!");
-      }
+      final _result = response as List<dynamic>;
+      debugPrint('Printing categories');
+      debugPrint(_result.toString());
+      final _response = _result.map((e) => CategoryModel.fromJson(e)).toList();
+      return _response;
     } catch (e) {
       return Future.error("$e");
     }
@@ -119,23 +109,14 @@ class ProductRepository {
     };
 
     try {
-      if (_cookie != null) {
-        final response = await _apiService.post(
-          '/api/v1/global/get',
-          body: _body,
-          headers: {
-            'Cookie': _cookie,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        );
+      final response = await _apiService.post(
+        '/api/v1/global/get',
+        body: _body,
+      );
 
-        final _result = response as List<dynamic>;
-        final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
-        return _response;
-      } else {
-        return Future.error("Unauthorized!");
-      }
+      final _result = response as List<dynamic>;
+      final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
+      return _response;
     } catch (e) {
       return Future.error("$e");
     }
@@ -202,23 +183,14 @@ class ProductRepository {
     };
 
     try {
-      if (_cookie != null) {
-        final response = await _apiService.post(
-          '/api/v1/global/get',
-          body: _body,
-          headers: {
-            'Cookie': _cookie,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        );
+      final response = await _apiService.post(
+        '/api/v1/global/get',
+        body: _body,
+      );
 
-        final _result = response as List<dynamic>;
-        final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
-        return _response;
-      } else {
-        return Future.error("Unauthorized!");
-      }
+      final _result = response as List<dynamic>;
+      final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
+      return _response;
     } catch (e) {
       return Future.error("$e");
     }

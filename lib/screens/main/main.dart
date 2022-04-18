@@ -12,8 +12,6 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController _authController = Get.find<AuthController>();
-
     return Scaffold(
       appBar: const SearchProductAppBar(),
       body: Obx(

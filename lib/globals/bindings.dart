@@ -31,7 +31,6 @@ class GlobalBindings extends Bindings {
     // Get.put(PushNotificationController());
     // Get.put(AdsController());
     Get.put(AuthController(Get.find()));
-    Get.put(ShippingAddressController(Get.find()));
 
     // lazy controllers
     Get.lazyPut(() => CheckoutController(Get.find(), Get.find()), fenix: true);
@@ -41,5 +40,6 @@ class GlobalBindings extends Bindings {
     Get.lazyPut(() => ProductByCategoryController(Get.find()), fenix: true);
     Get.lazyPut(() => ProductController(Get.find()), fenix: true);
     Get.lazyPut(() => CartController(), fenix: true);
+    Get.lazyPut(() => ShippingAddressController(Get.find()), fenix: true);
   }
 }

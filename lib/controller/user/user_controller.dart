@@ -18,7 +18,8 @@ class UserController extends GetxController with StateMixin<UserModel> {
   Future<void> getUserProfile() async {
     int? _uid = StorageUtils.loggedInUserId();
     if (_uid == null) {
-      // change(null, status: RxStatus.error("Unauthorized. Login required!"));
+      change(null, status: RxStatus.error("Unauthorized. Login required!"));
+      logout();
       return;
     }
 
@@ -41,6 +42,6 @@ class UserController extends GetxController with StateMixin<UserModel> {
   }
 
   void logout() {
-    _authController.setUserLoggedInStatus(false);
+    _authController.logout();
   }
 }
