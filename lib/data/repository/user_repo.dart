@@ -59,5 +59,17 @@ class UserRepository {
         }
       }
     };
+
+    try {
+      final response = await _apiService.post(
+        "/api/v1/global/get",
+        body: _body,
+      );
+      final _response = response as List<dynamic>;
+      final _user = _response.map((e) => UserModel.fromJson(e)).toList();
+      return _user.isNotEmpty ? _user.first : null;
+    } catch (e) {
+      return Future.error(e);
+    }
   }
 }

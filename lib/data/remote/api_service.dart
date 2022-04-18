@@ -19,7 +19,12 @@ class ApiService {
       final response = await _client.get(
         _baseUrl + url,
         options: dio.Options(
-          headers: headers,
+          headers: headers ??
+              {
+                'Cookie': StorageUtils.getCookie(),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
         ),
         queryParameters: body,
       );
@@ -54,7 +59,13 @@ class ApiService {
 
       final response = await _client.post(
         _baseUrl + url,
-        options: dio.Options(headers: headers),
+        options: dio.Options(
+            headers: headers ??
+                {
+                  'Cookie': StorageUtils.getCookie(),
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }),
         data: body,
       );
       debugPrint(":: Response $url ::");

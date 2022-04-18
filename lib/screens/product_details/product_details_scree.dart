@@ -124,15 +124,26 @@ class ProductDetialsScreen extends StatelessWidget {
                       children: ListTile.divideTiles(
                           context: context,
                           tiles: Iterable.generate(moreTiles.length, (index) {
-                            return ListTile(
+                            return ExpansionTile(
                               title: Text(moreTiles[index].title),
-                              trailing: Transform.rotate(
-                                angle: math.pi,
-                                child: const Icon(Icons.arrow_back_ios),
-                              ),
-                              onTap: () {
-                                Get.to(() => WriteReviewScreen());
+                              // trailing: Transform.rotate(
+                              //   angle: math.pi,
+                              //   child: const Icon(Icons.arrow_back_ios),
+                              // ),
+                              onExpansionChanged: (expanded) {
+                                if (expanded) {
+                                  // todo: change arrow icon to down arrow
+                                }
                               },
+                              children: List.generate(
+                                3,
+                                (index) => ListTile(
+                                  onTap: () {
+                                    Get.to(() => WriteReviewScreen());
+                                  },
+                                  title: Text('Item $index'),
+                                ),
+                              ),
                             );
                           })).toList()
                         ..insert(moreTiles.length, const Divider())

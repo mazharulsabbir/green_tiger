@@ -6,6 +6,8 @@ import 'package:green_tiger/controller/user/user_controller.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/screens/order/order.dart';
 
+import '../../data/local/storage_utils.dart';
+
 class AccountScreen extends GetView<UserController> {
   const AccountScreen({Key? key}) : super(key: key);
 
@@ -33,7 +35,10 @@ class AccountScreen extends GetView<UserController> {
                 width: 50,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: CachedNetworkImageProvider("${state?.avatar}"),
+                    image: CachedNetworkImageProvider(
+                      "${state?.avatar}",
+                      headers: {"Cookie": "${StorageUtils.getCookie()}"},
+                    ),
                   ),
                 ),
               ),

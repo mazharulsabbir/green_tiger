@@ -50,8 +50,6 @@ class AddressRepository {
           'Content-Type': 'application/json'
         },
       );
-      print('Response for countries we get');
-      print(response);
 
       List<dynamic> _result = response as List;
 

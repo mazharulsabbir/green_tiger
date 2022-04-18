@@ -17,7 +17,10 @@ class UserController extends GetxController with StateMixin<UserModel> {
 
   Future<void> getUserProfile() async {
     int? _uid = StorageUtils.loggedInUserId();
-    if (_uid == null) return;
+    if (_uid == null) {
+      // change(null, status: RxStatus.error("Unauthorized. Login required!"));
+      return;
+    }
 
     _repository.getUserProfileById(_uid).then((user) {
       // todo: cache user info
