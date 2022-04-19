@@ -24,29 +24,17 @@ class _$PaymentModelTearOff {
   _PaymentModel call(
       {int? id,
       String? name,
+      String? communication,
       String? state,
-      @JsonKey(name: 'amount_tax') double? amountTax,
-      @JsonKey(name: 'amount_tax_signed') double? amountTaxSigned,
-      @JsonKey(name: 'amount_total') double? amountTotal,
-      @JsonKey(name: 'amount_total_signed') double? amountTotalSigned,
-      @JsonKey(name: 'amount_untaxed') double? amountUntaxed,
-      @JsonKey(name: 'amount_untaxed_signed') double? amountUntaxedSigned,
-      String? date,
-      @JsonKey(name: 'invoice_date') String? invoiceDate,
-      @JsonKey(name: 'invoice_date_due') String? invoiceDueDate}) {
+      double? amount,
+      @JsonKey(name: 'payment_date') String? date}) {
     return _PaymentModel(
       id: id,
       name: name,
+      communication: communication,
       state: state,
-      amountTax: amountTax,
-      amountTaxSigned: amountTaxSigned,
-      amountTotal: amountTotal,
-      amountTotalSigned: amountTotalSigned,
-      amountUntaxed: amountUntaxed,
-      amountUntaxedSigned: amountUntaxedSigned,
+      amount: amount,
       date: date,
-      invoiceDate: invoiceDate,
-      invoiceDueDate: invoiceDueDate,
     );
   }
 
@@ -62,24 +50,11 @@ const $PaymentModel = _$PaymentModelTearOff();
 mixin _$PaymentModel {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get communication => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_tax')
-  double? get amountTax => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_tax_signed')
-  double? get amountTaxSigned => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_total')
-  double? get amountTotal => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_total_signed')
-  double? get amountTotalSigned => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_untaxed')
-  double? get amountUntaxed => throw _privateConstructorUsedError;
-  @JsonKey(name: 'amount_untaxed_signed')
-  double? get amountUntaxedSigned => throw _privateConstructorUsedError;
+  double? get amount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_date')
   String? get date => throw _privateConstructorUsedError;
-  @JsonKey(name: 'invoice_date')
-  String? get invoiceDate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'invoice_date_due')
-  String? get invoiceDueDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -95,16 +70,10 @@ abstract class $PaymentModelCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
+      String? communication,
       String? state,
-      @JsonKey(name: 'amount_tax') double? amountTax,
-      @JsonKey(name: 'amount_tax_signed') double? amountTaxSigned,
-      @JsonKey(name: 'amount_total') double? amountTotal,
-      @JsonKey(name: 'amount_total_signed') double? amountTotalSigned,
-      @JsonKey(name: 'amount_untaxed') double? amountUntaxed,
-      @JsonKey(name: 'amount_untaxed_signed') double? amountUntaxedSigned,
-      String? date,
-      @JsonKey(name: 'invoice_date') String? invoiceDate,
-      @JsonKey(name: 'invoice_date_due') String? invoiceDueDate});
+      double? amount,
+      @JsonKey(name: 'payment_date') String? date});
 }
 
 /// @nodoc
@@ -119,16 +88,10 @@ class _$PaymentModelCopyWithImpl<$Res> implements $PaymentModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? communication = freezed,
     Object? state = freezed,
-    Object? amountTax = freezed,
-    Object? amountTaxSigned = freezed,
-    Object? amountTotal = freezed,
-    Object? amountTotalSigned = freezed,
-    Object? amountUntaxed = freezed,
-    Object? amountUntaxedSigned = freezed,
+    Object? amount = freezed,
     Object? date = freezed,
-    Object? invoiceDate = freezed,
-    Object? invoiceDueDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -139,45 +102,21 @@ class _$PaymentModelCopyWithImpl<$Res> implements $PaymentModelCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      communication: communication == freezed
+          ? _value.communication
+          : communication // ignore: cast_nullable_to_non_nullable
+              as String?,
       state: state == freezed
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      amountTax: amountTax == freezed
-          ? _value.amountTax
-          : amountTax // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTaxSigned: amountTaxSigned == freezed
-          ? _value.amountTaxSigned
-          : amountTaxSigned // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTotal: amountTotal == freezed
-          ? _value.amountTotal
-          : amountTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTotalSigned: amountTotalSigned == freezed
-          ? _value.amountTotalSigned
-          : amountTotalSigned // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountUntaxed: amountUntaxed == freezed
-          ? _value.amountUntaxed
-          : amountUntaxed // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountUntaxedSigned: amountUntaxedSigned == freezed
-          ? _value.amountUntaxedSigned
-          : amountUntaxedSigned // ignore: cast_nullable_to_non_nullable
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as double?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invoiceDate: invoiceDate == freezed
-          ? _value.invoiceDate
-          : invoiceDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invoiceDueDate: invoiceDueDate == freezed
-          ? _value.invoiceDueDate
-          : invoiceDueDate // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -193,16 +132,10 @@ abstract class _$PaymentModelCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
+      String? communication,
       String? state,
-      @JsonKey(name: 'amount_tax') double? amountTax,
-      @JsonKey(name: 'amount_tax_signed') double? amountTaxSigned,
-      @JsonKey(name: 'amount_total') double? amountTotal,
-      @JsonKey(name: 'amount_total_signed') double? amountTotalSigned,
-      @JsonKey(name: 'amount_untaxed') double? amountUntaxed,
-      @JsonKey(name: 'amount_untaxed_signed') double? amountUntaxedSigned,
-      String? date,
-      @JsonKey(name: 'invoice_date') String? invoiceDate,
-      @JsonKey(name: 'invoice_date_due') String? invoiceDueDate});
+      double? amount,
+      @JsonKey(name: 'payment_date') String? date});
 }
 
 /// @nodoc
@@ -219,16 +152,10 @@ class __$PaymentModelCopyWithImpl<$Res> extends _$PaymentModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? communication = freezed,
     Object? state = freezed,
-    Object? amountTax = freezed,
-    Object? amountTaxSigned = freezed,
-    Object? amountTotal = freezed,
-    Object? amountTotalSigned = freezed,
-    Object? amountUntaxed = freezed,
-    Object? amountUntaxedSigned = freezed,
+    Object? amount = freezed,
     Object? date = freezed,
-    Object? invoiceDate = freezed,
-    Object? invoiceDueDate = freezed,
   }) {
     return _then(_PaymentModel(
       id: id == freezed
@@ -239,45 +166,21 @@ class __$PaymentModelCopyWithImpl<$Res> extends _$PaymentModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      communication: communication == freezed
+          ? _value.communication
+          : communication // ignore: cast_nullable_to_non_nullable
+              as String?,
       state: state == freezed
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      amountTax: amountTax == freezed
-          ? _value.amountTax
-          : amountTax // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTaxSigned: amountTaxSigned == freezed
-          ? _value.amountTaxSigned
-          : amountTaxSigned // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTotal: amountTotal == freezed
-          ? _value.amountTotal
-          : amountTotal // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountTotalSigned: amountTotalSigned == freezed
-          ? _value.amountTotalSigned
-          : amountTotalSigned // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountUntaxed: amountUntaxed == freezed
-          ? _value.amountUntaxed
-          : amountUntaxed // ignore: cast_nullable_to_non_nullable
-              as double?,
-      amountUntaxedSigned: amountUntaxedSigned == freezed
-          ? _value.amountUntaxedSigned
-          : amountUntaxedSigned // ignore: cast_nullable_to_non_nullable
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as double?,
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invoiceDate: invoiceDate == freezed
-          ? _value.invoiceDate
-          : invoiceDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      invoiceDueDate: invoiceDueDate == freezed
-          ? _value.invoiceDueDate
-          : invoiceDueDate // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -289,16 +192,10 @@ class _$_PaymentModel implements _PaymentModel {
   const _$_PaymentModel(
       {this.id,
       this.name,
+      this.communication,
       this.state,
-      @JsonKey(name: 'amount_tax') this.amountTax,
-      @JsonKey(name: 'amount_tax_signed') this.amountTaxSigned,
-      @JsonKey(name: 'amount_total') this.amountTotal,
-      @JsonKey(name: 'amount_total_signed') this.amountTotalSigned,
-      @JsonKey(name: 'amount_untaxed') this.amountUntaxed,
-      @JsonKey(name: 'amount_untaxed_signed') this.amountUntaxedSigned,
-      this.date,
-      @JsonKey(name: 'invoice_date') this.invoiceDate,
-      @JsonKey(name: 'invoice_date_due') this.invoiceDueDate});
+      this.amount,
+      @JsonKey(name: 'payment_date') this.date});
 
   factory _$_PaymentModel.fromJson(Map<String, dynamic> json) =>
       _$$_PaymentModelFromJson(json);
@@ -308,37 +205,18 @@ class _$_PaymentModel implements _PaymentModel {
   @override
   final String? name;
   @override
+  final String? communication;
+  @override
   final String? state;
   @override
-  @JsonKey(name: 'amount_tax')
-  final double? amountTax;
+  final double? amount;
   @override
-  @JsonKey(name: 'amount_tax_signed')
-  final double? amountTaxSigned;
-  @override
-  @JsonKey(name: 'amount_total')
-  final double? amountTotal;
-  @override
-  @JsonKey(name: 'amount_total_signed')
-  final double? amountTotalSigned;
-  @override
-  @JsonKey(name: 'amount_untaxed')
-  final double? amountUntaxed;
-  @override
-  @JsonKey(name: 'amount_untaxed_signed')
-  final double? amountUntaxedSigned;
-  @override
+  @JsonKey(name: 'payment_date')
   final String? date;
-  @override
-  @JsonKey(name: 'invoice_date')
-  final String? invoiceDate;
-  @override
-  @JsonKey(name: 'invoice_date_due')
-  final String? invoiceDueDate;
 
   @override
   String toString() {
-    return 'PaymentModel(id: $id, name: $name, state: $state, amountTax: $amountTax, amountTaxSigned: $amountTaxSigned, amountTotal: $amountTotal, amountTotalSigned: $amountTotalSigned, amountUntaxed: $amountUntaxed, amountUntaxedSigned: $amountUntaxedSigned, date: $date, invoiceDate: $invoiceDate, invoiceDueDate: $invoiceDueDate)';
+    return 'PaymentModel(id: $id, name: $name, communication: $communication, state: $state, amount: $amount, date: $date)';
   }
 
   @override
@@ -348,23 +226,11 @@ class _$_PaymentModel implements _PaymentModel {
             other is _PaymentModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.communication, communication) &&
             const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.amountTax, amountTax) &&
-            const DeepCollectionEquality()
-                .equals(other.amountTaxSigned, amountTaxSigned) &&
-            const DeepCollectionEquality()
-                .equals(other.amountTotal, amountTotal) &&
-            const DeepCollectionEquality()
-                .equals(other.amountTotalSigned, amountTotalSigned) &&
-            const DeepCollectionEquality()
-                .equals(other.amountUntaxed, amountUntaxed) &&
-            const DeepCollectionEquality()
-                .equals(other.amountUntaxedSigned, amountUntaxedSigned) &&
-            const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality()
-                .equals(other.invoiceDate, invoiceDate) &&
-            const DeepCollectionEquality()
-                .equals(other.invoiceDueDate, invoiceDueDate));
+            const DeepCollectionEquality().equals(other.amount, amount) &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
@@ -372,16 +238,10 @@ class _$_PaymentModel implements _PaymentModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(communication),
       const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(amountTax),
-      const DeepCollectionEquality().hash(amountTaxSigned),
-      const DeepCollectionEquality().hash(amountTotal),
-      const DeepCollectionEquality().hash(amountTotalSigned),
-      const DeepCollectionEquality().hash(amountUntaxed),
-      const DeepCollectionEquality().hash(amountUntaxedSigned),
-      const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(invoiceDate),
-      const DeepCollectionEquality().hash(invoiceDueDate));
+      const DeepCollectionEquality().hash(amount),
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
@@ -396,19 +256,12 @@ class _$_PaymentModel implements _PaymentModel {
 
 abstract class _PaymentModel implements PaymentModel {
   const factory _PaymentModel(
-          {int? id,
-          String? name,
-          String? state,
-          @JsonKey(name: 'amount_tax') double? amountTax,
-          @JsonKey(name: 'amount_tax_signed') double? amountTaxSigned,
-          @JsonKey(name: 'amount_total') double? amountTotal,
-          @JsonKey(name: 'amount_total_signed') double? amountTotalSigned,
-          @JsonKey(name: 'amount_untaxed') double? amountUntaxed,
-          @JsonKey(name: 'amount_untaxed_signed') double? amountUntaxedSigned,
-          String? date,
-          @JsonKey(name: 'invoice_date') String? invoiceDate,
-          @JsonKey(name: 'invoice_date_due') String? invoiceDueDate}) =
-      _$_PaymentModel;
+      {int? id,
+      String? name,
+      String? communication,
+      String? state,
+      double? amount,
+      @JsonKey(name: 'payment_date') String? date}) = _$_PaymentModel;
 
   factory _PaymentModel.fromJson(Map<String, dynamic> json) =
       _$_PaymentModel.fromJson;
@@ -418,33 +271,14 @@ abstract class _PaymentModel implements PaymentModel {
   @override
   String? get name;
   @override
+  String? get communication;
+  @override
   String? get state;
   @override
-  @JsonKey(name: 'amount_tax')
-  double? get amountTax;
+  double? get amount;
   @override
-  @JsonKey(name: 'amount_tax_signed')
-  double? get amountTaxSigned;
-  @override
-  @JsonKey(name: 'amount_total')
-  double? get amountTotal;
-  @override
-  @JsonKey(name: 'amount_total_signed')
-  double? get amountTotalSigned;
-  @override
-  @JsonKey(name: 'amount_untaxed')
-  double? get amountUntaxed;
-  @override
-  @JsonKey(name: 'amount_untaxed_signed')
-  double? get amountUntaxedSigned;
-  @override
+  @JsonKey(name: 'payment_date')
   String? get date;
-  @override
-  @JsonKey(name: 'invoice_date')
-  String? get invoiceDate;
-  @override
-  @JsonKey(name: 'invoice_date_due')
-  String? get invoiceDueDate;
   @override
   @JsonKey(ignore: true)
   _$PaymentModelCopyWith<_PaymentModel> get copyWith =>

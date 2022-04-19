@@ -17,7 +17,7 @@ class PaymentHistoryScreen extends GetView<PaymentController> {
           itemBuilder: (context, index) => ListTile(
             title: Text("${state?[index].name}"),
             subtitle: Text("${state?[index].date}"),
-            trailing: Text("${state?[index].amountTotal.toString()}"),
+            trailing: Text("${state?[index].amount.toString()}"),
           ),
         ),
       ),

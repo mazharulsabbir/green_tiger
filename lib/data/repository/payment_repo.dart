@@ -12,31 +12,36 @@ class PaymentRepository {
     final _body = {
       "params": {
         "data": {
-          "model": "res.partner",
+          "model": "account.payment",
           "conditions": {
-            "relation": ["&"],
+            "relation": [],
             "condition": [
-              {"id": "id", "condition": "=", "value": _partnerId},
-              {"id": "active", "condition": "=", "value": true}
+              {"id": "partner_id", "condition": "=", "value": _partnerId}
             ]
           },
           "fields": [
+            {"name": "id", "type": "int"},
+            {"name": "name", "type": "str"},
+            {"name": "communication", "type": "str"},
+            {"name": "amount", "type": "monetary"},
+            {"name": "payment_date", "type": "date"},
+            {"name": "state", "type": "selection"},
+            {
+              "name": "journal_id",
+              "type": "related",
+              "related_fields": [
+                {"name": "id", "type": "int"},
+                {"name": "name", "type": "str"}
+              ]
+            },
+            {"name": "has_invoices", "type": "boolean"},
+            {"name": "hide_payment_method", "type": "boolean"},
             {
               "name": "invoice_ids",
               "type": "related",
               "related_fields": [
                 {"name": "id", "type": "int"},
-                {"name": "name", "type": "str"},
-                {"name": "amount_tax", "type": "monetary"},
-                {"name": "amount_tax_signed", "type": "monetary"},
-                {"name": "amount_total", "type": "monetary"},
-                {"name": "amount_total_signed", "type": "monetary"},
-                {"name": "amount_untaxed", "type": "monetary"},
-                {"name": "amount_untaxed_signed", "type": "monetary"},
-                {"name": "date", "type": "date"},
-                {"name": "invoice_date", "type": "date"},
-                {"name": "invoice_date_due", "type": "date"},
-                {"name": "state", "type": "selection"}
+                {"name": "name", "type": "str"}
               ]
             }
           ]
@@ -47,7 +52,7 @@ class PaymentRepository {
     try {
       final response =
           await _apiService.post('/api/v1/global/get', body: _body);
-      final _result = response?.first['invoice_ids'] as List<dynamic>?;
+      final _result = response as List<dynamic>?;
       final _response = _result?.map((e) => PaymentModel.fromJson(e)).toList();
       return _response;
     } catch (e) {
