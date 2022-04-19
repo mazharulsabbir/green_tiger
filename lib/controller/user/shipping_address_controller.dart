@@ -17,7 +17,7 @@ class ShippingAddressController extends GetxController {
   final Rx<Country> _country = const Country().obs;
   Country get country => _country.value;
 
-  final _countries = <Country>[].obs;
+  final RxList<Country> _countries = <Country>[].obs;
   List<Country> get countries => _countries;
   set countries(List<Country> value) => _countries.value = value;
 
@@ -25,7 +25,7 @@ class ShippingAddressController extends GetxController {
   List<ShippingAddress> get shippingAddress => _address;
   set shippingAddress(List<ShippingAddress> value) => _address.value = value;
 
-  final Rx<ShippingAddress?> _defaultAdress = null.obs;
+  Rx<ShippingAddress?> _defaultAdress = null.obs;
   ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
   set setDefaultShippingAddress(ShippingAddress value) =>
       _defaultAdress.value = value;
@@ -58,10 +58,12 @@ class ShippingAddressController extends GetxController {
     try {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
       if (address.isEmpty) return;
+      print('Available addresses');
+      print(address.length);
       _address.value = address;
-      _defaultAdress.value = address.isEmpty
+      _defaultAdress = Rx<ShippingAddress?>(_address.isEmpty
           ? null
-          : address.where((element) => element.isDefault).first;
+          : address.where((element) => element.isDefault).first);
 
       if (_address.first.country == null) {
         _country.value = const Country();
@@ -100,7 +102,9 @@ class ShippingAddressController extends GetxController {
       update();
     }).then((_) {
       //TODO: #1 setting shipping address to _defaultAdress (obs) variable failing. Need to be fixed
-      _defaultAdress.value = shippingAddress;
+      //done!
+      _defaultAdress = Rx<ShippingAddress?>(shippingAddress);
+
       _isLoading.value = false;
       update();
     });

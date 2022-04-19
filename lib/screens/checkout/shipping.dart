@@ -26,7 +26,7 @@ class ShippingAddress extends GetView<ShippingAddressController> {
           children: [
             controller.defaultShippingAddress == null
                 ? const EmptyAddressButton()
-                : const ShippingAddressWidget(),
+                : ShippingAddressWidget(),
             const SizedBox(height: 20),
             const CartPricingWidget(),
             const SizedBox(height: 20),
