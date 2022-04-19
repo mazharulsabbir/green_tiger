@@ -84,7 +84,7 @@ class CartScreen extends StatelessWidget {
               const SizedBox(height: 50),
               PrimaryButtonWidget(
                 text: 'Checkout',
-                onPressed: () => Get.to(() => ShippingAddress()),
+                onPressed: () => Get.to(() => const ShippingAddress()),
               ),
               const SizedBox(height: 50),
             ],

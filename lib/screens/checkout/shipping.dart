@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:green_tiger/screens/checkout/order_success.dart';
 import '../../controller/user/shipping_address_controller.dart';
+import 'package:green_tiger/utils/snack_bars/snack_bars.dart';
 import '/screens/cart/widget/cart_price_widget.dart';
-import '/utils/button/index.dart';
 import 'widget/add_address_button.dart';
-import 'widget/payment_method.dart';
+import 'package:flutter/material.dart';
 import 'widget/shipping_address.dart';
+import 'widget/payment_method.dart';
+import '/utils/button/index.dart';
+import 'package:get/get.dart';
 
 class ShippingAddress extends GetView<ShippingAddressController> {
   const ShippingAddress({Key? key}) : super(key: key);
@@ -23,7 +24,6 @@ class ShippingAddress extends GetView<ShippingAddressController> {
         ),
         child: Column(
           children: [
-            //FIXME: #2 the defaultShippingAddress variable is not updating after getting value
             Obx(
               () => controller.defaultAddress == null
                   ? const EmptyAddressButton()
@@ -38,9 +38,16 @@ class ShippingAddress extends GetView<ShippingAddressController> {
             const SizedBox(height: 50),
             PrimaryButtonWidget(
               text: 'Next',
-              onPressed: () => Get.off(
-                () => const OrderSuccessScreen(),
-              ),
+              onPressed: () {
+                if (controller.defaultAddress == null) {
+                  MySnackBar.erorrSnackBar('You must have a shipping address');
+                  return;
+                }
+
+                Get.off(
+                  () => const OrderSuccessScreen(),
+                );
+              },
             ),
             const SizedBox(height: 50),
           ],

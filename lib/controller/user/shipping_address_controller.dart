@@ -1,10 +1,9 @@
+import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
+import 'package:green_tiger/data/repository/address_repo.dart';
+import 'package:green_tiger/data/local/address_storage.dart';
+import 'package:green_tiger/data/model/country/country.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/data/local/address_storage.dart';
-import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
-import 'package:green_tiger/data/model/country/country.dart';
-
-import '../../data/repository/address_repo.dart';
 
 class ShippingAddressController extends GetxController {
   final AddressRepository _repository;
@@ -28,8 +27,6 @@ class ShippingAddressController extends GetxController {
   final _defaultAddress = (const ShippingAddress()).obs;
   ShippingAddress? get defaultAddress =>
       _defaultAddress.value.firstName == null ? null : _defaultAddress.value;
-  // set setDefaultShippingAddress(ShippingAddress value) =>
-  //     _defaultAdress.value = value;
 
   final _selectedCountry = const Country().obs;
   Country get selectedCountry => _selectedCountry.value;
@@ -59,12 +56,10 @@ class ShippingAddressController extends GetxController {
     try {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
       if (address.isEmpty) return;
-      print('Available addresses');
       _address.value = address;
       if (_address.isNotEmpty) {
         _defaultAddress.value =
             address.where((element) => element.isDefault).first;
-        print(_defaultAddress.toString());
         update();
       }
       if (_address.first.country == null) {
@@ -111,6 +106,7 @@ class ShippingAddressController extends GetxController {
   void clearAddress() {
     AddressStorage.removeAvailableAddresses();
     _address.value = [];
+    _defaultAddress.value = const ShippingAddress();
     update();
   }
 
