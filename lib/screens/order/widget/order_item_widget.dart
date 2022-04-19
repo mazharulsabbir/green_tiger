@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_tiger/data/model/order/order.dart';
 
 class OrderItemWidget extends StatelessWidget {
-  final Order order;
+  final Order? order;
   const OrderItemWidget({Key? key, required this.order}) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class OrderItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${order.orderNumber}',
+            '${order?.orderNumber}',
             style: Theme.of(context).textTheme.headline6?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -26,7 +26,7 @@ class OrderItemWidget extends StatelessWidget {
           const SizedBox(
             height: 6,
           ),
-          Text('Order Date: ${order.date}'),
+          Text('Order Date: ${order?.date}'),
           const SizedBox(height: 12),
           const Divider(thickness: 2.5),
           const SizedBox(height: 12),
@@ -34,7 +34,7 @@ class OrderItemWidget extends StatelessWidget {
             children: [
               const Text('Order Status'),
               const Spacer(),
-              Text('${order.status}'),
+              Text('${order?.status}'),
             ],
           ),
           const SizedBox(height: 12),
@@ -42,7 +42,7 @@ class OrderItemWidget extends StatelessWidget {
             children: [
               const Text('Items'),
               const Spacer(),
-              Text('${order.quantity} Items Purchased'),
+              Text('${order?.orderLines?.length} Items Purchased'),
             ],
           ),
           const SizedBox(height: 12),
@@ -50,7 +50,7 @@ class OrderItemWidget extends StatelessWidget {
             children: [
               const Text('Price'),
               const Spacer(),
-              Text('\$${order.price}'),
+              Text('\$${order?.price}'),
             ],
           )
         ],

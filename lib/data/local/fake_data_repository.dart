@@ -124,22 +124,3 @@ List<CartModel> cartProducts = [
     quantity: '1',
   ),
 ];
-
-List<Order> orderList = const [
-  Order(
-    id: 1,
-    orderNumber: 'LQNSU346JK',
-    date: '12/12/2020',
-    quantity: 2,
-    status: 'Pending',
-    price: '75000.0',
-  ),
-  Order(
-    id: 1,
-    orderNumber: 'LQNSU346JK',
-    date: '12/12/2020',
-    quantity: 2,
-    status: 'Pending',
-    price: '75000.0',
-  ),
-];
