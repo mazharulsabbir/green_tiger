@@ -26,6 +26,23 @@ class AddressStorage {
     await _box.write('_shipping_addresses', _addresses);
   }
 
+  static Future<void> setDefaultAddress(ShippingAddress shippingAddress) async {
+    var availableAdress = getAvailableAddresses();
+    if (availableAdress.isEmpty) {
+      setAddresses([shippingAddress]);
+      return;
+    }
+    ShippingAddress _cachedDefaultAddress =
+        availableAdress.where((element) => element.isDefault == true).first;
+    availableAdress.remove(_cachedDefaultAddress);
+    availableAdress.add(shippingAddress);
+    List<dynamic> _addresses = [];
+    for (final i in availableAdress) {
+      _addresses.add(i.toJson());
+    }
+    await _box.write('_shipping_addresses', _addresses);
+  }
+
   static void removeAvailableAddresses() {
     _box.remove('_shipping_addresses');
   }

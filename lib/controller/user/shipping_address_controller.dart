@@ -25,7 +25,7 @@ class ShippingAddressController extends GetxController {
   List<ShippingAddress> get shippingAddress => _address;
   set shippingAddress(List<ShippingAddress> value) => _address.value = value;
 
-  final Rx<ShippingAddress?> _defaultAdress = const ShippingAddress().obs;
+  final Rx<ShippingAddress?> _defaultAdress = null.obs;
   ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
   set setDefaultShippingAddress(ShippingAddress value) =>
       _defaultAdress.value = value;
@@ -59,6 +59,8 @@ class ShippingAddressController extends GetxController {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
       if (address.isEmpty) return;
       _address.value = address;
+      _defaultAdress.value =
+          address.where((element) => element.isDefault).first;
 
       if (_address.first.country == null) {
         _country.value = const Country();
@@ -84,6 +86,29 @@ class ShippingAddressController extends GetxController {
       print(e.toString());
     }).then((_) {
       _address.value = shippingAddress;
+      _isLoading.value = false;
+      update();
+    });
+  }
+
+  Future<void> saveDefaultAddress(ShippingAddress shippingAddress) async {
+    _isLoading.value = true;
+    update();
+    await AddressStorage.setDefaultAddress(shippingAddress).catchError((e) {
+      _isLoading.value = false;
+      update();
+      print(e.toString());
+    }).then((_) {
+      _defaultAdress.value = ShippingAddress(
+          firstName: shippingAddress.firstName,
+          lastName: shippingAddress.lastName,
+          streetAddress1: shippingAddress.streetAddress1,
+          streetAddress2: shippingAddress.streetAddress2,
+          state: shippingAddress.state,
+          isDefault: true,
+          country: shippingAddress.country,
+          zipCode: shippingAddress.zipCode,
+          phone: shippingAddress.phone);
       _isLoading.value = false;
       update();
     });

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
-import 'package:green_tiger/controller/checkout_controller.dart';
 import 'package:green_tiger/controller/user/shipping_address_controller.dart';
 
 import 'address_form_widget.dart';
@@ -24,7 +23,7 @@ class ShippingAddressWidget extends GetView<ShippingAddressController> {
           Row(
             children: [
               Text(
-                controller.shippingAddress.firstName!,
+                controller.defaultShippingAddress!.firstName!,
                 style: Theme.of(context)
                     .textTheme
                     .headline6
@@ -58,15 +57,15 @@ class ShippingAddressWidget extends GetView<ShippingAddressController> {
             ],
           ),
           const SizedBox(height: 20),
-          controller.shippingAddress.streetAddress2 == null
+          controller.defaultShippingAddress!.streetAddress2 == null
               ? Text(
-                  '${controller.shippingAddress.streetAddress1}',
+                  '${controller.defaultShippingAddress!.streetAddress1}',
                 )
               : Text(
-                  '${controller.shippingAddress.streetAddress1}, ${controller.shippingAddress.streetAddress2}',
+                  '${controller.defaultShippingAddress!.streetAddress1}, ${controller.defaultShippingAddress!.streetAddress2}',
                 ),
           const SizedBox(height: 20),
-          Text(controller.shippingAddress.phone!),
+          Text(controller.defaultShippingAddress!.phone!),
         ],
       ),
     );

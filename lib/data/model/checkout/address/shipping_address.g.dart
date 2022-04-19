@@ -17,6 +17,7 @@ _$_ShippingAddress _$$_ShippingAddressFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String?,
       zipCode: json['zipCode'] as String?,
       phone: json['phone'] as String?,
+      isDefault: json['isDefault'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_ShippingAddressToJson(_$_ShippingAddress instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$_ShippingAddressToJson(_$_ShippingAddress instance) =>
       'country': instance.country,
       'zipCode': instance.zipCode,
       'phone': instance.phone,
+      'isDefault': instance.isDefault,
     };
