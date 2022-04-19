@@ -25,10 +25,10 @@ class ShippingAddressController extends GetxController {
   List<ShippingAddress> get shippingAddress => _address;
   set shippingAddress(List<ShippingAddress> value) => _address.value = value;
 
-  Rx<ShippingAddress?> _defaultAdress = null.obs;
-  ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
-  set setDefaultShippingAddress(ShippingAddress value) =>
-      _defaultAdress.value = value;
+  Rx<ShippingAddress?> defaultAdress = null.obs;
+  // ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
+  // set setDefaultShippingAddress(ShippingAddress value) =>
+  //     _defaultAdress.value = value;
 
   final _selectedCountry = const Country().obs;
   Country get selectedCountry => _selectedCountry.value;
@@ -60,10 +60,10 @@ class ShippingAddressController extends GetxController {
       if (address.isEmpty) return;
       print('Available addresses');
       _address.value = address;
-      _defaultAdress = Rx<ShippingAddress?>(_address.isEmpty
+      defaultAdress = Rx<ShippingAddress?>(_address.isEmpty
           ? null
           : address.where((element) => element.isDefault).first);
-      print(_defaultAdress.toString());
+      print(defaultAdress.toString());
       update();
       if (_address.first.country == null) {
         _country.value = const Country();
@@ -86,7 +86,6 @@ class ShippingAddressController extends GetxController {
     await AddressStorage.setAddresses(shippingAddress).catchError((e) {
       _isLoading.value = false;
       update();
-      print(e.toString());
     }).then((_) {
       _address.value = shippingAddress;
       _isLoading.value = false;
@@ -101,7 +100,7 @@ class ShippingAddressController extends GetxController {
       _isLoading.value = false;
       update();
     }).then((_) {
-      _defaultAdress = Rx<ShippingAddress?>(shippingAddress);
+      defaultAdress = Rx<ShippingAddress?>(shippingAddress);
 
       _isLoading.value = false;
       update();

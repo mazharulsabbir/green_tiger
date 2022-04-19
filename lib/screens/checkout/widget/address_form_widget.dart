@@ -43,7 +43,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.dropdownValidation,
                     value: controller.countries.isEmpty ||
                             controller.country.name == null ||
-                            controller.defaultShippingAddress?.firstName == null
+                            controller.defaultAdress.value?.firstName == null
                         ? null
                         : controller.country,
                     decoration: textInputDecoration,
@@ -64,8 +64,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: firstNameController
-                      ..text =
-                          controller.defaultShippingAddress?.firstName ?? '',
+                      ..text = controller.defaultAdress.value?.firstName ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.firstNameValidate,
@@ -75,8 +74,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: lastNameController
-                      ..text =
-                          controller.defaultShippingAddress?.lastName ?? '',
+                      ..text = controller.defaultAdress.value?.lastName ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.lastNameValidate,
@@ -87,8 +85,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   TextFormField(
                     controller: street1Controller
                       ..text =
-                          controller.defaultShippingAddress?.streetAddress1 ??
-                              '',
+                          controller.defaultAdress.value?.streetAddress1 ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator:
@@ -100,8 +97,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   TextFormField(
                     controller: street2Controller
                       ..text =
-                          controller.defaultShippingAddress?.streetAddress2 ??
-                              '',
+                          controller.defaultAdress.value?.streetAddress2 ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator:
@@ -112,7 +108,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: cityController
-                      ..text = controller.defaultShippingAddress?.city ?? '',
+                      ..text = controller.defaultAdress.value?.city ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.cityValidation,
@@ -122,7 +118,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: stateController
-                      ..text = controller.defaultShippingAddress?.state ?? '',
+                      ..text = controller.defaultAdress.value?.state ?? '',
                     decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.stateValidation,
@@ -132,7 +128,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: zipController
-                      ..text = controller.defaultShippingAddress?.zipCode ?? '',
+                      ..text = controller.defaultAdress.value?.zipCode ?? '',
                     decoration: textInputDecoration,
                     keyboardType: TextInputType.number,
                     validator: ShippingAddressValidations.zipCodeValidation,
@@ -142,7 +138,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: phoneController
-                      ..text = controller.defaultShippingAddress?.phone ?? '',
+                      ..text = controller.defaultAdress.value?.phone ?? '',
                     decoration: textInputDecoration,
                     keyboardType: TextInputType.number,
                     validator: ShippingAddressValidations.phoneValidation,

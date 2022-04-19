@@ -10,7 +10,6 @@ import 'widget/shipping_address.dart';
 
 class ShippingAddress extends GetView<ShippingAddressController> {
   const ShippingAddress({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +24,13 @@ class ShippingAddress extends GetView<ShippingAddressController> {
         child: Column(
           children: [
             //FIXME: #2 the defaultShippingAddress variable is not updating after getting value
-            controller.defaultShippingAddress == null
-                ? const EmptyAddressButton()
-                : ShippingAddressWidget(
-                    defaultShippingAddress: controller.defaultShippingAddress!,
-                  ),
+            Obx(
+              () => controller.defaultAdress.value == null
+                  ? const EmptyAddressButton()
+                  : ShippingAddressWidget(
+                      defaultShippingAddress: controller.defaultAdress.value!,
+                    ),
+            ),
             const SizedBox(height: 20),
             const CartPricingWidget(),
             const SizedBox(height: 20),
