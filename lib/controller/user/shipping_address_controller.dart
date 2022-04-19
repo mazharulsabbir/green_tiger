@@ -59,8 +59,9 @@ class ShippingAddressController extends GetxController {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
       if (address.isEmpty) return;
       _address.value = address;
-      _defaultAdress.value =
-          address.where((element) => element.isDefault).first;
+      _defaultAdress.value = address.isEmpty
+          ? null
+          : address.where((element) => element.isDefault).first;
 
       if (_address.first.country == null) {
         _country.value = const Country();
@@ -91,24 +92,15 @@ class ShippingAddressController extends GetxController {
     });
   }
 
-  Future<void> saveDefaultAddress(ShippingAddress shippingAddress) async {
+  Future<void> saveDefaultAddress(ShippingAddress? shippingAddress) async {
     _isLoading.value = true;
     update();
-    await AddressStorage.setDefaultAddress(shippingAddress).catchError((e) {
+    await AddressStorage.setDefaultAddress(shippingAddress!).catchError((e) {
       _isLoading.value = false;
       update();
-      print(e.toString());
     }).then((_) {
-      _defaultAdress.value = ShippingAddress(
-          firstName: shippingAddress.firstName,
-          lastName: shippingAddress.lastName,
-          streetAddress1: shippingAddress.streetAddress1,
-          streetAddress2: shippingAddress.streetAddress2,
-          state: shippingAddress.state,
-          isDefault: true,
-          country: shippingAddress.country,
-          zipCode: shippingAddress.zipCode,
-          phone: shippingAddress.phone);
+      //TODO: #1 setting shipping address to _defaultAdress (obs) variable failing. Need to be fixed
+      _defaultAdress.value = shippingAddress;
       _isLoading.value = false;
       update();
     });
