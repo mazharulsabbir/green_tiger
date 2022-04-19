@@ -24,12 +24,14 @@ class _$CountryTearOff {
   _Country call(
       {int? id,
       String? name,
+      String? code,
       @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states}) {
     return _Country(
       id: id,
       name: name,
+      code: code,
       phoneCode: phoneCode,
       currency: currency,
       states: states,
@@ -48,6 +50,7 @@ const $Country = _$CountryTearOff();
 mixin _$Country {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_code')
   String? get phoneCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_id')
@@ -67,6 +70,7 @@ abstract class $CountryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
+      String? code,
       @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states});
@@ -86,6 +90,7 @@ class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? code = freezed,
     Object? phoneCode = freezed,
     Object? currency = freezed,
     Object? states = freezed,
@@ -98,6 +103,10 @@ class _$CountryCopyWithImpl<$Res> implements $CountryCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneCode: phoneCode == freezed
           ? _value.phoneCode
@@ -134,6 +143,7 @@ abstract class _$CountryCopyWith<$Res> implements $CountryCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
+      String? code,
       @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states});
@@ -155,6 +165,7 @@ class __$CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? code = freezed,
     Object? phoneCode = freezed,
     Object? currency = freezed,
     Object? states = freezed,
@@ -167,6 +178,10 @@ class __$CountryCopyWithImpl<$Res> extends _$CountryCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
       phoneCode: phoneCode == freezed
           ? _value.phoneCode
@@ -191,6 +206,7 @@ class _$_Country extends _Country {
   const _$_Country(
       {this.id,
       this.name,
+      this.code,
       @JsonKey(name: 'phone_code') this.phoneCode,
       @JsonKey(name: 'currency_id') this.currency,
       @JsonKey(name: 'state_ids') this.states})
@@ -204,6 +220,8 @@ class _$_Country extends _Country {
   @override
   final String? name;
   @override
+  final String? code;
+  @override
   @JsonKey(name: 'phone_code')
   final String? phoneCode;
   @override
@@ -215,7 +233,7 @@ class _$_Country extends _Country {
 
   @override
   String toString() {
-    return 'Country(id: $id, name: $name, phoneCode: $phoneCode, currency: $currency, states: $states)';
+    return 'Country(id: $id, name: $name, code: $code, phoneCode: $phoneCode, currency: $currency, states: $states)';
   }
 
   @override
@@ -225,6 +243,7 @@ class _$_Country extends _Country {
             other is _Country &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.phoneCode, phoneCode) &&
             const DeepCollectionEquality().equals(other.currency, currency) &&
             const DeepCollectionEquality().equals(other.states, states));
@@ -235,6 +254,7 @@ class _$_Country extends _Country {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(code),
       const DeepCollectionEquality().hash(phoneCode),
       const DeepCollectionEquality().hash(currency),
       const DeepCollectionEquality().hash(states));
@@ -254,6 +274,7 @@ abstract class _Country extends Country {
   const factory _Country(
       {int? id,
       String? name,
+      String? code,
       @JsonKey(name: 'phone_code') String? phoneCode,
       @JsonKey(name: 'currency_id') Currency? currency,
       @JsonKey(name: 'state_ids') List<State>? states}) = _$_Country;
@@ -265,6 +286,8 @@ abstract class _Country extends Country {
   int? get id;
   @override
   String? get name;
+  @override
+  String? get code;
   @override
   @JsonKey(name: 'phone_code')
   String? get phoneCode;

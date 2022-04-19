@@ -48,3 +48,36 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'contact_address': instance.contactAddress,
       'contact_address_complete': instance.contactAddressComplete,
     };
+
+_$_ContactAndAddress _$$_ContactAndAddressFromJson(Map<String, dynamic> json) =>
+    _$_ContactAndAddress(
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      mobile: json['mobile'] as String?,
+      phone: json['phone'] as String?,
+      zip: json['zip'] as String?,
+      street: json['street'] as String?,
+      city: json['city'] as String?,
+      country: json['country_id'] == null
+          ? null
+          : Country.fromJson(json['country_id'] as Map<String, dynamic>),
+      state: json['state_id'] == null
+          ? null
+          : State.fromJson(json['state_id'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_ContactAndAddressToJson(
+        _$_ContactAndAddress instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'mobile': instance.mobile,
+      'phone': instance.phone,
+      'zip': instance.zip,
+      'street': instance.street,
+      'city': instance.city,
+      'country_id': instance.country,
+      'state_id': instance.state,
+    };

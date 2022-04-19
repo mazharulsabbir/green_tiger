@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/user/user_controller.dart';
+import 'package:green_tiger/screens/account/contact_address.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/screens/order/order.dart';
 
@@ -59,7 +60,7 @@ class AccountScreen extends GetView<UserController> {
             ListTile(
               leading: const Icon(PhosphorIcons.map_pin),
               title: const Text('Address'),
-              onTap: () => Get.to(() => const ShippingAddress()),
+              onTap: () => Get.to(() => const ContactAndAddressScreen()),
             ),
             const ListTile(
               leading: Icon(PhosphorIcons.wallet),

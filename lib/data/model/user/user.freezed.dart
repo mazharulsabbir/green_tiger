@@ -543,3 +543,401 @@ abstract class _UserModel implements UserModel {
   _$UserModelCopyWith<_UserModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ContactAndAddress _$ContactAndAddressFromJson(Map<String, dynamic> json) {
+  return _ContactAndAddress.fromJson(json);
+}
+
+/// @nodoc
+class _$ContactAndAddressTearOff {
+  const _$ContactAndAddressTearOff();
+
+  _ContactAndAddress call(
+      {int? id,
+      String? name,
+      String? email,
+      String? mobile,
+      String? phone,
+      String? zip,
+      String? street,
+      String? city,
+      @JsonKey(name: 'country_id') Country? country,
+      @JsonKey(name: 'state_id') State? state}) {
+    return _ContactAndAddress(
+      id: id,
+      name: name,
+      email: email,
+      mobile: mobile,
+      phone: phone,
+      zip: zip,
+      street: street,
+      city: city,
+      country: country,
+      state: state,
+    );
+  }
+
+  ContactAndAddress fromJson(Map<String, Object?> json) {
+    return ContactAndAddress.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ContactAndAddress = _$ContactAndAddressTearOff();
+
+/// @nodoc
+mixin _$ContactAndAddress {
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get mobile => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get zip => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country_id')
+  Country? get country => throw _privateConstructorUsedError;
+  @JsonKey(name: 'state_id')
+  State? get state => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ContactAndAddressCopyWith<ContactAndAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContactAndAddressCopyWith<$Res> {
+  factory $ContactAndAddressCopyWith(
+          ContactAndAddress value, $Res Function(ContactAndAddress) then) =
+      _$ContactAndAddressCopyWithImpl<$Res>;
+  $Res call(
+      {int? id,
+      String? name,
+      String? email,
+      String? mobile,
+      String? phone,
+      String? zip,
+      String? street,
+      String? city,
+      @JsonKey(name: 'country_id') Country? country,
+      @JsonKey(name: 'state_id') State? state});
+
+  $CountryCopyWith<$Res>? get country;
+  $StateCopyWith<$Res>? get state;
+}
+
+/// @nodoc
+class _$ContactAndAddressCopyWithImpl<$Res>
+    implements $ContactAndAddressCopyWith<$Res> {
+  _$ContactAndAddressCopyWithImpl(this._value, this._then);
+
+  final ContactAndAddress _value;
+  // ignore: unused_field
+  final $Res Function(ContactAndAddress) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? mobile = freezed,
+    Object? phone = freezed,
+    Object? zip = freezed,
+    Object? street = freezed,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? state = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobile: mobile == freezed
+          ? _value.mobile
+          : mobile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      zip: zip == freezed
+          ? _value.zip
+          : zip // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as Country?,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as State?,
+    ));
+  }
+
+  @override
+  $CountryCopyWith<$Res>? get country {
+    if (_value.country == null) {
+      return null;
+    }
+
+    return $CountryCopyWith<$Res>(_value.country!, (value) {
+      return _then(_value.copyWith(country: value));
+    });
+  }
+
+  @override
+  $StateCopyWith<$Res>? get state {
+    if (_value.state == null) {
+      return null;
+    }
+
+    return $StateCopyWith<$Res>(_value.state!, (value) {
+      return _then(_value.copyWith(state: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$ContactAndAddressCopyWith<$Res>
+    implements $ContactAndAddressCopyWith<$Res> {
+  factory _$ContactAndAddressCopyWith(
+          _ContactAndAddress value, $Res Function(_ContactAndAddress) then) =
+      __$ContactAndAddressCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int? id,
+      String? name,
+      String? email,
+      String? mobile,
+      String? phone,
+      String? zip,
+      String? street,
+      String? city,
+      @JsonKey(name: 'country_id') Country? country,
+      @JsonKey(name: 'state_id') State? state});
+
+  @override
+  $CountryCopyWith<$Res>? get country;
+  @override
+  $StateCopyWith<$Res>? get state;
+}
+
+/// @nodoc
+class __$ContactAndAddressCopyWithImpl<$Res>
+    extends _$ContactAndAddressCopyWithImpl<$Res>
+    implements _$ContactAndAddressCopyWith<$Res> {
+  __$ContactAndAddressCopyWithImpl(
+      _ContactAndAddress _value, $Res Function(_ContactAndAddress) _then)
+      : super(_value, (v) => _then(v as _ContactAndAddress));
+
+  @override
+  _ContactAndAddress get _value => super._value as _ContactAndAddress;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? mobile = freezed,
+    Object? phone = freezed,
+    Object? zip = freezed,
+    Object? street = freezed,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? state = freezed,
+  }) {
+    return _then(_ContactAndAddress(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobile: mobile == freezed
+          ? _value.mobile
+          : mobile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      zip: zip == freezed
+          ? _value.zip
+          : zip // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as Country?,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as State?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ContactAndAddress implements _ContactAndAddress {
+  const _$_ContactAndAddress(
+      {this.id,
+      this.name,
+      this.email,
+      this.mobile,
+      this.phone,
+      this.zip,
+      this.street,
+      this.city,
+      @JsonKey(name: 'country_id') this.country,
+      @JsonKey(name: 'state_id') this.state});
+
+  factory _$_ContactAndAddress.fromJson(Map<String, dynamic> json) =>
+      _$$_ContactAndAddressFromJson(json);
+
+  @override
+  final int? id;
+  @override
+  final String? name;
+  @override
+  final String? email;
+  @override
+  final String? mobile;
+  @override
+  final String? phone;
+  @override
+  final String? zip;
+  @override
+  final String? street;
+  @override
+  final String? city;
+  @override
+  @JsonKey(name: 'country_id')
+  final Country? country;
+  @override
+  @JsonKey(name: 'state_id')
+  final State? state;
+
+  @override
+  String toString() {
+    return 'ContactAndAddress(id: $id, name: $name, email: $email, mobile: $mobile, phone: $phone, zip: $zip, street: $street, city: $city, country: $country, state: $state)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ContactAndAddress &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.mobile, mobile) &&
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.zip, zip) &&
+            const DeepCollectionEquality().equals(other.street, street) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
+            const DeepCollectionEquality().equals(other.state, state));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(mobile),
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(zip),
+      const DeepCollectionEquality().hash(street),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(country),
+      const DeepCollectionEquality().hash(state));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ContactAndAddressCopyWith<_ContactAndAddress> get copyWith =>
+      __$ContactAndAddressCopyWithImpl<_ContactAndAddress>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ContactAndAddressToJson(this);
+  }
+}
+
+abstract class _ContactAndAddress implements ContactAndAddress {
+  const factory _ContactAndAddress(
+      {int? id,
+      String? name,
+      String? email,
+      String? mobile,
+      String? phone,
+      String? zip,
+      String? street,
+      String? city,
+      @JsonKey(name: 'country_id') Country? country,
+      @JsonKey(name: 'state_id') State? state}) = _$_ContactAndAddress;
+
+  factory _ContactAndAddress.fromJson(Map<String, dynamic> json) =
+      _$_ContactAndAddress.fromJson;
+
+  @override
+  int? get id;
+  @override
+  String? get name;
+  @override
+  String? get email;
+  @override
+  String? get mobile;
+  @override
+  String? get phone;
+  @override
+  String? get zip;
+  @override
+  String? get street;
+  @override
+  String? get city;
+  @override
+  @JsonKey(name: 'country_id')
+  Country? get country;
+  @override
+  @JsonKey(name: 'state_id')
+  State? get state;
+  @override
+  @JsonKey(ignore: true)
+  _$ContactAndAddressCopyWith<_ContactAndAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}

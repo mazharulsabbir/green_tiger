@@ -11,6 +11,7 @@ class Country with _$Country {
   const factory Country({
     int? id,
     String? name,
+    String? code,
     @JsonKey(name: 'phone_code') String? phoneCode,
     @JsonKey(name: 'currency_id') Currency? currency,
     @JsonKey(name: 'state_ids') List<State>? states,

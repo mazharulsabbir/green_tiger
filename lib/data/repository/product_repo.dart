@@ -10,7 +10,7 @@ class ProductRepository {
   final ApiService _apiService;
   ProductRepository(this._apiService);
 
-  Future<List<CategoryModel>> categories() async {
+  Future<List<CategoryModel>?> categories() async {
     final _body = {
       "params": {
         "data": {
@@ -36,17 +36,17 @@ class ProductRepository {
         body: _body,
       );
 
-      final _result = response as List<dynamic>;
+      final _result = response as List<dynamic>?;
       debugPrint('Printing categories');
       debugPrint(_result.toString());
-      final _response = _result.map((e) => CategoryModel.fromJson(e)).toList();
+      final _response = _result?.map((e) => CategoryModel.fromJson(e)).toList();
       return _response;
     } catch (e) {
       return Future.error("$e");
     }
   }
 
-  Future<List<ProductModel>> products() async {
+  Future<List<ProductModel>?> products() async {
     // todo: check latest date
     const _date = "2022-02-25";
     final _body = {
@@ -114,15 +114,15 @@ class ProductRepository {
         body: _body,
       );
 
-      final _result = response as List<dynamic>;
-      final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
+      final _result = response as List<dynamic>?;
+      final _response = _result?.map((e) => ProductModel.fromJson(e)).toList();
       return _response;
     } catch (e) {
       return Future.error("$e");
     }
   }
 
-  Future<List<ProductModel>> productsByCategory(int? categoryId) async {
+  Future<List<ProductModel>?> productsByCategory(int? categoryId) async {
     final _body = {
       "params": {
         "data": {
@@ -188,8 +188,8 @@ class ProductRepository {
         body: _body,
       );
 
-      final _result = response as List<dynamic>;
-      final _response = _result.map((e) => ProductModel.fromJson(e)).toList();
+      final _result = response as List<dynamic>?;
+      final _response = _result?.map((e) => ProductModel.fromJson(e)).toList();
       return _response;
     } catch (e) {
       return Future.error("$e");

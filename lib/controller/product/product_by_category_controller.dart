@@ -21,7 +21,7 @@ class ProductByCategoryController extends GetxController
     await _repository.productsByCategory(category.id).then(
           (response) => change(
             response,
-            status: response.isEmpty ? RxStatus.empty() : RxStatus.success(),
+            status: response == null ? RxStatus.empty() : RxStatus.success(),
           ),
           onError: (err) => change(null, status: RxStatus.error(err)),
         );

@@ -28,3 +28,22 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 }
+
+@freezed
+class ContactAndAddress with _$ContactAndAddress {
+  const factory ContactAndAddress({
+    int? id,
+    String? name,
+    String? email,
+    String? mobile,
+    String? phone,
+    String? zip,
+    String? street,
+    String? city,
+    @JsonKey(name: 'country_id') Country? country,
+    @JsonKey(name: 'state_id') State? state,
+  }) = _ContactAndAddress;
+
+  factory ContactAndAddress.fromJson(Map<String, dynamic> json) =>
+      _$ContactAndAddressFromJson(json);
+}

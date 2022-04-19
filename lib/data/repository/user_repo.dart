@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/model/user/user.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 
@@ -65,9 +66,74 @@ class UserRepository {
         "/api/v1/global/get",
         body: _body,
       );
-      final _response = response as List<dynamic>;
-      final _user = _response.map((e) => UserModel.fromJson(e)).toList();
-      return _user.isNotEmpty ? _user.first : null;
+      final _response = response as List<dynamic>?;
+      final _user = _response?.map((e) => UserModel.fromJson(e)).toList();
+      return _user?.first;
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<List<ContactAndAddress>?> getUserContactAndAddressById(int uid) async {
+    final _body = {
+      "params": {
+        "data": {
+          "model": "res.partner",
+          "conditions": {
+            "relation": ["&"],
+            "condition": [
+              {"id": "id", "condition": "=", "value": uid},
+              {"id": "active", "condition": "=", "value": true}
+            ]
+          },
+          "fields": [
+            {
+              "name": "child_ids",
+              "type": "related",
+              "related_fields": [
+                {"name": "id", "type": "int"},
+                {"name": "name", "type": "str"},
+                {"name": "street", "type": "str"},
+                {"name": "city", "type": "str"},
+                {"name": "zip", "type": "str"},
+                {"name": "mobile", "type": "str"},
+                {"name": "email", "type": "str"},
+                {"name": "phone", "type": "str"},
+                {
+                  "name": "state_id",
+                  "type": "related",
+                  "related_fields": [
+                    {"name": "id", "type": "int"},
+                    {"name": "name", "type": "str"},
+                    {"name": "code", "type": "str"}
+                  ]
+                },
+                {
+                  "name": "country_id",
+                  "type": "related",
+                  "related_fields": [
+                    {"name": "id", "type": "int"},
+                    {"name": "name", "type": "str"},
+                    {"name": "code", "type": "str"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
+
+    try {
+      final response = await _apiService.post(
+        "/api/v1/global/get",
+        body: _body,
+      );
+      final _response = response as List<dynamic>?;
+      final _address = _response?.first['child_ids'] as List<dynamic>?;
+      final _result =
+          _address?.map((e) => ContactAndAddress.fromJson(e)).toList();
+      return _result;
     } catch (e) {
       return Future.error(e);
     }

@@ -8,6 +8,7 @@ import '../controller/checkout_controller.dart';
 import '../controller/auth_controller.dart';
 import 'package:get/get.dart';
 import '../controller/product/product_by_category_controller.dart';
+import '../controller/user/contact_address_controller.dart';
 import '../data/repository/address_repo.dart';
 import '/controller/cart_controller.dart';
 import '../controller/product/category_controller.dart';
@@ -41,5 +42,9 @@ class GlobalBindings extends Bindings {
     Get.lazyPut(() => ProductController(Get.find()), fenix: true);
     Get.lazyPut(() => CartController(), fenix: true);
     Get.lazyPut(() => ShippingAddressController(Get.find()), fenix: true);
+    Get.lazyPut(
+      () => ContactAndAddressController(Get.find(), Get.find()),
+      fenix: true,
+    );
   }
 }
