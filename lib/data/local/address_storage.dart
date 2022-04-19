@@ -5,19 +5,25 @@ import 'package:get_storage/get_storage.dart';
 final _box = GetStorage(dbName);
 
 class AddressStorage {
-  static ShippingAddress? getAvailableAddresses() {
-    final _addresses = _box.read('_shipping_addresses');
-    ShippingAddress? _address;
-    if (_addresses != null) {
-      _address = ShippingAddress.fromJson(_addresses);
+  static List<ShippingAddress> getAvailableAddresses() {
+    final _rawAddresses = _box.read('_shipping_addresses') as List?;
+    List<ShippingAddress> _addresses = [];
+    if (_rawAddresses != null && _rawAddresses.isNotEmpty) {
+      for (final i in _rawAddresses) {
+        _addresses.add(ShippingAddress.fromJson(i));
+      }
     }
 
-    return _address;
+    return _addresses;
   }
 
-  static Future<void> setAddress(ShippingAddress shippingAddress) async {
-    dynamic rawData = shippingAddress.toJson();
-    await _box.write('_shipping_addresses', rawData);
+  static Future<void> setAddresses(
+      List<ShippingAddress> shippingAddresses) async {
+    List<dynamic> _addresses = [];
+    for (final i in shippingAddresses) {
+      _addresses.add(i.toJson());
+    }
+    await _box.write('_shipping_addresses', _addresses);
   }
 
   static void removeAvailableAddresses() {

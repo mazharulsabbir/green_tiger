@@ -20,5 +20,6 @@ class ShippingAddress with _$ShippingAddress {
     String? phone,
   }) = _ShippingAddress;
 
-  factory ShippingAddress.fromJson(Map<String, dynamic> json) => _$ShippingAddressFromJson(json);
+  factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
+      _$ShippingAddressFromJson(json);
 }

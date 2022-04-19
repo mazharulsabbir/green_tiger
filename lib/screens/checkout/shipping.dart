@@ -24,7 +24,7 @@ class ShippingAddress extends GetView<ShippingAddressController> {
         ),
         child: Column(
           children: [
-            controller.shippingAddress.firstName == null
+            controller.shippingAddress.isEmpty
                 ? const EmptyAddressButton()
                 : const ShippingAddressWidget(),
             const SizedBox(height: 20),

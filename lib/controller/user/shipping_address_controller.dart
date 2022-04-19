@@ -21,9 +21,14 @@ class ShippingAddressController extends GetxController {
   List<Country> get countries => _countries;
   set countries(List<Country> value) => _countries.value = value;
 
-  final Rx<ShippingAddress> _address = const ShippingAddress().obs;
-  ShippingAddress get shippingAddress => _address.value;
-  set shippingAddress(ShippingAddress value) => _address.value = value;
+  final RxList<ShippingAddress> _address = <ShippingAddress>[].obs;
+  List<ShippingAddress> get shippingAddress => _address;
+  set shippingAddress(List<ShippingAddress> value) => _address.value = value;
+
+  final Rx<ShippingAddress?> _defaultAdress = const ShippingAddress().obs;
+  ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
+  set setDefaultShippingAddress(ShippingAddress value) =>
+      _defaultAdress.value = value;
 
   final _selectedCountry = const Country().obs;
   Country get selectedCountry => _selectedCountry.value;
@@ -51,31 +56,29 @@ class ShippingAddressController extends GetxController {
 
   Future<void> getAddress() async {
     try {
-      ShippingAddress? address = AddressStorage.getAvailableAddresses();
-      if (address == null) return;
+      List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
+      if (address.isEmpty) return;
       _address.value = address;
-      if (_address.value.country == null) {
+
+      if (_address.first.country == null) {
         _country.value = const Country();
         return;
       }
-
       Country country = countries
-          .where((element) => element.name == _address.value.country)
+          .where((element) => element.name == address.first.country)
           .first;
       _country.value = country;
-      debugPrint(
-        'Getting address ${_address.value} and country ${_country.value}',
-      );
+
       update();
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  Future<void> saveAddress(ShippingAddress shippingAddress) async {
+  Future<void> saveAddress(List<ShippingAddress> shippingAddress) async {
     _isLoading.value = true;
     update();
-    await AddressStorage.setAddress(shippingAddress).catchError((e) {
+    await AddressStorage.setAddresses(shippingAddress).catchError((e) {
       _isLoading.value = false;
       update();
       print(e.toString());
@@ -88,7 +91,7 @@ class ShippingAddressController extends GetxController {
 
   void clearAddress() {
     AddressStorage.removeAvailableAddresses();
-    _address.value = const ShippingAddress();
+    _address.value = [];
     update();
   }
 

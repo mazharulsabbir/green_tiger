@@ -37,8 +37,7 @@ class ProductRepository {
       );
 
       final _result = response as List<dynamic>?;
-      debugPrint('Printing categories');
-      debugPrint(_result.toString());
+
       final _response = _result?.map((e) => CategoryModel.fromJson(e)).toList();
       return _response;
     } catch (e) {
