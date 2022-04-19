@@ -13,13 +13,14 @@ class OrderScreen extends GetView<OrderController> {
       appBar: AppBar(
         title: const Text('Order List'),
       ),
-      body: controller.obx((state) => ListView.builder(
-        itemCount: state?.length,
-        itemBuilder: (context, index) => OrderItemWidget(
-          order: state?[index],
+      body: controller.obx(
+        (state) => ListView.builder(
+          itemCount: state?.length,
+          itemBuilder: (context, index) => OrderItemWidget(
+            order: state?[index],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
-

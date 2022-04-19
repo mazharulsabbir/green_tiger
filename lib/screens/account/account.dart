@@ -6,6 +6,7 @@ import 'package:green_tiger/controller/user/user_controller.dart';
 import 'package:green_tiger/screens/account/contact_address.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/screens/order/order.dart';
+import 'package:green_tiger/screens/payment/payment_screen.dart';
 
 import '../../data/local/storage_utils.dart';
 
@@ -62,9 +63,10 @@ class AccountScreen extends GetView<UserController> {
               title: const Text('Address'),
               onTap: () => Get.to(() => const ContactAndAddressScreen()),
             ),
-            const ListTile(
-              leading: Icon(PhosphorIcons.wallet),
-              title: Text('Payment'),
+            ListTile(
+              leading: const Icon(PhosphorIcons.wallet),
+              title: const Text('Payment'),
+              onTap: () => Get.to(() => const PaymentHistoryScreen()),
             ),
             const SizedBox(height: 20),
             ListTile(
