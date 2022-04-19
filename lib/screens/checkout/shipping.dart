@@ -24,9 +24,12 @@ class ShippingAddress extends GetView<ShippingAddressController> {
         ),
         child: Column(
           children: [
+            //FIXME: #2 the defaultShippingAddress variable is not updating after getting value
             controller.defaultShippingAddress == null
                 ? const EmptyAddressButton()
-                : ShippingAddressWidget(),
+                : ShippingAddressWidget(
+                    defaultShippingAddress: controller.defaultShippingAddress!,
+                  ),
             const SizedBox(height: 20),
             const CartPricingWidget(),
             const SizedBox(height: 20),

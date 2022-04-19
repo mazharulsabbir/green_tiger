@@ -59,12 +59,12 @@ class ShippingAddressController extends GetxController {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
       if (address.isEmpty) return;
       print('Available addresses');
-      print(address.length);
       _address.value = address;
       _defaultAdress = Rx<ShippingAddress?>(_address.isEmpty
           ? null
           : address.where((element) => element.isDefault).first);
-
+      print(_defaultAdress.toString());
+      update();
       if (_address.first.country == null) {
         _country.value = const Country();
         return;
@@ -101,8 +101,6 @@ class ShippingAddressController extends GetxController {
       _isLoading.value = false;
       update();
     }).then((_) {
-      //TODO: #1 setting shipping address to _defaultAdress (obs) variable failing. Need to be fixed
-      //done!
       _defaultAdress = Rx<ShippingAddress?>(shippingAddress);
 
       _isLoading.value = false;
