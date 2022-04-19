@@ -10,7 +10,7 @@ import 'address_form_widget.dart';
 class ShippingAddressWidget extends StatelessWidget {
   const ShippingAddressWidget({Key? key, required this.defaultShippingAddress})
       : super(key: key);
-  final ShippingAddress defaultShippingAddress;
+  final ShippingAddress? defaultShippingAddress;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,7 @@ class ShippingAddressWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                defaultShippingAddress.firstName!,
+                '${defaultShippingAddress?.firstName}',
                 style: Theme.of(context)
                     .textTheme
                     .headline6
@@ -59,15 +59,15 @@ class ShippingAddressWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          defaultShippingAddress.streetAddress2 == null
+          defaultShippingAddress?.streetAddress2 == null
               ? Text(
-                  '${defaultShippingAddress.streetAddress1}',
+                  '${defaultShippingAddress?.streetAddress1}',
                 )
               : Text(
-                  '${defaultShippingAddress.streetAddress1}, ${defaultShippingAddress.streetAddress2}',
+                  '${defaultShippingAddress?.streetAddress1}, ${defaultShippingAddress?.streetAddress2}',
                 ),
           const SizedBox(height: 20),
-          Text(defaultShippingAddress.phone!),
+          Text('${defaultShippingAddress?.phone}'),
         ],
       ),
     );

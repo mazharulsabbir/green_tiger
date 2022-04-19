@@ -25,8 +25,9 @@ class ShippingAddressController extends GetxController {
   List<ShippingAddress> get shippingAddress => _address;
   set shippingAddress(List<ShippingAddress> value) => _address.value = value;
 
-  Rx<ShippingAddress?> defaultAdress = null.obs;
-  // ShippingAddress? get defaultShippingAddress => _defaultAdress.value;
+  final _defaultAddress = (const ShippingAddress()).obs;
+  ShippingAddress? get defaultAddress =>
+      _defaultAddress.value.firstName == null ? null : _defaultAddress.value;
   // set setDefaultShippingAddress(ShippingAddress value) =>
   //     _defaultAdress.value = value;
 
@@ -60,11 +61,12 @@ class ShippingAddressController extends GetxController {
       if (address.isEmpty) return;
       print('Available addresses');
       _address.value = address;
-      defaultAdress = Rx<ShippingAddress?>(_address.isEmpty
-          ? null
-          : address.where((element) => element.isDefault).first);
-      print(defaultAdress.toString());
-      update();
+      if (_address.isNotEmpty) {
+        _defaultAddress.value =
+            address.where((element) => element.isDefault).first;
+        print(_defaultAddress.toString());
+        update();
+      }
       if (_address.first.country == null) {
         _country.value = const Country();
         return;
@@ -100,8 +102,7 @@ class ShippingAddressController extends GetxController {
       _isLoading.value = false;
       update();
     }).then((_) {
-      defaultAdress = Rx<ShippingAddress?>(shippingAddress);
-
+      _defaultAddress.value = shippingAddress;
       _isLoading.value = false;
       update();
     });
