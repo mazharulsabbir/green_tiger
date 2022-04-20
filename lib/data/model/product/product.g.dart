@@ -15,6 +15,9 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       imageUrl: json['image_1920'] as String?,
       rating: (json['rating_avg'] as num?)?.toDouble() ?? 0.0,
       ratingCount: (json['rating_count'] as num?)?.toDouble() ?? 0.0,
+      alternativeProducts: (json['alternative_product_ids'] as List<dynamic>?)
+          ?.map((e) => AlternativeProducts.fromJson(e as Map<String, dynamic>))
+          .toList(),
       isFav: json['isFav'] as bool?,
     );
 
@@ -27,5 +30,6 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'image_1920': instance.imageUrl,
       'rating_avg': instance.rating,
       'rating_count': instance.ratingCount,
+      'alternative_product_ids': instance.alternativeProducts,
       'isFav': instance.isFav,
     };
