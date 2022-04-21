@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:green_tiger/constraints/images.dart';
-import 'package:green_tiger/data/model/cart/cart.dart';
+import 'package:green_tiger/utils/common_widgets/my_timeline/my_timeline.dart';
+import 'package:green_tiger/utils/common_widgets/common_search_appbar.dart';
 import 'package:green_tiger/data/model/order/oshopping_detials_model.dart';
 import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
-import 'package:green_tiger/utils/common_widgets/common_search_appbar.dart';
-import 'package:green_tiger/utils/common_widgets/my_stepper/my_timeline.dart';
+import 'package:green_tiger/data/model/cart/cart.dart';
+import 'package:green_tiger/constraints/images.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 part 'widgets/stepper.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -27,11 +27,14 @@ class OrderDetailsScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               child: Row(
-                children: const [
-                  Icon(
-                    (Icons.arrow_back_ios),
+                children: [
+                  GestureDetector(
+                    onTap: Get.back,
+                    child: const Icon(
+                      (Icons.arrow_back_ios),
+                    ),
                   ),
-                  Text(
+                  const Text(
                     'Order details',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
@@ -53,7 +56,7 @@ class _OrderTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyTimeLine(
       timelines: timelInes,
-      currentIndex: 0,
+      timeLineState: TimeLineState.shipping,
     );
   }
 

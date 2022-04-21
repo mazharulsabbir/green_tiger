@@ -60,13 +60,10 @@ class AccountScreen extends GetView<UserController> {
               onTap: () => Get.to(() => const OrderScreen()),
             ),
             ListTile(
-                leading: const Icon(PhosphorIcons.map_pin),
-                title: const Text('Address'),
-                onTap: () => Get.to(
-                      () => const OrderDetailsScreen(),
-                    )
-                // onTap: () => Get.to(() => const ContactAndAddressScreen()),
-                ),
+              leading: const Icon(PhosphorIcons.map_pin),
+              title: const Text('Address'),
+              onTap: () => Get.to(() => const ContactAndAddressScreen()),
+            ),
             ListTile(
               leading: const Icon(PhosphorIcons.wallet),
               title: const Text('Payment'),
