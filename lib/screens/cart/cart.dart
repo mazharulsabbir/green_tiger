@@ -21,11 +21,19 @@ class CartScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Your Cart',
-                style: Theme.of(context).textTheme.headline6?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              Row(
+                children: [
+                  const Icon(Icons.arrow_back_ios),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Your Cart',
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Column(
@@ -83,8 +91,9 @@ class CartScreen extends StatelessWidget {
               const CartPricingWidget(),
               const SizedBox(height: 50),
               PrimaryButtonWidget(
-                text: 'Checkout',
-                onPressed: () => Get.to(() => ShippingAddress()),
+                text: 'Check out',
+                height: 60,
+                onPressed: () => Get.to(() => const ShippingAddress()),
               ),
               const SizedBox(height: 50),
             ],

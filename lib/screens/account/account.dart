@@ -6,6 +6,7 @@ import 'package:green_tiger/controller/user/user_controller.dart';
 import 'package:green_tiger/screens/account/contact_address.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/screens/order/order.dart';
+import 'package:green_tiger/screens/order_details/order_details.dart';
 import 'package:green_tiger/screens/payment/payment_screen.dart';
 
 import '../../data/local/storage_utils.dart';

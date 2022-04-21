@@ -1,0 +1,204 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
+
+part 'model/my_time_line_model.dart';
+
+enum BublePosition {
+  middle,
+  start,
+  end,
+}
+enum TimeLineState {
+  confirmed,
+  proccessing,
+  shipping,
+  delivered,
+}
+
+class MyTimeLine extends StatefulWidget {
+  /// Pass a list of [MyTimeLineModel].
+  final List<MyTimeLineModel> timelines;
+
+  /// There can be several types of [TimeLineState]. You can find them just a bit above.
+  final TimeLineState timeLineState;
+
+  const MyTimeLine(
+      {Key? key, required this.timelines, required this.timeLineState})
+      : super(key: key);
+
+  @override
+  State<MyTimeLine> createState() => _MyTimeLineState();
+}
+
+class _MyTimeLineState extends State<MyTimeLine> {
+  late ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      if (!(widget.timeLineState == TimeLineState.shipping ||
+          widget.timeLineState == TimeLineState.delivered)) return;
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    });
+
+    super.initState();
+  }
+
+  Widget _buildBubble(bool _isActive) {
+    return Container(
+      height: 30,
+      width: 30,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: _isActive ? Colors.green : Colors.grey,
+      ),
+      child: const Icon(
+        Icons.done,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget _buildTimeLineText(String text, bool _isActive) => Text(
+        text,
+        style: TextStyle(color: _isActive ? Colors.green : Colors.grey),
+      );
+
+  Widget _buildConnector(bool _isActive, {double legnth = 50}) {
+    return Container(
+      width: legnth,
+      height: 5,
+      color: _isActive ? Colors.blue : Colors.grey,
+    );
+  }
+
+  Widget _buildEveryTile(
+      {required MyTimeLineModel model,
+      required BublePosition position,
+      required bool isActive}) {
+    late Widget child;
+    switch (position) {
+      case BublePosition.start:
+        child = Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                _buildBubble(isActive),
+                _buildConnector(isActive),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            _buildTimeLineText(model.title, isActive)
+          ],
+        );
+        break;
+      case BublePosition.end:
+        child = Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Row(
+              children: [
+                _buildConnector(isActive),
+                _buildBubble(isActive),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            _buildTimeLineText(model.title, isActive)
+          ],
+        );
+        break;
+      default:
+        child = Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                _buildConnector(isActive),
+                _buildBubble(isActive),
+                _buildConnector(isActive),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            _buildTimeLineText(model.title, isActive)
+          ],
+        );
+    }
+    return child;
+  }
+
+  Widget _buildHeaderPart(
+    List<MyTimeLineModel> timelines,
+    int currentIndex,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        controller: scrollController,
+        children: List.generate(
+          timelines.length,
+          (index) => _buildEveryTile(
+            model: timelines[index],
+            position: getBubblePoistion(index, timelines.length),
+            isActive: index == currentIndex || index < currentIndex,
+          ),
+        ),
+      ),
+    );
+  }
+
+  BublePosition getBubblePoistion(int currentIndex, int legnth) {
+    if (currentIndex == 0) return BublePosition.start;
+    if (currentIndex == (legnth - 1)) return BublePosition.end;
+    return BublePosition.middle;
+  }
+
+  int getIndex(TimeLineState timeLineState) {
+    if (timeLineState == TimeLineState.delivered) return 3;
+    if (timeLineState == TimeLineState.shipping) return 2;
+    if (timeLineState == TimeLineState.proccessing) return 1;
+    return 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 10,
+      ),
+      child: Column(children: [
+        SizedBox(
+          height: Get.height * 0.13,
+          child: _buildHeaderPart(
+            widget.timelines,
+            getIndex(
+              widget.timeLineState,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: Get.height * 0.707,
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              widget.timelines[getIndex(widget.timeLineState)].content,
+            ],
+          ),
+        ),
+      ]),
+    );
+  }
+}

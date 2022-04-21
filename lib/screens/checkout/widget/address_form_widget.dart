@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/controller/user/shipping_address_controller.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
+import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/utils/common_widgets/common_loading.dart';
 import 'package:green_tiger/utils/validations/shipping_address_validation.dart';
 import '../../../constraints/styles.dart';
@@ -31,13 +33,16 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 12.0),
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Country or Region'),
+                  Text(
+                    'Country or Region',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   DropdownButtonFormField<Country>(
                     validator: ShippingAddressValidations.dropdownValidation,
@@ -59,9 +64,12 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                             )),
                     onChanged: controller.setCountry,
                   ),
-                  const SizedBox(height: 10),
-                  const Text('First Name'),
-                  const SizedBox(height: 10),
+                  const Gap(),
+                  Text(
+                    'First Name',
+                    style: formTitleTextStyle,
+                  ),
+                  const Gap(),
                   TextFormField(
                     controller: firstNameController
                       ..text = controller.defaultAddress?.firstName ?? '',
@@ -70,7 +78,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.firstNameValidate,
                   ),
                   const SizedBox(height: 10),
-                  const Text('Last Name'),
+                  Text(
+                    'Last Name',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: lastNameController
@@ -80,7 +91,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.lastNameValidate,
                   ),
                   const SizedBox(height: 10),
-                  const Text('Street Address'),
+                  Text(
+                    'Street Address',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: street1Controller
@@ -91,7 +105,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                         ShippingAddressValidations.streetAddress1Validate,
                   ),
                   const SizedBox(height: 10),
-                  const Text('Street Address 2'),
+                  Text(
+                    'Street Address 2',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: street2Controller
@@ -102,7 +119,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                         ShippingAddressValidations.streetAddress2Validate,
                   ),
                   const SizedBox(height: 10),
-                  const Text('City'),
+                  Text(
+                    'City',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: cityController
@@ -112,7 +132,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.cityValidation,
                   ),
                   const SizedBox(height: 10),
-                  const Text('State/Province/Region'),
+                  Text(
+                    'State/Province/Region',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: stateController
@@ -122,7 +145,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.stateValidation,
                   ),
                   const SizedBox(height: 10),
-                  const Text('Zip/Postal Code'),
+                  Text(
+                    'Zip/Postal Code',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: zipController
@@ -132,7 +158,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     validator: ShippingAddressValidations.zipCodeValidation,
                   ),
                   const SizedBox(height: 10),
-                  const Text('Phone Number'),
+                  Text(
+                    'Phone Number',
+                    style: formTitleTextStyle,
+                  ),
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: phoneController
@@ -141,10 +170,18 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     keyboardType: TextInputType.number,
                     validator: ShippingAddressValidations.phoneValidation,
                   ),
-                  const SizedBox(height: 10),
+                  const Gap(
+                    times: 2,
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(
+                            double.infinity,
+                            50,
+                          ),
+                          primary: primaryColor),
                       onPressed: () async {
                         if ((_formKey.currentState != null) &&
                             (_formKey.currentState!.validate())) {
@@ -164,7 +201,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                           Get.back();
                         }
                       },
-                      child: const Text('Save'),
+                      child: const Text(
+                        'Save',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   )
                 ],

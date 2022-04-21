@@ -1,10 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:green_tiger/data/local/storage_utils.dart';
 import 'package:green_tiger/data/model/category/category.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import '../remote/api_service.dart';
-
-import 'package:dio/dio.dart' as dio;
 
 class ProductRepository {
   final ApiService _apiService;
@@ -114,6 +110,7 @@ class ProductRepository {
       );
 
       final _result = response as List<dynamic>?;
+      print(_result);
       final _response = _result?.map((e) => ProductModel.fromJson(e)).toList();
       return _response;
     } catch (e) {

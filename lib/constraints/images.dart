@@ -9,3 +9,5 @@ const String eBikeCategoryImage = "assets/category/electric-motor.png";
 const String eCycleCategoryImage = "assets/category/electric-bicycle.png";
 const String liBatteryCategoryImage = "assets/category/accumulator.png";
 const String sparePartsCategoryImage = "assets/category/brake.png";
+const String stataticNetIm =
+    'https://images-na.ssl-images-amazon.com/images/I/61i9sy00GxS.jpg';
