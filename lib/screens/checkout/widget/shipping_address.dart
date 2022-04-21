@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-import 'package:get/get.dart';
-import 'package:green_tiger/constraints/index.dart';
-import 'package:green_tiger/controller/user/shipping_address_controller.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
-
+import 'package:green_tiger/controller/user/shipping_address_controller.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:green_tiger/constraints/index.dart';
+import 'package:flutter/material.dart';
 import 'address_form_widget.dart';
+import 'package:get/get.dart';
 
 class ShippingAddressWidget extends StatelessWidget {
   const ShippingAddressWidget({Key? key, required this.defaultShippingAddress})

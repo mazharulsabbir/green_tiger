@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:green_tiger/controller/cart_controller.dart';
 import 'index.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
@@ -33,24 +35,44 @@ class HomePage extends GetView<HomeController> {
           type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex,
           onTap: controller.setCurrentIndex,
-          items: const [
-            BottomNavigationBarItem(
+          items: [
+            const BottomNavigationBarItem(
               icon: Icon(PhosphorIcons.house),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(PhosphorIcons.magnifying_glass),
               label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: Icon(PhosphorIcons.shopping_cart),
+              icon: GetX<CartController>(
+                builder: (controller) {
+                  if (controller.cartItems.isEmpty) {
+                    return const Icon(
+                      PhosphorIcons.shopping_cart,
+                    );
+                  } else {
+                    return Badge(
+                      badgeContent: Text(
+                        controller.cartItems.length.toString(),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      padding: const EdgeInsets.all(4),
+                      position: BadgePosition.topEnd(top: -5, end: -5),
+                      child: const Icon(
+                        PhosphorIcons.shopping_cart,
+                      ),
+                    );
+                  }
+                },
+              ),
               label: 'Cart',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(PhosphorIcons.tag),
               label: 'Offer',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(PhosphorIcons.user),
               label: 'Account',
             ),

@@ -83,6 +83,10 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Regular.ttf
 
   assets:
     - assets/
