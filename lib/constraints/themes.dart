@@ -7,6 +7,7 @@ ThemeData theme() => ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.grey[100],
       backgroundColor: Colors.white,
+      fontFamily: 'Ubuntu',
       textTheme: const TextTheme(
         bodyText1: TextStyle(color: Colors.black),
       ),

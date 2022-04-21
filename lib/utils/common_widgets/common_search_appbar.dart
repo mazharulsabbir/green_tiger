@@ -34,7 +34,10 @@ class SearchProductAppBar extends StatelessWidget
                 );
               } else {
                 return Badge(
-                  badgeContent: Text(controller.cartItems.length.toString()),
+                  badgeContent: Text(
+                    controller.cartItems.length.toString(),
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   padding: const EdgeInsets.all(4),
                   position: BadgePosition.topEnd(top: -5, end: -5),
                   child: const Icon(
