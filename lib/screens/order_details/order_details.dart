@@ -60,7 +60,7 @@ class _OrderTimeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyTimeLine(
       timelines: timelInes,
-      timeLineState: TimeLineState.delivered,
+      timeLineState: TimeLineState.confirmed,
     );
   }
 
