@@ -57,7 +57,8 @@ class AccountScreen extends GetView<UserController> {
             ListTile(
               leading: const Icon(PhosphorIcons.shopping_bag),
               title: const Text('My Orders'),
-              onTap: () => Get.to(() => const OrderScreen()),
+              onTap: () => Get.to(() => const OrderDetailsScreen()),
+              // onTap: () => Get.to(() => const OrderScreen()),
             ),
             ListTile(
               leading: const Icon(PhosphorIcons.map_pin),

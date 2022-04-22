@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class CommonSeconderyAppBar extends StatelessWidget {
+  final String title;
+  const CommonSeconderyAppBar({Key? key, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0.0,
+      color: Colors.white,
+      child: Container(
+        height: 60,
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: Get.back,
+              child: const Icon(
+                (Icons.arrow_back_ios),
+              ),
+            ),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
