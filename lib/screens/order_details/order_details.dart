@@ -66,7 +66,7 @@ class _OrderTimeLine extends StatelessWidget {
 
   final List<MyTimeLineModel> timelInes = const [
     MyTimeLineModel(title: 'Confirm', content: _BodyPage()),
-    MyTimeLineModel(title: 'Proccessing', content: SizedBox()),
+    MyTimeLineModel(title: 'Processing', content: SizedBox()),
     MyTimeLineModel(title: 'Shipped', content: SizedBox()),
     MyTimeLineModel(title: 'Delivered', content: SizedBox())
   ];
@@ -74,7 +74,7 @@ class _OrderTimeLine extends StatelessWidget {
 
 class _BodyPage extends StatelessWidget {
   const _BodyPage({Key? key}) : super(key: key);
-  ShoppingDetialsModel get demoMode => const ShoppingDetialsModel(
+  ShoppingDetailsModel get demoMode => const ShoppingDetailsModel(
       address: 'Dhaka2',
       date: 'June 20, 2011',
       number: '01303242423',
@@ -190,7 +190,7 @@ class _BodyPage extends StatelessWidget {
 }
 
 class _ShopingDetailsCard extends StatefulWidget {
-  final ShoppingDetialsModel shoppingDetialsModel;
+  final ShoppingDetailsModel shoppingDetialsModel;
   const _ShopingDetailsCard({Key? key, required this.shoppingDetialsModel})
       : super(key: key);
 

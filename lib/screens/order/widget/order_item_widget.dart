@@ -42,7 +42,7 @@ class OrderItemWidget extends StatelessWidget {
             children: [
               const Text('Items'),
               const Spacer(),
-              Text('${order.quantity} Items Purchased'),
+              Text('${order.orderLines?.length ?? 0} Items Purchased'),
             ],
           ),
           const SizedBox(height: 12),
