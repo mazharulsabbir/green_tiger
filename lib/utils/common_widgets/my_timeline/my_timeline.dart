@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 part 'model/my_time_line_model.dart';
 
+///[BublePosition] is to define bubles position
 enum BublePosition {
   middle,
   start,
@@ -76,7 +77,8 @@ class _MyTimeLineState extends State<MyTimeLine> {
   Widget _buildEveryTile(
       {required MyTimeLineModel model,
       required BublePosition position,
-      required bool isActive}) {
+      required bool isActive,
+      required bool isFill}) {
     late Widget child;
     switch (position) {
       case BublePosition.start:
@@ -86,8 +88,11 @@ class _MyTimeLineState extends State<MyTimeLine> {
           children: [
             Row(
               children: [
+                const SizedBox(
+                  width: 10,
+                ),
                 _buildBubble(isActive),
-                _buildConnector(isActive),
+                _buildConnector(isFill),
               ],
             ),
             const SizedBox(
@@ -106,6 +111,9 @@ class _MyTimeLineState extends State<MyTimeLine> {
               children: [
                 _buildConnector(isActive),
                 _buildBubble(isActive),
+                const SizedBox(
+                  width: 15,
+                ),
               ],
             ),
             const SizedBox(
@@ -124,7 +132,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
               children: [
                 _buildConnector(isActive),
                 _buildBubble(isActive),
-                _buildConnector(isActive),
+                _buildConnector(isFill),
               ],
             ),
             const SizedBox(
@@ -153,6 +161,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
             model: timelines[index],
             position: getBubblePoistion(index, timelines.length),
             isActive: index == currentIndex || index < currentIndex,
+            isFill: index < currentIndex,
           ),
         ),
       ),

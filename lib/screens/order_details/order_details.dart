@@ -17,6 +17,7 @@ class OrderDetailsScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          ///Top appbar search products
           const SearchProductAppBar(
             elevation: 0,
           ),
@@ -42,6 +43,8 @@ class OrderDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+
+          ///Timeline part starts from here
           const _OrderTimeLine()
         ],
       ),
@@ -52,11 +55,12 @@ class OrderDetailsScreen extends StatelessWidget {
 class _OrderTimeLine extends StatelessWidget {
   const _OrderTimeLine({Key? key}) : super(key: key);
 
+  ///[build] method for OrderTimeLine starts from here
   @override
   Widget build(BuildContext context) {
     return MyTimeLine(
       timelines: timelInes,
-      timeLineState: TimeLineState.shipping,
+      timeLineState: TimeLineState.confirmed,
     );
   }
 
