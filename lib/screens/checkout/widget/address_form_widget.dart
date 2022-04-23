@@ -61,6 +61,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                               ? null
                               : controller.country,
                           decoration: textInputDecoration,
+                          isExpanded: true,
                           isDense: true,
                           items: List.generate(
                               controller.countries.length,
