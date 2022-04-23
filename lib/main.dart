@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:green_tiger/screens/home/widget/vendor_dashboard.dart';
 import 'package:green_tiger/screens/order_details/order_details.dart';
 import '/constraints/index.dart';
 import '/globals/bindings.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: appName,
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBindings(),
-      home: const Splash(),
+      home: VendorHomepageScreen(),
       theme: theme(),
       // darkTheme: darkTheme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
