@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: appName,
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBindings(),
-      home: VendorHomepageScreen(),
+      home: const Splash(),
       theme: theme(),
       // darkTheme: darkTheme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
