@@ -63,6 +63,10 @@ dependencies:
   dio: ^4.0.6
   shimmer: ^2.0.0
 
+  # testing
+  mocktail: ^0.0.1-dev.12
+  mockito: ^5.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

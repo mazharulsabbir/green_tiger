@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:green_tiger/data/repository/auth_repo.dart';
 import 'package:green_tiger/screens/splash.dart';
 
