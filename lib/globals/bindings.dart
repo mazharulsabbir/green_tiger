@@ -42,7 +42,7 @@ class GlobalBindings extends Bindings {
     // lazy controllers
     Get.lazyPut(() => CheckoutController(Get.find(), Get.find()), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
-    Get.lazyPut(() => UserController(Get.find(), Get.find()), fenix: true);
+    Get.lazyPut(() => UserController(Get.find()), fenix: true);
     Get.lazyPut(() => CategoryController(Get.find()), fenix: true);
     Get.lazyPut(() => ProductByCategoryController(Get.find()), fenix: true);
     Get.lazyPut(() => ProductController(Get.find()), fenix: true);

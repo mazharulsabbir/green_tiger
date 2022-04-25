@@ -5,9 +5,8 @@ import 'package:green_tiger/data/model/user/user.dart';
 import 'package:green_tiger/data/repository/user_repo.dart';
 
 class UserController extends GetxController with StateMixin<UserModel> {
-  final AuthController _authController;
   final UserRepository _repository;
-  UserController(this._authController, this._repository);
+  UserController(this._repository);
 
   @override
   void onInit() {
@@ -42,6 +41,6 @@ class UserController extends GetxController with StateMixin<UserModel> {
   }
 
   void logout() {
-    _authController.logout();
+    AuthController.to.logout();
   }
 }
