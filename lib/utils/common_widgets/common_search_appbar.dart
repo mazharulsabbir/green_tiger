@@ -6,14 +6,14 @@ import 'package:green_tiger/controller/cart_controller.dart';
 
 class SearchProductAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const SearchProductAppBar({
-    Key? key,
-  }) : super(key: key);
+  final double elevation;
+  const SearchProductAppBar({Key? key, this.elevation = 0.0}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       // title: const Text('Home'),
-      elevation: 0.4,
+      elevation: elevation,
       title: const TextField(
         decoration: InputDecoration(
           border: InputBorder.none,

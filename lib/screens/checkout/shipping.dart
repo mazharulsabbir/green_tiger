@@ -40,7 +40,7 @@ class ShippingAddress extends GetView<ShippingAddressController> {
               text: 'Next',
               onPressed: () {
                 if (controller.defaultAddress == null) {
-                  MySnackBar.erorrSnackBar('You must have a shipping address');
+                  MySnackBar.errorSnackBar('You must have a shipping address');
                   return;
                 }
 

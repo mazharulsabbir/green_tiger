@@ -108,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
                             .then((value) {
                           Get.offAll(() => const Wrapper());
                         }, onError: (error) {
-                          MySnackBar.erorrSnackBar(error.toString());
+                          MySnackBar.errorSnackBar(error.toString());
                         });
                       }
                       // _authController.setUserLoggedInStatus(true);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:green_tiger/screens/order_details/order_details.dart';
 import '/constraints/index.dart';
 import '/globals/bindings.dart';
 import '/screens/splash.dart';

@@ -25,35 +25,35 @@ class CartController extends GetxController {
   }
 
   Future<void> getCartItemsLo() async {
-    List<CartModel> cartItems = CartStorgae.getCartItems();
+    List<CartModel> cartItems = CartStorage.getCartItems();
     _cartItems.value = cartItems;
     update();
   }
 
   void addAItem(CartModel cartModel) async {
-    CartStorgae.addAItem(cartModel).then((value) {
+    CartStorage.addAItem(cartModel).then((value) {
       _cartItems.add(cartModel);
       MySnackBar.successSnackBar(value);
       update();
     }).onError((e, t) {
-      MySnackBar.erorrSnackBar('Already added');
+      MySnackBar.errorSnackBar('Already added');
     });
   }
 
   void editAnItem(CartModel cartModel) async {
-    CartStorgae.editAnItem(cartModel).then((_) {
-      _cartItems.value = CartStorgae.getCartItems();
+    CartStorage.editAnItem(cartModel).then((_) {
+      _cartItems.value = CartStorage.getCartItems();
       update();
     }).onError((e, t) {});
   }
 
   void removeAnItem(CartModel cartModel) async {
-    CartStorgae.removeAItem(cartModel).then((_) {
+    CartStorage.removeAItem(cartModel).then((_) {
       _cartItems.remove(cartModel);
       update();
       MySnackBar.successSnackBar('Removed successfully');
     }).onError((e, t) {
-      MySnackBar.erorrSnackBar(t.toString());
+      MySnackBar.errorSnackBar(t.toString());
     });
   }
 
@@ -71,7 +71,7 @@ class CartController extends GetxController {
   }
 
   void clearItems() {
-    CartStorgae.clearCartItems();
+    CartStorage.clearCartItems();
     _cartItems.value = [];
     update();
   }

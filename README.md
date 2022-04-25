@@ -104,3 +104,6 @@ Update `ios/Runner/Info.plist` with the following:
 ### 1.5 App Login
 User: aistiak6@gmail.com
 Password: 1
+
+### 1.6 Code Generate
+`flutter pub run build_runner build --delete-conflicting-outputs`
