@@ -56,8 +56,8 @@ class CartStorgae {
 
     CartModel item = availbleItems
         .firstWhere((element) => element.imageUrl == cartModel.imageUrl);
-    availbleItems.remove(item);
-    availbleItems.add(cartModel);
+    int index = availbleItems.indexOf(item);
+    availbleItems[index] = cartModel;
     await setItems(availbleItems);
   }
 
