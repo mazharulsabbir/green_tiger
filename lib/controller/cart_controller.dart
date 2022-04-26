@@ -15,11 +15,11 @@ class CartController extends GetxController {
   set cartItems(List<CartModel> value) => _cartItems.value = value;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     _isLoading.value = true;
     update();
-    await getCartItemsLo();
+    getCartItemsLo();
     _isLoading.value = false;
     update();
   }

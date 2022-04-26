@@ -36,7 +36,7 @@ class CartStorage {
 
   static Future<void> removeAItem(CartModel cartModel) async {
     var availableItems = getCartItems();
-    // if (!(availbleItems.contains(cartModel))) return;
+    // if (!(availableItems.contains(cartModel))) return;
     availableItems.remove(cartModel);
     await setItems(availableItems);
   }

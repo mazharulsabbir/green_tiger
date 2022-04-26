@@ -10,6 +10,7 @@ import 'package:green_tiger/screens/order_details/order_details.dart';
 import 'package:green_tiger/screens/payment/payment_screen.dart';
 
 import '../../data/local/storage_utils.dart';
+import 'profile.dart';
 
 class AccountScreen extends GetView<UserController> {
   const AccountScreen({Key? key}) : super(key: key);
@@ -50,9 +51,10 @@ class AccountScreen extends GetView<UserController> {
               subtitle: Text('${state?.email}'),
             ),
             const SizedBox(height: 20),
-            const ListTile(
-              leading: Icon(PhosphorIcons.user),
-              title: Text('Profile'),
+            ListTile(
+              leading: const Icon(PhosphorIcons.user),
+              title: const Text('Profile'),
+              onTap: () => Get.to(() => const ProfileScreen()),
             ),
             ListTile(
               leading: const Icon(PhosphorIcons.shopping_bag),
@@ -78,6 +80,13 @@ class AccountScreen extends GetView<UserController> {
             ),
             const SizedBox(height: 100),
           ],
+        ),
+      ),
+      onError: (error) => Center(
+        child: ListTile(
+          leading: const Icon(Icons.exit_to_app),
+          title: const Text('Logout'),
+          onTap: () => controller.logout(),
         ),
       ),
     );

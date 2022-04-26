@@ -10,11 +10,10 @@ _$_Country _$$_CountryFromJson(Map<String, dynamic> json) => _$_Country(
       id: json['id'] as int?,
       name: json['name'] as String?,
       code: json['code'] as String?,
-      phoneCode: json['phone_code']?.toString(),
+      phoneCode: json['phone_code'] as String?,
       currency: json['currency_id'] == null
           ? null
-          : Currency.fromJson(
-              ((json['currency_id']) as List).first as Map<String, dynamic>),
+          : Currency.fromJson(json['currency_id'] as Map<String, dynamic>),
       states: (json['state_ids'] as List<dynamic>?)
           ?.map((e) => State.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -32,6 +32,8 @@ class _$UserModelTearOff {
       String? type,
       String? phone,
       String? mobile,
+      String? gender,
+      String? birthday,
       @JsonKey(name: 'is_dealer')
           bool? isDealer,
       @JsonKey(name: 'country_id')
@@ -54,6 +56,8 @@ class _$UserModelTearOff {
       type: type,
       phone: phone,
       mobile: mobile,
+      gender: gender,
+      birthday: birthday,
       isDealer: isDealer,
       country: country,
       state: state,
@@ -84,6 +88,8 @@ mixin _$UserModel {
   String? get type => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get mobile => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
+  String? get birthday => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_dealer')
   bool? get isDealer => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_id')
@@ -119,6 +125,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? type,
       String? phone,
       String? mobile,
+      String? gender,
+      String? birthday,
       @JsonKey(name: 'is_dealer')
           bool? isDealer,
       @JsonKey(name: 'country_id')
@@ -152,6 +160,8 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? type = freezed,
     Object? phone = freezed,
     Object? mobile = freezed,
+    Object? gender = freezed,
+    Object? birthday = freezed,
     Object? isDealer = freezed,
     Object? country = freezed,
     Object? state = freezed,
@@ -192,6 +202,14 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       mobile: mobile == freezed
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthday: birthday == freezed
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
               as String?,
       isDealer: isDealer == freezed
           ? _value.isDealer
@@ -242,6 +260,8 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? type,
       String? phone,
       String? mobile,
+      String? gender,
+      String? birthday,
       @JsonKey(name: 'is_dealer')
           bool? isDealer,
       @JsonKey(name: 'country_id')
@@ -276,6 +296,8 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
     Object? type = freezed,
     Object? phone = freezed,
     Object? mobile = freezed,
+    Object? gender = freezed,
+    Object? birthday = freezed,
     Object? isDealer = freezed,
     Object? country = freezed,
     Object? state = freezed,
@@ -316,6 +338,14 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
       mobile: mobile == freezed
           ? _value.mobile
           : mobile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: gender == freezed
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthday: birthday == freezed
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
               as String?,
       isDealer: isDealer == freezed
           ? _value.isDealer
@@ -361,6 +391,8 @@ class _$_UserModel implements _UserModel {
       this.type,
       this.phone,
       this.mobile,
+      this.gender,
+      this.birthday,
       @JsonKey(name: 'is_dealer') this.isDealer,
       @JsonKey(name: 'country_id') this.country,
       @JsonKey(name: 'state_id') this.state,
@@ -391,6 +423,10 @@ class _$_UserModel implements _UserModel {
   @override
   final String? mobile;
   @override
+  final String? gender;
+  @override
+  final String? birthday;
+  @override
   @JsonKey(name: 'is_dealer')
   final bool? isDealer;
   @override
@@ -413,7 +449,7 @@ class _$_UserModel implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, profilePicture: $profilePicture, avatar: $avatar, type: $type, phone: $phone, mobile: $mobile, isDealer: $isDealer, country: $country, state: $state, zip: $zip, currency: $currency, contactAddress: $contactAddress, contactAddressComplete: $contactAddressComplete)';
+    return 'UserModel(id: $id, name: $name, email: $email, profilePicture: $profilePicture, avatar: $avatar, type: $type, phone: $phone, mobile: $mobile, gender: $gender, birthday: $birthday, isDealer: $isDealer, country: $country, state: $state, zip: $zip, currency: $currency, contactAddress: $contactAddress, contactAddressComplete: $contactAddressComplete)';
   }
 
   @override
@@ -430,6 +466,8 @@ class _$_UserModel implements _UserModel {
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.mobile, mobile) &&
+            const DeepCollectionEquality().equals(other.gender, gender) &&
+            const DeepCollectionEquality().equals(other.birthday, birthday) &&
             const DeepCollectionEquality().equals(other.isDealer, isDealer) &&
             const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality().equals(other.state, state) &&
@@ -452,6 +490,8 @@ class _$_UserModel implements _UserModel {
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(mobile),
+      const DeepCollectionEquality().hash(gender),
+      const DeepCollectionEquality().hash(birthday),
       const DeepCollectionEquality().hash(isDealer),
       const DeepCollectionEquality().hash(country),
       const DeepCollectionEquality().hash(state),
@@ -483,6 +523,8 @@ abstract class _UserModel implements UserModel {
       String? type,
       String? phone,
       String? mobile,
+      String? gender,
+      String? birthday,
       @JsonKey(name: 'is_dealer')
           bool? isDealer,
       @JsonKey(name: 'country_id')
@@ -518,6 +560,10 @@ abstract class _UserModel implements UserModel {
   String? get phone;
   @override
   String? get mobile;
+  @override
+  String? get gender;
+  @override
+  String? get birthday;
   @override
   @JsonKey(name: 'is_dealer')
   bool? get isDealer;
@@ -561,6 +607,7 @@ class _$ContactAndAddressTearOff {
       String? zip,
       String? street,
       String? city,
+      String? type,
       @JsonKey(name: 'country_id') Country? country,
       @JsonKey(name: 'state_id') State? state}) {
     return _ContactAndAddress(
@@ -572,6 +619,7 @@ class _$ContactAndAddressTearOff {
       zip: zip,
       street: street,
       city: city,
+      type: type,
       country: country,
       state: state,
     );
@@ -595,6 +643,7 @@ mixin _$ContactAndAddress {
   String? get zip => throw _privateConstructorUsedError;
   String? get street => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'country_id')
   Country? get country => throw _privateConstructorUsedError;
   @JsonKey(name: 'state_id')
@@ -620,6 +669,7 @@ abstract class $ContactAndAddressCopyWith<$Res> {
       String? zip,
       String? street,
       String? city,
+      String? type,
       @JsonKey(name: 'country_id') Country? country,
       @JsonKey(name: 'state_id') State? state});
 
@@ -646,6 +696,7 @@ class _$ContactAndAddressCopyWithImpl<$Res>
     Object? zip = freezed,
     Object? street = freezed,
     Object? city = freezed,
+    Object? type = freezed,
     Object? country = freezed,
     Object? state = freezed,
   }) {
@@ -681,6 +732,10 @@ class _$ContactAndAddressCopyWithImpl<$Res>
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String?,
       country: country == freezed
           ? _value.country
@@ -732,6 +787,7 @@ abstract class _$ContactAndAddressCopyWith<$Res>
       String? zip,
       String? street,
       String? city,
+      String? type,
       @JsonKey(name: 'country_id') Country? country,
       @JsonKey(name: 'state_id') State? state});
 
@@ -762,6 +818,7 @@ class __$ContactAndAddressCopyWithImpl<$Res>
     Object? zip = freezed,
     Object? street = freezed,
     Object? city = freezed,
+    Object? type = freezed,
     Object? country = freezed,
     Object? state = freezed,
   }) {
@@ -798,6 +855,10 @@ class __$ContactAndAddressCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
       country: country == freezed
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -822,6 +883,7 @@ class _$_ContactAndAddress implements _ContactAndAddress {
       this.zip,
       this.street,
       this.city,
+      this.type,
       @JsonKey(name: 'country_id') this.country,
       @JsonKey(name: 'state_id') this.state});
 
@@ -845,6 +907,8 @@ class _$_ContactAndAddress implements _ContactAndAddress {
   @override
   final String? city;
   @override
+  final String? type;
+  @override
   @JsonKey(name: 'country_id')
   final Country? country;
   @override
@@ -853,7 +917,7 @@ class _$_ContactAndAddress implements _ContactAndAddress {
 
   @override
   String toString() {
-    return 'ContactAndAddress(id: $id, name: $name, email: $email, mobile: $mobile, phone: $phone, zip: $zip, street: $street, city: $city, country: $country, state: $state)';
+    return 'ContactAndAddress(id: $id, name: $name, email: $email, mobile: $mobile, phone: $phone, zip: $zip, street: $street, city: $city, type: $type, country: $country, state: $state)';
   }
 
   @override
@@ -869,6 +933,7 @@ class _$_ContactAndAddress implements _ContactAndAddress {
             const DeepCollectionEquality().equals(other.zip, zip) &&
             const DeepCollectionEquality().equals(other.street, street) &&
             const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality().equals(other.state, state));
   }
@@ -884,6 +949,7 @@ class _$_ContactAndAddress implements _ContactAndAddress {
       const DeepCollectionEquality().hash(zip),
       const DeepCollectionEquality().hash(street),
       const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(country),
       const DeepCollectionEquality().hash(state));
 
@@ -908,6 +974,7 @@ abstract class _ContactAndAddress implements ContactAndAddress {
       String? zip,
       String? street,
       String? city,
+      String? type,
       @JsonKey(name: 'country_id') Country? country,
       @JsonKey(name: 'state_id') State? state}) = _$_ContactAndAddress;
 
@@ -930,6 +997,8 @@ abstract class _ContactAndAddress implements ContactAndAddress {
   String? get street;
   @override
   String? get city;
+  @override
+  String? get type;
   @override
   @JsonKey(name: 'country_id')
   Country? get country;

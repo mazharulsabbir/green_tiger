@@ -78,11 +78,11 @@ class UserRepository {
     final _body = {
       "params": {
         "data": {
-          "model": "res.partner",
+          "model": "res.users",
           "conditions": {
             "relation": ["&"],
             "condition": [
-              {"id": "id", "condition": "=", "value": uid},
+              {"id": "partner_id.id", "condition": "=", "value": uid},
               {"id": "active", "condition": "=", "value": true}
             ]
           },
@@ -99,6 +99,7 @@ class UserRepository {
                 {"name": "mobile", "type": "str"},
                 {"name": "email", "type": "str"},
                 {"name": "phone", "type": "str"},
+                {"name": "type", "type": "str"},
                 {
                   "name": "state_id",
                   "type": "related",

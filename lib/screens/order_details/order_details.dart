@@ -89,7 +89,7 @@ class _BodyPage extends StatelessWidget {
             (index) => CartItemWidget(
                   cart: CartModel(
                       name: 'Book',
-                      description: 'This book is not availble now',
+                      description: 'This book is not available now',
                       imageUrl: sparePartsCategoryImage,
                       price: '30.0',
                       quantity: '4',

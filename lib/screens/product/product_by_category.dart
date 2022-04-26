@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import '../../controller/product/product_by_category_controller.dart';
 import 'widget/product_list_tile_widget.dart';
+import 'widget/product_widget.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
   const ProductByCategoryScreen({Key? key}) : super(key: key);
@@ -14,10 +16,21 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
         title: Text('${controller.category?.name}'),
       ),
       body: controller.obx(
-        (state) => ListView.builder(
-          itemCount: state?.length,
-          itemBuilder: (context, index) => ProductListTileWidget(
-            product: state?[index],
+        (state) => SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          child: StaggeredGrid.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
+            children: List.generate(
+              state?.length ?? 0,
+              (index) => ProductWidget(
+                product: state?[index],
+              ),
+            ),
           ),
         ),
         onLoading: const Center(child: CircularProgressIndicator()),
