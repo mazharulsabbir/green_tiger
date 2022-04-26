@@ -28,7 +28,8 @@ class OrderLine with _$OrderLine {
   const factory OrderLine({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'product_template_id') CommonNameIdClass? product,
-    @JsonKey(name: 'name') String? summery,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'image_1920') String? imageUrl,
     @JsonKey(name: 'product_uom_qty') double? quantity,
     @JsonKey(name: 'product_uom') CommonNameIdClass? unit,
     @JsonKey(name: 'tax_id') CommonNameIdClass? tax,

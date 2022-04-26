@@ -361,7 +361,8 @@ class _$OrderLineTearOff {
   _OrderLine call(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'product_template_id') CommonNameIdClass? product,
-      @JsonKey(name: 'name') String? summery,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'product_uom_qty') double? quantity,
       @JsonKey(name: 'product_uom') CommonNameIdClass? unit,
       @JsonKey(name: 'tax_id') CommonNameIdClass? tax,
@@ -371,7 +372,8 @@ class _$OrderLineTearOff {
     return _OrderLine(
       id: id,
       product: product,
-      summery: summery,
+      name: name,
+      imageUrl: imageUrl,
       quantity: quantity,
       unit: unit,
       tax: tax,
@@ -396,7 +398,9 @@ mixin _$OrderLine {
   @JsonKey(name: 'product_template_id')
   CommonNameIdClass? get product => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
-  String? get summery => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_1920')
+  String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_uom_qty')
   double? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'product_uom')
@@ -423,7 +427,8 @@ abstract class $OrderLineCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'product_template_id') CommonNameIdClass? product,
-      @JsonKey(name: 'name') String? summery,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'product_uom_qty') double? quantity,
       @JsonKey(name: 'product_uom') CommonNameIdClass? unit,
       @JsonKey(name: 'tax_id') CommonNameIdClass? tax,
@@ -448,7 +453,8 @@ class _$OrderLineCopyWithImpl<$Res> implements $OrderLineCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? product = freezed,
-    Object? summery = freezed,
+    Object? name = freezed,
+    Object? imageUrl = freezed,
     Object? quantity = freezed,
     Object? unit = freezed,
     Object? tax = freezed,
@@ -465,9 +471,13 @@ class _$OrderLineCopyWithImpl<$Res> implements $OrderLineCopyWith<$Res> {
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as CommonNameIdClass?,
-      summery: summery == freezed
-          ? _value.summery
-          : summery // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: quantity == freezed
           ? _value.quantity
@@ -539,7 +549,8 @@ abstract class _$OrderLineCopyWith<$Res> implements $OrderLineCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'product_template_id') CommonNameIdClass? product,
-      @JsonKey(name: 'name') String? summery,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'product_uom_qty') double? quantity,
       @JsonKey(name: 'product_uom') CommonNameIdClass? unit,
       @JsonKey(name: 'tax_id') CommonNameIdClass? tax,
@@ -568,7 +579,8 @@ class __$OrderLineCopyWithImpl<$Res> extends _$OrderLineCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? product = freezed,
-    Object? summery = freezed,
+    Object? name = freezed,
+    Object? imageUrl = freezed,
     Object? quantity = freezed,
     Object? unit = freezed,
     Object? tax = freezed,
@@ -585,9 +597,13 @@ class __$OrderLineCopyWithImpl<$Res> extends _$OrderLineCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as CommonNameIdClass?,
-      summery: summery == freezed
-          ? _value.summery
-          : summery // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: quantity == freezed
           ? _value.quantity
@@ -623,7 +639,8 @@ class _$_OrderLine extends _OrderLine {
   const _$_OrderLine(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'product_template_id') this.product,
-      @JsonKey(name: 'name') this.summery,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'image_1920') this.imageUrl,
       @JsonKey(name: 'product_uom_qty') this.quantity,
       @JsonKey(name: 'product_uom') this.unit,
       @JsonKey(name: 'tax_id') this.tax,
@@ -643,7 +660,10 @@ class _$_OrderLine extends _OrderLine {
   final CommonNameIdClass? product;
   @override
   @JsonKey(name: 'name')
-  final String? summery;
+  final String? name;
+  @override
+  @JsonKey(name: 'image_1920')
+  final String? imageUrl;
   @override
   @JsonKey(name: 'product_uom_qty')
   final double? quantity;
@@ -665,7 +685,7 @@ class _$_OrderLine extends _OrderLine {
 
   @override
   String toString() {
-    return 'OrderLine(id: $id, product: $product, summery: $summery, quantity: $quantity, unit: $unit, tax: $tax, unitPrice: $unitPrice, priceSubtotal: $priceSubtotal, discount: $discount)';
+    return 'OrderLine(id: $id, product: $product, name: $name, imageUrl: $imageUrl, quantity: $quantity, unit: $unit, tax: $tax, unitPrice: $unitPrice, priceSubtotal: $priceSubtotal, discount: $discount)';
   }
 
   @override
@@ -675,7 +695,8 @@ class _$_OrderLine extends _OrderLine {
             other is _OrderLine &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.product, product) &&
-            const DeepCollectionEquality().equals(other.summery, summery) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
             const DeepCollectionEquality().equals(other.unit, unit) &&
             const DeepCollectionEquality().equals(other.tax, tax) &&
@@ -690,7 +711,8 @@ class _$_OrderLine extends _OrderLine {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(product),
-      const DeepCollectionEquality().hash(summery),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(quantity),
       const DeepCollectionEquality().hash(unit),
       const DeepCollectionEquality().hash(tax),
@@ -713,7 +735,8 @@ abstract class _OrderLine extends OrderLine {
   const factory _OrderLine(
       {@JsonKey(name: 'id') int? id,
       @JsonKey(name: 'product_template_id') CommonNameIdClass? product,
-      @JsonKey(name: 'name') String? summery,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'product_uom_qty') double? quantity,
       @JsonKey(name: 'product_uom') CommonNameIdClass? unit,
       @JsonKey(name: 'tax_id') CommonNameIdClass? tax,
@@ -733,7 +756,10 @@ abstract class _OrderLine extends OrderLine {
   CommonNameIdClass? get product;
   @override
   @JsonKey(name: 'name')
-  String? get summery;
+  String? get name;
+  @override
+  @JsonKey(name: 'image_1920')
+  String? get imageUrl;
   @override
   @JsonKey(name: 'product_uom_qty')
   double? get quantity;

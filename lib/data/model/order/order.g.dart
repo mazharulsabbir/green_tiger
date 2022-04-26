@@ -36,7 +36,8 @@ _$_OrderLine _$$_OrderLineFromJson(Map<String, dynamic> json) => _$_OrderLine(
           ? null
           : CommonNameIdClass.fromJson(
               json['product_template_id'] as Map<String, dynamic>),
-      summery: json['name'] as String?,
+      name: json['name'] as String?,
+      imageUrl: json['image_1920'] as String?,
       quantity: (json['product_uom_qty'] as num?)?.toDouble(),
       unit: json['product_uom'] == null
           ? null
@@ -54,7 +55,8 @@ Map<String, dynamic> _$$_OrderLineToJson(_$_OrderLine instance) =>
     <String, dynamic>{
       'id': instance.id,
       'product_template_id': instance.product,
-      'name': instance.summery,
+      'name': instance.name,
+      'image_1920': instance.imageUrl,
       'product_uom_qty': instance.quantity,
       'product_uom': instance.unit,
       'tax_id': instance.tax,

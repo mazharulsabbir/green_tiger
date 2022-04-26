@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/local/storage_utils.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 
@@ -52,6 +51,7 @@ class OrderRepository {
                   ]
                 },
                 {"name": "price_unit", "type": "float"},
+                {"name": "image_1920", "type": "binary"},
                 {
                   "name": "tax_id",
                   "type": "related",
@@ -61,6 +61,14 @@ class OrderRepository {
                   ]
                 },
                 {"name": "discount", "type": "float"},
+                {
+                  "name": "currency_id",
+                  "type": "related",
+                  "related_fields": [
+                    {"name": "id", "type": "int"},
+                    {"name": "name", "type": "str"}
+                  ]
+                },
                 {"name": "price_subtotal", "type": "float"}
               ]
             }
