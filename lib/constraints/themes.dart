@@ -11,8 +11,11 @@ ThemeData theme() => ThemeData(
       textTheme: const TextTheme(
         bodyText1: TextStyle(color: Colors.black),
       ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: primaryColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        titleTextStyle: TextStyle(color: Colors.black),
+        elevation: 0,
       ),
     );
 

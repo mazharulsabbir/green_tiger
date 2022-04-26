@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/data/model/category/category.dart';
+import 'package:green_tiger/screens/product/widget/filter_product_widget.dart';
 
 import '../../controller/product/category_controller.dart';
 import '../../controller/product/product_by_category_controller.dart';
@@ -45,7 +46,9 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
               PhosphorIcons.funnel,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const FilterProductWidget());
+            },
           ),
         ],
       ),
