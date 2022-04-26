@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -12,6 +13,8 @@ import 'package:green_tiger/data/model/product_details/more_time.dart';
 import 'package:green_tiger/screens/product/widget/product_widget.dart';
 import 'package:green_tiger/screens/write_review/write_review_screen.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
+
+import '../../data/local/storage_utils.dart';
 
 String _stataticProductDetails =
     'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
@@ -204,15 +207,16 @@ class ProductDetailsScreen extends StatelessWidget {
 
   ProductModel getProductModel(AlternativeProducts alternativeProducts) =>
       ProductModel(
-          id: alternativeProducts.id,
-          name: alternativeProducts.name,
-          price: double.parse(alternativeProducts.listPrice ?? '0.0'),
-          discount: alternativeProducts.discount,
-          imageUrl: alternativeProducts.imageUrl,
-          rating: alternativeProducts.ratingAvg,
-          ratingCount: alternativeProducts.ratingCount,
-          alternativeProducts: null,
-          isFav: false);
+        id: alternativeProducts.id,
+        name: alternativeProducts.name,
+        price: double.parse(alternativeProducts.listPrice ?? '0.0'),
+        discount: alternativeProducts.discount,
+        imageUrl: alternativeProducts.imageUrl,
+        rating: alternativeProducts.ratingAvg,
+        ratingCount: alternativeProducts.ratingCount,
+        alternativeProducts: null,
+        isFav: false,
+      );
 }
 
 class _ProductImageWidget extends StatelessWidget {
@@ -223,15 +227,23 @@ class _ProductImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: Get.height * 0.5,
-        width: Get.width * 0.8,
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            image: imagePath != null
-                ? DecorationImage(image: NetworkImage(imagePath!))
-                : const DecorationImage(
-                    image: AssetImage(eBikeCategoryImage))));
+      height: Get.height * 0.5,
+      width: Get.width * 0.8,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        image: imagePath != null
+            ? DecorationImage(
+                image: CachedNetworkImageProvider(
+                  imagePath!,
+                  headers: {"Cookie": "${StorageUtils.getCookie()}"},
+                ),
+              )
+            : const DecorationImage(
+                image: AssetImage(eBikeCategoryImage),
+              ),
+      ),
+    );
   }
 }
 

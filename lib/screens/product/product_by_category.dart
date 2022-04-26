@@ -39,7 +39,61 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
               PhosphorIcons.sort_ascending,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () async {
+              final _sort = [
+                'Popular',
+                'Newest',
+                'Customer Review',
+                'Price Low to High',
+                'Price High to Low'
+              ];
+              await showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                builder: (context) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 80,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Sort By',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ...List.generate(
+                      _sort.length,
+                      (index) => ListTile(
+                        title: Text(
+                          _sort[index],
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black45
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(
