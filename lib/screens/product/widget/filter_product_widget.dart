@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/controller/product/product_by_category_controller.dart';
+import '../../../controller/product/category_controller.dart';
 
 class FilterProductWidget extends StatefulWidget {
   const FilterProductWidget({Key? key}) : super(key: key);
@@ -95,10 +95,10 @@ class _FilterProductWidgetState extends State<FilterProductWidget> {
             Wrap(
               spacing: 8,
               children: List.generate(
-                ProductByCategoryController.to.state?.length ?? 0,
+                CategoryController.to.state?.length ?? 0,
                 (index) => Chip(
                   label: Text(
-                    ProductByCategoryController.to.state?[index].name ?? '-',
+                    CategoryController.to.state?[index].name ?? '-',
                   ),
                 ),
               ),

@@ -24,9 +24,10 @@ class _$AlternativeProductsTearOff {
   _AlternativeProducts call(
       {int? id,
       String? name,
-      double? description,
+      String? description,
+      @JsonKey(name: 'description_sale') String? saleDescription,
       double? discount,
-      @JsonKey(name: 'list_price') String? listPrice,
+      @JsonKey(name: 'list_price') double? listPrice,
       @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? ratingAvg,
       @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount}) {
@@ -34,6 +35,7 @@ class _$AlternativeProductsTearOff {
       id: id,
       name: name,
       description: description,
+      saleDescription: saleDescription,
       discount: discount,
       listPrice: listPrice,
       imageUrl: imageUrl,
@@ -54,10 +56,12 @@ const $AlternativeProducts = _$AlternativeProductsTearOff();
 mixin _$AlternativeProducts {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  double? get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description_sale')
+  String? get saleDescription => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
   @JsonKey(name: 'list_price')
-  String? get listPrice => throw _privateConstructorUsedError;
+  double? get listPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'image_1920')
   String? get imageUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating_avg', defaultValue: 0.0)
@@ -79,9 +83,10 @@ abstract class $AlternativeProductsCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      double? description,
+      String? description,
+      @JsonKey(name: 'description_sale') String? saleDescription,
       double? discount,
-      @JsonKey(name: 'list_price') String? listPrice,
+      @JsonKey(name: 'list_price') double? listPrice,
       @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? ratingAvg,
       @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount});
@@ -101,6 +106,7 @@ class _$AlternativeProductsCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? saleDescription = freezed,
     Object? discount = freezed,
     Object? listPrice = freezed,
     Object? imageUrl = freezed,
@@ -119,7 +125,11 @@ class _$AlternativeProductsCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
+      saleDescription: saleDescription == freezed
+          ? _value.saleDescription
+          : saleDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -127,7 +137,7 @@ class _$AlternativeProductsCopyWithImpl<$Res>
       listPrice: listPrice == freezed
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -154,9 +164,10 @@ abstract class _$AlternativeProductsCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      double? description,
+      String? description,
+      @JsonKey(name: 'description_sale') String? saleDescription,
       double? discount,
-      @JsonKey(name: 'list_price') String? listPrice,
+      @JsonKey(name: 'list_price') double? listPrice,
       @JsonKey(name: 'image_1920') String? imageUrl,
       @JsonKey(name: 'rating_avg', defaultValue: 0.0) double? ratingAvg,
       @JsonKey(name: 'rating_count', defaultValue: 0.0) double? ratingCount});
@@ -178,6 +189,7 @@ class __$AlternativeProductsCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? saleDescription = freezed,
     Object? discount = freezed,
     Object? listPrice = freezed,
     Object? imageUrl = freezed,
@@ -196,7 +208,11 @@ class __$AlternativeProductsCopyWithImpl<$Res>
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
+      saleDescription: saleDescription == freezed
+          ? _value.saleDescription
+          : saleDescription // ignore: cast_nullable_to_non_nullable
+              as String?,
       discount: discount == freezed
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -204,7 +220,7 @@ class __$AlternativeProductsCopyWithImpl<$Res>
       listPrice: listPrice == freezed
           ? _value.listPrice
           : listPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -228,6 +244,7 @@ class _$_AlternativeProducts implements _AlternativeProducts {
       {this.id,
       this.name,
       this.description,
+      @JsonKey(name: 'description_sale') this.saleDescription,
       this.discount,
       @JsonKey(name: 'list_price') this.listPrice,
       @JsonKey(name: 'image_1920') this.imageUrl,
@@ -242,12 +259,15 @@ class _$_AlternativeProducts implements _AlternativeProducts {
   @override
   final String? name;
   @override
-  final double? description;
+  final String? description;
+  @override
+  @JsonKey(name: 'description_sale')
+  final String? saleDescription;
   @override
   final double? discount;
   @override
   @JsonKey(name: 'list_price')
-  final String? listPrice;
+  final double? listPrice;
   @override
   @JsonKey(name: 'image_1920')
   final String? imageUrl;
@@ -260,7 +280,7 @@ class _$_AlternativeProducts implements _AlternativeProducts {
 
   @override
   String toString() {
-    return 'AlternativeProducts(id: $id, name: $name, description: $description, discount: $discount, listPrice: $listPrice, imageUrl: $imageUrl, ratingAvg: $ratingAvg, ratingCount: $ratingCount)';
+    return 'AlternativeProducts(id: $id, name: $name, description: $description, saleDescription: $saleDescription, discount: $discount, listPrice: $listPrice, imageUrl: $imageUrl, ratingAvg: $ratingAvg, ratingCount: $ratingCount)';
   }
 
   @override
@@ -272,6 +292,8 @@ class _$_AlternativeProducts implements _AlternativeProducts {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.saleDescription, saleDescription) &&
             const DeepCollectionEquality().equals(other.discount, discount) &&
             const DeepCollectionEquality().equals(other.listPrice, listPrice) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
@@ -286,6 +308,7 @@ class _$_AlternativeProducts implements _AlternativeProducts {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(saleDescription),
       const DeepCollectionEquality().hash(discount),
       const DeepCollectionEquality().hash(listPrice),
       const DeepCollectionEquality().hash(imageUrl),
@@ -308,10 +331,12 @@ abstract class _AlternativeProducts implements AlternativeProducts {
   const factory _AlternativeProducts(
       {int? id,
       String? name,
-      double? description,
+      String? description,
+      @JsonKey(name: 'description_sale')
+          String? saleDescription,
       double? discount,
       @JsonKey(name: 'list_price')
-          String? listPrice,
+          double? listPrice,
       @JsonKey(name: 'image_1920')
           String? imageUrl,
       @JsonKey(name: 'rating_avg', defaultValue: 0.0)
@@ -327,12 +352,15 @@ abstract class _AlternativeProducts implements AlternativeProducts {
   @override
   String? get name;
   @override
-  double? get description;
+  String? get description;
+  @override
+  @JsonKey(name: 'description_sale')
+  String? get saleDescription;
   @override
   double? get discount;
   @override
   @JsonKey(name: 'list_price')
-  String? get listPrice;
+  double? get listPrice;
   @override
   @JsonKey(name: 'image_1920')
   String? get imageUrl;

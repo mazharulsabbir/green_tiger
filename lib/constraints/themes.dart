@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'index.dart';
-
-ThemeData theme() => ThemeData(
+ThemeData theme(BuildContext context) => ThemeData(
       brightness: Brightness.light,
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.grey[100],
@@ -11,10 +9,13 @@ ThemeData theme() => ThemeData(
       textTheme: const TextTheme(
         bodyText1: TextStyle(color: Colors.black),
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        titleTextStyle: TextStyle(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
+        titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: Colors.black,
+              fontFamily: 'Ubuntu',
+            ),
         elevation: 0,
       ),
     );

@@ -16,9 +16,6 @@ import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 
 import '../../data/local/storage_utils.dart';
 
-String _stataticProductDetails =
-    'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
-
 class ProductDetailsScreen extends StatelessWidget {
   final ProductModel? productModel;
   ProductDetailsScreen({
@@ -40,24 +37,18 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-          title: const Text(
-            'GT-Vive',
-            style: TextStyle(color: Colors.black),
+          title: Text(
+            '${productModel?.name}',
+            style: const TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          actions: const [
-            Icon(
-              Icons.share,
-              color: Colors.black,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.share,
+                color: Colors.black,
+              ),
             )
           ],
           backgroundColor: Colors.white,
@@ -66,20 +57,28 @@ class ProductDetailsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                      3,
-                      (index) => _ProductImageWidget(
-                            imagePath: productModel?.imageUrl,
-                          )),
-                ),
-              ),
+              productModel?.productTemplateImages != null
+                  ? SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                          productModel?.productTemplateImages?.length ?? 0,
+                          (index) => _ProductImageWidget(
+                            imagePath: productModel
+                                ?.productTemplateImages?[index].imageUrl,
+                          ),
+                        ),
+                      ),
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: "${productModel?.imageUrl}",
+                      fit: BoxFit.cover,
+                    ),
               const Gap(),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,22 +89,22 @@ class ProductDetailsScreen extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          (productModel?.price).toString(),
+                          "${productModel?.price ?? 0.0} BDT",
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const Gap(),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: _StarReview(
-                        rating: 3.5,
-                        reviewNumber: 10,
+                        rating: productModel?.rating ?? 0.0,
+                        reviewNumber: productModel?.ratingCount?.toInt() ?? 0,
                       ),
                     ),
                     const Gap(),
-                    Text(_stataticProductDetails),
+                    Text(productModel?.saleDescription ?? 'No description'),
                     const Gap(
                       times: 2,
                     ),
@@ -114,7 +113,9 @@ class ProductDetailsScreen extends StatelessWidget {
                       child: Text(
                         'Color',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                     const Gap(),
@@ -126,19 +127,12 @@ class ProductDetailsScreen extends StatelessWidget {
                     const Gap(),
                     Column(
                       children: ListTile.divideTiles(
-                          context: context,
-                          tiles: Iterable.generate(moreTiles.length, (index) {
+                        context: context,
+                        tiles: Iterable.generate(
+                          moreTiles.length,
+                          (index) {
                             return ExpansionTile(
                               title: Text(moreTiles[index].title),
-                              // trailing: Transform.rotate(
-                              //   angle: math.pi,
-                              //   child: const Icon(Icons.arrow_back_ios),
-                              // ),
-                              onExpansionChanged: (expanded) {
-                                if (expanded) {
-                                  // todo: change arrow icon to down arrow
-                                }
-                              },
                               children: List.generate(
                                 3,
                                 (index) => ListTile(
@@ -149,54 +143,66 @@ class ProductDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                             );
-                          })).toList()
-                        ..insert(moreTiles.length, const Divider())
-                        ..insert(0, const Divider()),
+                          },
+                        ),
+                      ).toList()
+                        ..insert(
+                          moreTiles.length,
+                          const Divider(),
+                        ),
                     ),
                     const Gap(
                       times: 2,
                     ),
-                    _AddToCButton(
-                      productModel: productModel,
-                    ),
-                    const Gap(),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: Get.width * 0.3),
-                      child: const Divider(
-                        thickness: 5, // thickness of the line
-                        endIndent:
-                            20, // empty space to the trailing edge of the divider.
-                        color: Colors
-                            .black, // The color to use when painting the line.
-                        height: 20, // The divider's height extent.
-                      ),
-                    ),
-                    const Gap(
-                      times: 2,
-                    ),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'You can also like',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                    Center(
+                      child: _AddToCButton(
+                        productModel: productModel,
                       ),
                     ),
                     const Gap(),
-                    productModel?.alternativeProducts == null
-                        ? const SizedBox()
-                        : SingleChildScrollView(
+                    Visibility(
+                      visible: productModel?.alternativeProducts != null,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.3,
+                            ),
+                            child: const Divider(
+                              thickness: 5,
+                              endIndent: 20,
+                              color: Colors.black,
+                              height: 20,
+                            ),
+                          ),
+                          const Gap(
+                            times: 2,
+                          ),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'You can also like',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          ),
+                          const Gap(),
+                          SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: List.generate(
-                                  productModel!.alternativeProducts!.length,
-                                  (index) => ProductWidget(
-                                        product: getProductModel(productModel!
-                                            .alternativeProducts![index]),
-                                      )),
+                                productModel?.alternativeProducts?.length ?? 0,
+                                (index) => ProductWidget(
+                                  product: getProductModel(productModel!
+                                      .alternativeProducts![index]),
+                                ),
+                              ),
                             ),
                           )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -209,7 +215,7 @@ class ProductDetailsScreen extends StatelessWidget {
       ProductModel(
         id: alternativeProducts.id,
         name: alternativeProducts.name,
-        price: double.parse(alternativeProducts.listPrice ?? '0.0'),
+        price: alternativeProducts.listPrice,
         discount: alternativeProducts.discount,
         imageUrl: alternativeProducts.imageUrl,
         rating: alternativeProducts.ratingAvg,
@@ -227,21 +233,18 @@ class _ProductImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height * 0.5,
-      width: Get.width * 0.8,
+      height: Get.height * 0.4,
+      width: Get.width * 0.7,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         color: Colors.grey,
-        image: imagePath != null
-            ? DecorationImage(
-                image: CachedNetworkImageProvider(
-                  imagePath!,
-                  headers: {"Cookie": "${StorageUtils.getCookie()}"},
-                ),
-              )
-            : const DecorationImage(
-                image: AssetImage(eBikeCategoryImage),
-              ),
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(
+            imagePath ?? '',
+            headers: {"Cookie": "${StorageUtils.getCookie()}"},
+            errorListener: () => const AssetImage(eBikeCategoryImage),
+          ),
+        ),
       ),
     );
   }
@@ -279,7 +282,7 @@ class _StarReview extends StatelessWidget {
             ),
             empty: const Icon(
               PhosphorIcons.star,
-              color: Colors.white,
+              color: Colors.yellow,
             ),
           ),
           itemPadding: const EdgeInsets.only(right: 2.0),
@@ -328,13 +331,16 @@ class _AddToCButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          CartController.to.addAItem(CartModel(
+          CartController.to.addAItem(
+            CartModel(
               name: productModel?.name,
-              description: _stataticProductDetails,
+              description: productModel?.description,
               price: productModel?.price?.toString(),
               imageUrl: productModel?.imageUrl,
               quantity: 1.toString(),
-              total: productModel?.price?.toString()));
+              total: productModel?.price?.toString(),
+            ),
+          );
         },
         child: const Text(
           'ADD TO CART',
