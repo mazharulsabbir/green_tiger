@@ -22,14 +22,26 @@ class _$OrderTearOff {
   const _$OrderTearOff();
 
   _Order call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? orderNumber,
-      @JsonKey(name: 'state') String? status,
-      @JsonKey(name: 'date_order') String? date,
-      @JsonKey(name: 'expected_date') String? expectedDeliveryDate,
-      @JsonKey(name: 'commitment_date') String? commitmentDate,
-      @JsonKey(name: 'amount_total') double? price,
-      @JsonKey(name: 'order_line') List<OrderLine>? orderLines}) {
+      {@JsonKey(name: 'id')
+          int? id,
+      @JsonKey(name: 'name')
+          String? orderNumber,
+      @JsonKey(name: 'state')
+          String? status,
+      @JsonKey(name: 'date_order')
+          String? date,
+      @JsonKey(name: 'expected_date')
+          String? expectedDeliveryDate,
+      @JsonKey(name: 'commitment_date')
+          String? commitmentDate,
+      @JsonKey(name: 'amount_total')
+          double? price,
+      @JsonKey(name: 'order_line')
+          List<OrderLine>? orderLines,
+      @JsonKey(name: 'partner_shipping_id')
+          List<ContactAndAddress>? shippingAddress,
+      @JsonKey(name: 'courier_delivery_status')
+          String? deliveryStatus}) {
     return _Order(
       id: id,
       orderNumber: orderNumber,
@@ -39,6 +51,8 @@ class _$OrderTearOff {
       commitmentDate: commitmentDate,
       price: price,
       orderLines: orderLines,
+      shippingAddress: shippingAddress,
+      deliveryStatus: deliveryStatus,
     );
   }
 
@@ -68,6 +82,11 @@ mixin _$Order {
   double? get price => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_line')
   List<OrderLine>? get orderLines => throw _privateConstructorUsedError;
+  @JsonKey(name: 'partner_shipping_id')
+  List<ContactAndAddress>? get shippingAddress =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'courier_delivery_status')
+  String? get deliveryStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -79,14 +98,26 @@ abstract class $OrderCopyWith<$Res> {
   factory $OrderCopyWith(Order value, $Res Function(Order) then) =
       _$OrderCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? orderNumber,
-      @JsonKey(name: 'state') String? status,
-      @JsonKey(name: 'date_order') String? date,
-      @JsonKey(name: 'expected_date') String? expectedDeliveryDate,
-      @JsonKey(name: 'commitment_date') String? commitmentDate,
-      @JsonKey(name: 'amount_total') double? price,
-      @JsonKey(name: 'order_line') List<OrderLine>? orderLines});
+      {@JsonKey(name: 'id')
+          int? id,
+      @JsonKey(name: 'name')
+          String? orderNumber,
+      @JsonKey(name: 'state')
+          String? status,
+      @JsonKey(name: 'date_order')
+          String? date,
+      @JsonKey(name: 'expected_date')
+          String? expectedDeliveryDate,
+      @JsonKey(name: 'commitment_date')
+          String? commitmentDate,
+      @JsonKey(name: 'amount_total')
+          double? price,
+      @JsonKey(name: 'order_line')
+          List<OrderLine>? orderLines,
+      @JsonKey(name: 'partner_shipping_id')
+          List<ContactAndAddress>? shippingAddress,
+      @JsonKey(name: 'courier_delivery_status')
+          String? deliveryStatus});
 }
 
 /// @nodoc
@@ -107,6 +138,8 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
     Object? commitmentDate = freezed,
     Object? price = freezed,
     Object? orderLines = freezed,
+    Object? shippingAddress = freezed,
+    Object? deliveryStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -141,6 +174,14 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
           ? _value.orderLines
           : orderLines // ignore: cast_nullable_to_non_nullable
               as List<OrderLine>?,
+      shippingAddress: shippingAddress == freezed
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as List<ContactAndAddress>?,
+      deliveryStatus: deliveryStatus == freezed
+          ? _value.deliveryStatus
+          : deliveryStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -151,14 +192,26 @@ abstract class _$OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
       __$OrderCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? orderNumber,
-      @JsonKey(name: 'state') String? status,
-      @JsonKey(name: 'date_order') String? date,
-      @JsonKey(name: 'expected_date') String? expectedDeliveryDate,
-      @JsonKey(name: 'commitment_date') String? commitmentDate,
-      @JsonKey(name: 'amount_total') double? price,
-      @JsonKey(name: 'order_line') List<OrderLine>? orderLines});
+      {@JsonKey(name: 'id')
+          int? id,
+      @JsonKey(name: 'name')
+          String? orderNumber,
+      @JsonKey(name: 'state')
+          String? status,
+      @JsonKey(name: 'date_order')
+          String? date,
+      @JsonKey(name: 'expected_date')
+          String? expectedDeliveryDate,
+      @JsonKey(name: 'commitment_date')
+          String? commitmentDate,
+      @JsonKey(name: 'amount_total')
+          double? price,
+      @JsonKey(name: 'order_line')
+          List<OrderLine>? orderLines,
+      @JsonKey(name: 'partner_shipping_id')
+          List<ContactAndAddress>? shippingAddress,
+      @JsonKey(name: 'courier_delivery_status')
+          String? deliveryStatus});
 }
 
 /// @nodoc
@@ -180,6 +233,8 @@ class __$OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
     Object? commitmentDate = freezed,
     Object? price = freezed,
     Object? orderLines = freezed,
+    Object? shippingAddress = freezed,
+    Object? deliveryStatus = freezed,
   }) {
     return _then(_Order(
       id: id == freezed
@@ -214,6 +269,14 @@ class __$OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
           ? _value.orderLines
           : orderLines // ignore: cast_nullable_to_non_nullable
               as List<OrderLine>?,
+      shippingAddress: shippingAddress == freezed
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as List<ContactAndAddress>?,
+      deliveryStatus: deliveryStatus == freezed
+          ? _value.deliveryStatus
+          : deliveryStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -229,7 +292,9 @@ class _$_Order extends _Order {
       @JsonKey(name: 'expected_date') this.expectedDeliveryDate,
       @JsonKey(name: 'commitment_date') this.commitmentDate,
       @JsonKey(name: 'amount_total') this.price,
-      @JsonKey(name: 'order_line') this.orderLines})
+      @JsonKey(name: 'order_line') this.orderLines,
+      @JsonKey(name: 'partner_shipping_id') this.shippingAddress,
+      @JsonKey(name: 'courier_delivery_status') this.deliveryStatus})
       : super._();
 
   factory _$_Order.fromJson(Map<String, dynamic> json) =>
@@ -259,10 +324,16 @@ class _$_Order extends _Order {
   @override
   @JsonKey(name: 'order_line')
   final List<OrderLine>? orderLines;
+  @override
+  @JsonKey(name: 'partner_shipping_id')
+  final List<ContactAndAddress>? shippingAddress;
+  @override
+  @JsonKey(name: 'courier_delivery_status')
+  final String? deliveryStatus;
 
   @override
   String toString() {
-    return 'Order(id: $id, orderNumber: $orderNumber, status: $status, date: $date, expectedDeliveryDate: $expectedDeliveryDate, commitmentDate: $commitmentDate, price: $price, orderLines: $orderLines)';
+    return 'Order(id: $id, orderNumber: $orderNumber, status: $status, date: $date, expectedDeliveryDate: $expectedDeliveryDate, commitmentDate: $commitmentDate, price: $price, orderLines: $orderLines, shippingAddress: $shippingAddress, deliveryStatus: $deliveryStatus)';
   }
 
   @override
@@ -281,7 +352,11 @@ class _$_Order extends _Order {
                 .equals(other.commitmentDate, commitmentDate) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality()
-                .equals(other.orderLines, orderLines));
+                .equals(other.orderLines, orderLines) &&
+            const DeepCollectionEquality()
+                .equals(other.shippingAddress, shippingAddress) &&
+            const DeepCollectionEquality()
+                .equals(other.deliveryStatus, deliveryStatus));
   }
 
   @override
@@ -294,7 +369,9 @@ class _$_Order extends _Order {
       const DeepCollectionEquality().hash(expectedDeliveryDate),
       const DeepCollectionEquality().hash(commitmentDate),
       const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(orderLines));
+      const DeepCollectionEquality().hash(orderLines),
+      const DeepCollectionEquality().hash(shippingAddress),
+      const DeepCollectionEquality().hash(deliveryStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -309,14 +386,26 @@ class _$_Order extends _Order {
 
 abstract class _Order extends Order {
   const factory _Order(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? orderNumber,
-      @JsonKey(name: 'state') String? status,
-      @JsonKey(name: 'date_order') String? date,
-      @JsonKey(name: 'expected_date') String? expectedDeliveryDate,
-      @JsonKey(name: 'commitment_date') String? commitmentDate,
-      @JsonKey(name: 'amount_total') double? price,
-      @JsonKey(name: 'order_line') List<OrderLine>? orderLines}) = _$_Order;
+      {@JsonKey(name: 'id')
+          int? id,
+      @JsonKey(name: 'name')
+          String? orderNumber,
+      @JsonKey(name: 'state')
+          String? status,
+      @JsonKey(name: 'date_order')
+          String? date,
+      @JsonKey(name: 'expected_date')
+          String? expectedDeliveryDate,
+      @JsonKey(name: 'commitment_date')
+          String? commitmentDate,
+      @JsonKey(name: 'amount_total')
+          double? price,
+      @JsonKey(name: 'order_line')
+          List<OrderLine>? orderLines,
+      @JsonKey(name: 'partner_shipping_id')
+          List<ContactAndAddress>? shippingAddress,
+      @JsonKey(name: 'courier_delivery_status')
+          String? deliveryStatus}) = _$_Order;
   const _Order._() : super._();
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
@@ -345,6 +434,12 @@ abstract class _Order extends Order {
   @override
   @JsonKey(name: 'order_line')
   List<OrderLine>? get orderLines;
+  @override
+  @JsonKey(name: 'partner_shipping_id')
+  List<ContactAndAddress>? get shippingAddress;
+  @override
+  @JsonKey(name: 'courier_delivery_status')
+  String? get deliveryStatus;
   @override
   @JsonKey(ignore: true)
   _$OrderCopyWith<_Order> get copyWith => throw _privateConstructorUsedError;

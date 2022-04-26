@@ -22,8 +22,43 @@ class OrderRepository {
           "fields": [
             {"name": "id", "type": "int"},
             {"name": "name", "type": "str"},
+            {"name": "customer_mobile", "type": "str"},
             {"name": "state", "type": "str"},
             {"name": "date_order", "type": "str"},
+            {
+              "name": "partner_shipping_id",
+              "type": "related",
+              "related_fields": [
+                {"name": "id", "type": "int"},
+                {"name": "name", "type": "str"},
+                {"name": "street", "type": "str"},
+                {"name": "city", "type": "str"},
+                {"name": "zip", "type": "str"},
+                {"name": "mobile", "type": "str"},
+                {"name": "email", "type": "str"},
+                {"name": "phone", "type": "str"},
+                {"name": "type", "type": "str"},
+                {
+                  "name": "state_id",
+                  "type": "related",
+                  "related_fields": [
+                    {"name": "id", "type": "int"},
+                    {"name": "name", "type": "str"},
+                    {"name": "code", "type": "str"}
+                  ]
+                },
+                {
+                  "name": "country_id",
+                  "type": "related",
+                  "related_fields": [
+                    {"name": "id", "type": "int"},
+                    {"name": "name", "type": "str"},
+                    {"name": "code", "type": "str"}
+                  ]
+                }
+              ]
+            },
+            {"name": "courier_delivery_status"},
             {"name": "commitment_date", "type": "str"},
             {"name": "expected_date", "type": "str"},
             {"name": "amount_total", "type": "float"},
@@ -51,7 +86,6 @@ class OrderRepository {
                   ]
                 },
                 {"name": "price_unit", "type": "float"},
-                {"name": "image_1920", "type": "binary"},
                 {
                   "name": "tax_id",
                   "type": "related",

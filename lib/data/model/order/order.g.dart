@@ -17,6 +17,10 @@ _$_Order _$$_OrderFromJson(Map<String, dynamic> json) => _$_Order(
       orderLines: (json['order_line'] as List<dynamic>?)
           ?.map((e) => OrderLine.fromJson(e as Map<String, dynamic>))
           .toList(),
+      shippingAddress: (json['partner_shipping_id'] as List<dynamic>?)
+          ?.map((e) => ContactAndAddress.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      deliveryStatus: json['courier_delivery_status'] as String?,
     );
 
 Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
@@ -28,6 +32,8 @@ Map<String, dynamic> _$$_OrderToJson(_$_Order instance) => <String, dynamic>{
       'commitment_date': instance.commitmentDate,
       'amount_total': instance.price,
       'order_line': instance.orderLines,
+      'partner_shipping_id': instance.shippingAddress,
+      'courier_delivery_status': instance.deliveryStatus,
     };
 
 _$_OrderLine _$$_OrderLineFromJson(Map<String, dynamic> json) => _$_OrderLine(

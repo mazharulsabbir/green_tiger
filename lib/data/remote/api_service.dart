@@ -4,6 +4,7 @@ import 'package:green_tiger/controller/auth_controller.dart';
 import '/data/local/storage_utils.dart';
 
 const _baseUrl = "http://139.162.16.146:8069";
+String get baseUrl => _baseUrl;
 
 class ApiService {
   final dio.Dio _client = dio.Dio();

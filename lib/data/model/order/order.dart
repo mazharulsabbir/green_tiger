@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../user/user.dart';
+
 part 'order.freezed.dart';
 part 'order.g.dart';
 
@@ -16,6 +18,8 @@ class Order with _$Order {
     @JsonKey(name: 'commitment_date') String? commitmentDate,
     @JsonKey(name: 'amount_total') double? price,
     @JsonKey(name: 'order_line') List<OrderLine>? orderLines,
+    @JsonKey(name: 'partner_shipping_id') List<ContactAndAddress>? shippingAddress,
+    @JsonKey(name: 'courier_delivery_status') String? deliveryStatus,
   }) = _Order;
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
