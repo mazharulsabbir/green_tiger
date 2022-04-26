@@ -36,7 +36,7 @@ class CartStorgae {
   static Future<dynamic> addAItem(CartModel cartModel) async {
     var availbleItems = getCartItems();
     if (availbleItems.contains(cartModel)) {
-      return Future.error('Sorry already added');
+      return Future.error('Item already added');
     }
     availbleItems.add(cartModel);
 
