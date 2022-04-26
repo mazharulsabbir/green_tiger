@@ -1,8 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
-import 'index.dart';
-import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 
@@ -18,14 +16,10 @@ class HomePage extends GetView<HomeController> {
       appBar: const SearchProductAppBar(),
       body: Obx(
         () => IndexedStack(
-          index: controller.currentIndex,
-          children: const [
-            HomeScreen(),
-            ExploreScreen(),
-            CartScreen(),
-            OfferScreen(),
-            AccountScreen(),
-          ],
+          index: controller.activeIndex == 4
+              ? controller.navIndex
+              : controller.activeIndex,
+          children: controller.widgets,
         ),
       ),
       bottomNavigationBar: Obx(
@@ -33,7 +27,7 @@ class HomePage extends GetView<HomeController> {
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black.withOpacity(0.5),
           type: BottomNavigationBarType.fixed,
-          currentIndex: controller.currentIndex,
+          currentIndex: controller.navIndex,
           onTap: controller.setCurrentIndex,
           items: [
             const BottomNavigationBarItem(

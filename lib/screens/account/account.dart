@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/controller/user/user_controller.dart';
 import 'package:green_tiger/screens/account/contact_address.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
@@ -54,23 +55,31 @@ class AccountScreen extends GetView<UserController> {
             ListTile(
               leading: const Icon(PhosphorIcons.user),
               title: const Text('Profile'),
-              onTap: () => Get.to(() => const ProfileScreen()),
+              onTap: () => HomeController.to.addNewWidget(
+                const ProfileScreen(),
+              ),
             ),
             ListTile(
               leading: const Icon(PhosphorIcons.shopping_bag),
               title: const Text('My Orders'),
               // onTap: () => Get.to(() => const OrderDetailsScreen()),
-              onTap: () => Get.to(() => const OrderScreen()),
+              onTap: () => HomeController.to.addNewWidget(
+                const OrderScreen(),
+              ),
             ),
             ListTile(
               leading: const Icon(PhosphorIcons.map_pin),
               title: const Text('Address'),
-              onTap: () => Get.to(() => const ContactAndAddressScreen()),
+              onTap: () => HomeController.to.addNewWidget(
+                const ContactAndAddressScreen(),
+              ),
             ),
             ListTile(
               leading: const Icon(PhosphorIcons.wallet),
               title: const Text('Payment'),
-              onTap: () => Get.to(() => const PaymentHistoryScreen()),
+              onTap: () => HomeController.to.addNewWidget(
+                const PaymentHistoryScreen(),
+              ),
             ),
             const SizedBox(height: 20),
             ListTile(

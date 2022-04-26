@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/screens/cart/widget/no_item_widget.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
@@ -21,19 +22,11 @@ class CartScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.arrow_back_ios),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Your Cart',
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
+              Text(
+                'Your Cart',
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               const SizedBox(height: 20),
               Column(
@@ -50,7 +43,7 @@ class CartScreen extends StatelessWidget {
                       child: const TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter cupon code',
+                          hintText: 'Enter coupon code',
                           prefixIcon: Icon(
                             PhosphorIcons.tag,
                           ),
@@ -92,8 +85,10 @@ class CartScreen extends StatelessWidget {
               const SizedBox(height: 50),
               PrimaryButtonWidget(
                 text: 'Check out',
-                height: 60,
-                onPressed: () => Get.to(() => const ShippingAddress()),
+                height: 50,
+                onPressed: () => HomeController.to.addNewWidget(
+                  const ShippingAddress(),
+                ),
               ),
               const SizedBox(height: 50),
             ],

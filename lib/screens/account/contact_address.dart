@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:green_tiger/controller/user/contact_address_controller.dart';
 
 import '../../constraints/index.dart';
+import '../../controller/home_controller.dart';
 
 class ContactAndAddressScreen extends GetView<ContactAndAddressController> {
   const ContactAndAddressScreen({Key? key}) : super(key: key);
@@ -11,7 +12,21 @@ class ContactAndAddressScreen extends GetView<ContactAndAddressController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Contact and Address')),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Address',
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () => HomeController.to.removeLastWidget(),
+        ),
+        elevation: 0,
+      ),
       body: controller.obx(
         (state) => ListView.builder(
           padding: const EdgeInsets.only(top: 8),

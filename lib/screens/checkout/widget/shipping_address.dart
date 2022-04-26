@@ -1,3 +1,4 @@
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/controller/user/shipping_address_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
@@ -46,7 +47,9 @@ class ShippingAddressWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () => Get.to(() => AddressFormWidget()),
+                    onTap: () => HomeController.to.addNewWidget(
+                      AddressFormWidget(),
+                    ),
                   ),
                   const SizedBox(width: 15),
                   InkWell(

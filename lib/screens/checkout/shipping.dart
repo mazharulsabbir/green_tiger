@@ -1,4 +1,5 @@
 import 'package:green_tiger/screens/checkout/order_success.dart';
+import '../../controller/home_controller.dart';
 import '../../controller/user/shipping_address_controller.dart';
 import 'package:green_tiger/utils/snack_bars/snack_bars.dart';
 import '/screens/cart/widget/cart_price_widget.dart';
@@ -15,7 +16,19 @@ class ShippingAddress extends GetView<ShippingAddressController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Payment & Shipping Details'),
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Payment & Shipping Details',
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () => HomeController.to.removeLastWidget(),
+        ),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(

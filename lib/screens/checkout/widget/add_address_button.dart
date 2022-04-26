@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/checkout_controller.dart';
+import '../../../controller/home_controller.dart';
 import 'address_form_widget.dart';
 
 class EmptyAddressButton extends GetView<CheckoutController> {
@@ -10,7 +11,9 @@ class EmptyAddressButton extends GetView<CheckoutController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => AddressFormWidget()),
+      onTap: () => HomeController.to.addNewWidget(
+        AddressFormWidget(),
+      ),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: primaryColor),

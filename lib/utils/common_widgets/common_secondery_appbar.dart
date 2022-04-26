@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 
-class CommonSeconderyAppBar extends StatelessWidget {
+class CommonSecondaryAppBar extends StatelessWidget {
   final String title;
-  const CommonSeconderyAppBar({Key? key, required this.title})
+  const CommonSecondaryAppBar({Key? key, required this.title})
       : super(key: key);
 
   @override
@@ -18,7 +19,7 @@ class CommonSeconderyAppBar extends StatelessWidget {
         child: Row(
           children: [
             GestureDetector(
-              onTap: Get.back,
+              onTap: () => HomeController.to.removeLastWidget(),
               child: const Icon(
                 (Icons.arrow_back_ios),
               ),
