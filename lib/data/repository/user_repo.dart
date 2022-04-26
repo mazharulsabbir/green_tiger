@@ -10,11 +10,11 @@ class UserRepository {
     final _body = {
       "params": {
         "data": {
-          "model": "res.partner",
+          "model": "res.users",
           "conditions": {
             "relation": ["&"],
             "condition": [
-              {"id": "id", "condition": "=", "value": uid},
+              {"id": "partner_id.id", "condition": "=", "value": uid},
               {"id": "active", "condition": "=", "value": true}
             ]
           },
@@ -27,6 +27,8 @@ class UserRepository {
             {"name": "type", "type": "str"},
             {"name": "phone", "type": "str"},
             {"name": "mobile", "type": "str"},
+            {"name": "gender", "type": "str"},
+            {"name": "birthday", "type": "str"},
             {"name": "is_dealer", "type": "bool"},
             {
               "name": "country_id",
@@ -78,11 +80,11 @@ class UserRepository {
     final _body = {
       "params": {
         "data": {
-          "model": "res.users",
+          "model": "res.partner",
           "conditions": {
             "relation": ["&"],
             "condition": [
-              {"id": "partner_id.id", "condition": "=", "value": uid},
+              {"id": "id", "condition": "=", "value": uid},
               {"id": "active", "condition": "=", "value": true}
             ]
           },

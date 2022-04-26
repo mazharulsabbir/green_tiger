@@ -23,7 +23,7 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
           ),
           child: StaggeredGrid.count(
             crossAxisCount: 2,
-            mainAxisSpacing: 4,
+            mainAxisSpacing: 16,
             crossAxisSpacing: 4,
             children: List.generate(
               state?.length ?? 0,
