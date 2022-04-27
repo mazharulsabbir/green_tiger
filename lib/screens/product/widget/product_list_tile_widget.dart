@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/screens/product/product_details.dart';
 import '../../../data/local/storage_utils.dart';
 import '/constraints/index.dart';
@@ -16,7 +17,9 @@ class ProductListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => ProductDetailsScreen(productModel: product)),
+      onTap: () => HomeController.to.addNewWidget(
+        ProductDetailsScreen(productModel: product),
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

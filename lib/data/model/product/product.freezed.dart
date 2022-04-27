@@ -65,6 +65,8 @@ class _$ProductModelTearOff {
           List<ProductVariant>? productVariants,
       @JsonKey(name: 'attribute_line_ids')
           List<ProductAttribute>? productAttributes,
+      @JsonKey(name: 'tab_line_ids')
+          List<ProductTabLine>? itemDetails,
       bool? isFav}) {
     return _ProductModel(
       id: id,
@@ -90,6 +92,7 @@ class _$ProductModelTearOff {
       productTemplateImages: productTemplateImages,
       productVariants: productVariants,
       productAttributes: productAttributes,
+      itemDetails: itemDetails,
       isFav: isFav,
     );
   }
@@ -151,6 +154,8 @@ mixin _$ProductModel {
   @JsonKey(name: 'attribute_line_ids')
   List<ProductAttribute>? get productAttributes =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'tab_line_ids')
+  List<ProductTabLine>? get itemDetails => throw _privateConstructorUsedError;
   bool? get isFav => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -208,6 +213,8 @@ abstract class $ProductModelCopyWith<$Res> {
           List<ProductVariant>? productVariants,
       @JsonKey(name: 'attribute_line_ids')
           List<ProductAttribute>? productAttributes,
+      @JsonKey(name: 'tab_line_ids')
+          List<ProductTabLine>? itemDetails,
       bool? isFav});
 }
 
@@ -244,6 +251,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
     Object? productTemplateImages = freezed,
     Object? productVariants = freezed,
     Object? productAttributes = freezed,
+    Object? itemDetails = freezed,
     Object? isFav = freezed,
   }) {
     return _then(_value.copyWith(
@@ -339,6 +347,10 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
           ? _value.productAttributes
           : productAttributes // ignore: cast_nullable_to_non_nullable
               as List<ProductAttribute>?,
+      itemDetails: itemDetails == freezed
+          ? _value.itemDetails
+          : itemDetails // ignore: cast_nullable_to_non_nullable
+              as List<ProductTabLine>?,
       isFav: isFav == freezed
           ? _value.isFav
           : isFav // ignore: cast_nullable_to_non_nullable
@@ -398,6 +410,8 @@ abstract class _$ProductModelCopyWith<$Res>
           List<ProductVariant>? productVariants,
       @JsonKey(name: 'attribute_line_ids')
           List<ProductAttribute>? productAttributes,
+      @JsonKey(name: 'tab_line_ids')
+          List<ProductTabLine>? itemDetails,
       bool? isFav});
 }
 
@@ -436,6 +450,7 @@ class __$ProductModelCopyWithImpl<$Res> extends _$ProductModelCopyWithImpl<$Res>
     Object? productTemplateImages = freezed,
     Object? productVariants = freezed,
     Object? productAttributes = freezed,
+    Object? itemDetails = freezed,
     Object? isFav = freezed,
   }) {
     return _then(_ProductModel(
@@ -531,6 +546,10 @@ class __$ProductModelCopyWithImpl<$Res> extends _$ProductModelCopyWithImpl<$Res>
           ? _value.productAttributes
           : productAttributes // ignore: cast_nullable_to_non_nullable
               as List<ProductAttribute>?,
+      itemDetails: itemDetails == freezed
+          ? _value.itemDetails
+          : itemDetails // ignore: cast_nullable_to_non_nullable
+              as List<ProductTabLine>?,
       isFav: isFav == freezed
           ? _value.isFav
           : isFav // ignore: cast_nullable_to_non_nullable
@@ -586,6 +605,8 @@ class _$_ProductModel implements _ProductModel {
           this.productVariants,
       @JsonKey(name: 'attribute_line_ids')
           this.productAttributes,
+      @JsonKey(name: 'tab_line_ids')
+          this.itemDetails,
       this.isFav});
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -658,11 +679,14 @@ class _$_ProductModel implements _ProductModel {
   @JsonKey(name: 'attribute_line_ids')
   final List<ProductAttribute>? productAttributes;
   @override
+  @JsonKey(name: 'tab_line_ids')
+  final List<ProductTabLine>? itemDetails;
+  @override
   final bool? isFav;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, type: $type, websiteUrl: $websiteUrl, description: $description, saleDescription: $saleDescription, price: $price, discount: $discount, qtyAvailable: $qtyAvailable, imageUrl: $imageUrl, rating: $rating, ratingCount: $ratingCount, isProductVariant: $isProductVariant, ratings: $ratings, currency: $currency, costCurrency: $costCurrency, costMethod: $costMethod, customMessage: $customMessage, createDate: $createDate, alternativeProducts: $alternativeProducts, productTemplateImages: $productTemplateImages, productVariants: $productVariants, productAttributes: $productAttributes, isFav: $isFav)';
+    return 'ProductModel(id: $id, name: $name, type: $type, websiteUrl: $websiteUrl, description: $description, saleDescription: $saleDescription, price: $price, discount: $discount, qtyAvailable: $qtyAvailable, imageUrl: $imageUrl, rating: $rating, ratingCount: $ratingCount, isProductVariant: $isProductVariant, ratings: $ratings, currency: $currency, costCurrency: $costCurrency, costMethod: $costMethod, customMessage: $customMessage, createDate: $createDate, alternativeProducts: $alternativeProducts, productTemplateImages: $productTemplateImages, productVariants: $productVariants, productAttributes: $productAttributes, itemDetails: $itemDetails, isFav: $isFav)';
   }
 
   @override
@@ -707,6 +731,8 @@ class _$_ProductModel implements _ProductModel {
                 .equals(other.productVariants, productVariants) &&
             const DeepCollectionEquality()
                 .equals(other.productAttributes, productAttributes) &&
+            const DeepCollectionEquality()
+                .equals(other.itemDetails, itemDetails) &&
             const DeepCollectionEquality().equals(other.isFav, isFav));
   }
 
@@ -736,6 +762,7 @@ class _$_ProductModel implements _ProductModel {
         const DeepCollectionEquality().hash(productTemplateImages),
         const DeepCollectionEquality().hash(productVariants),
         const DeepCollectionEquality().hash(productAttributes),
+        const DeepCollectionEquality().hash(itemDetails),
         const DeepCollectionEquality().hash(isFav)
       ]);
 
@@ -795,6 +822,8 @@ abstract class _ProductModel implements ProductModel {
           List<ProductVariant>? productVariants,
       @JsonKey(name: 'attribute_line_ids')
           List<ProductAttribute>? productAttributes,
+      @JsonKey(name: 'tab_line_ids')
+          List<ProductTabLine>? itemDetails,
       bool? isFav}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -866,6 +895,9 @@ abstract class _ProductModel implements ProductModel {
   @override
   @JsonKey(name: 'attribute_line_ids')
   List<ProductAttribute>? get productAttributes;
+  @override
+  @JsonKey(name: 'tab_line_ids')
+  List<ProductTabLine>? get itemDetails;
   @override
   bool? get isFav;
   @override
@@ -2277,5 +2309,242 @@ abstract class _AttributeValue implements AttributeValue {
   @override
   @JsonKey(ignore: true)
   _$AttributeValueCopyWith<_AttributeValue> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProductTabLine _$ProductTabLineFromJson(Map<String, dynamic> json) {
+  return _ProductTabLine.fromJson(json);
+}
+
+/// @nodoc
+class _$ProductTabLineTearOff {
+  const _$ProductTabLineTearOff();
+
+  _ProductTabLine call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'sequence') int? sequence,
+      @JsonKey(name: 'tab_content') String? tabContent,
+      @JsonKey(name: 'tab_name') String? tabName}) {
+    return _ProductTabLine(
+      id: id,
+      sequence: sequence,
+      tabContent: tabContent,
+      tabName: tabName,
+    );
+  }
+
+  ProductTabLine fromJson(Map<String, Object?> json) {
+    return ProductTabLine.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ProductTabLine = _$ProductTabLineTearOff();
+
+/// @nodoc
+mixin _$ProductTabLine {
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sequence')
+  int? get sequence => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tab_content')
+  String? get tabContent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tab_name')
+  String? get tabName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductTabLineCopyWith<ProductTabLine> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductTabLineCopyWith<$Res> {
+  factory $ProductTabLineCopyWith(
+          ProductTabLine value, $Res Function(ProductTabLine) then) =
+      _$ProductTabLineCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'sequence') int? sequence,
+      @JsonKey(name: 'tab_content') String? tabContent,
+      @JsonKey(name: 'tab_name') String? tabName});
+}
+
+/// @nodoc
+class _$ProductTabLineCopyWithImpl<$Res>
+    implements $ProductTabLineCopyWith<$Res> {
+  _$ProductTabLineCopyWithImpl(this._value, this._then);
+
+  final ProductTabLine _value;
+  // ignore: unused_field
+  final $Res Function(ProductTabLine) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? sequence = freezed,
+    Object? tabContent = freezed,
+    Object? tabName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sequence: sequence == freezed
+          ? _value.sequence
+          : sequence // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tabContent: tabContent == freezed
+          ? _value.tabContent
+          : tabContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tabName: tabName == freezed
+          ? _value.tabName
+          : tabName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ProductTabLineCopyWith<$Res>
+    implements $ProductTabLineCopyWith<$Res> {
+  factory _$ProductTabLineCopyWith(
+          _ProductTabLine value, $Res Function(_ProductTabLine) then) =
+      __$ProductTabLineCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'sequence') int? sequence,
+      @JsonKey(name: 'tab_content') String? tabContent,
+      @JsonKey(name: 'tab_name') String? tabName});
+}
+
+/// @nodoc
+class __$ProductTabLineCopyWithImpl<$Res>
+    extends _$ProductTabLineCopyWithImpl<$Res>
+    implements _$ProductTabLineCopyWith<$Res> {
+  __$ProductTabLineCopyWithImpl(
+      _ProductTabLine _value, $Res Function(_ProductTabLine) _then)
+      : super(_value, (v) => _then(v as _ProductTabLine));
+
+  @override
+  _ProductTabLine get _value => super._value as _ProductTabLine;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? sequence = freezed,
+    Object? tabContent = freezed,
+    Object? tabName = freezed,
+  }) {
+    return _then(_ProductTabLine(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      sequence: sequence == freezed
+          ? _value.sequence
+          : sequence // ignore: cast_nullable_to_non_nullable
+              as int?,
+      tabContent: tabContent == freezed
+          ? _value.tabContent
+          : tabContent // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tabName: tabName == freezed
+          ? _value.tabName
+          : tabName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ProductTabLine implements _ProductTabLine {
+  _$_ProductTabLine(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'sequence') this.sequence,
+      @JsonKey(name: 'tab_content') this.tabContent,
+      @JsonKey(name: 'tab_name') this.tabName});
+
+  factory _$_ProductTabLine.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductTabLineFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'sequence')
+  final int? sequence;
+  @override
+  @JsonKey(name: 'tab_content')
+  final String? tabContent;
+  @override
+  @JsonKey(name: 'tab_name')
+  final String? tabName;
+
+  @override
+  String toString() {
+    return 'ProductTabLine(id: $id, sequence: $sequence, tabContent: $tabContent, tabName: $tabName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ProductTabLine &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.sequence, sequence) &&
+            const DeepCollectionEquality()
+                .equals(other.tabContent, tabContent) &&
+            const DeepCollectionEquality().equals(other.tabName, tabName));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(sequence),
+      const DeepCollectionEquality().hash(tabContent),
+      const DeepCollectionEquality().hash(tabName));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ProductTabLineCopyWith<_ProductTabLine> get copyWith =>
+      __$ProductTabLineCopyWithImpl<_ProductTabLine>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductTabLineToJson(this);
+  }
+}
+
+abstract class _ProductTabLine implements ProductTabLine {
+  factory _ProductTabLine(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'sequence') int? sequence,
+      @JsonKey(name: 'tab_content') String? tabContent,
+      @JsonKey(name: 'tab_name') String? tabName}) = _$_ProductTabLine;
+
+  factory _ProductTabLine.fromJson(Map<String, dynamic> json) =
+      _$_ProductTabLine.fromJson;
+
+  @override
+  @JsonKey(name: 'id')
+  int? get id;
+  @override
+  @JsonKey(name: 'sequence')
+  int? get sequence;
+  @override
+  @JsonKey(name: 'tab_content')
+  String? get tabContent;
+  @override
+  @JsonKey(name: 'tab_name')
+  String? get tabName;
+  @override
+  @JsonKey(ignore: true)
+  _$ProductTabLineCopyWith<_ProductTabLine> get copyWith =>
       throw _privateConstructorUsedError;
 }

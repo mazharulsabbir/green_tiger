@@ -48,6 +48,8 @@ mixin RouteController on GetxController {
     update();
   }
 
+  //todo: pushAndReplace, pushAndRemoveUntil, pushAndRemoveUntilWithIndex, pushAndRemoveUntilWithWidget
+
   void clear() {
     _widgets.clear();
     update();

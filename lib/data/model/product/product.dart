@@ -35,6 +35,7 @@ class ProductModel with _$ProductModel {
     @JsonKey(name: 'product_variant_ids') List<ProductVariant>? productVariants,
     @JsonKey(name: 'attribute_line_ids')
         List<ProductAttribute>? productAttributes,
+    @JsonKey(name: 'tab_line_ids') List<ProductTabLine>? itemDetails,
     bool? isFav,
   }) = _ProductModel;
 
@@ -116,4 +117,17 @@ class AttributeValue with _$AttributeValue {
 
   factory AttributeValue.fromJson(Map<String, dynamic> json) =>
       _$AttributeValueFromJson(json);
+}
+
+@freezed
+class ProductTabLine with _$ProductTabLine {
+  factory ProductTabLine({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'sequence') int? sequence,
+    @JsonKey(name: 'tab_content') String? tabContent,
+    @JsonKey(name: 'tab_name') String? tabName,
+  }) = _ProductTabLine;
+
+  factory ProductTabLine.fromJson(Map<String, dynamic> json) =>
+      _$ProductTabLineFromJson(json);
 }
