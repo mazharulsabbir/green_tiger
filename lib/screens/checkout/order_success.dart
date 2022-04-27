@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import '/screens/order/order.dart';
 import '/utils/button/index.dart';
 
@@ -39,8 +40,8 @@ class OrderSuccessScreen extends StatelessWidget {
             const SizedBox(height: 20),
             PrimaryButtonWidget(
               text: 'View Order List',
-              onPressed: () => Get.off(
-                () => const OrderScreen(),
+              onPressed: () => HomeController.to.addNewWidget(
+                const OrderScreen(),
               ),
             ),
           ],

@@ -192,17 +192,26 @@ class ProductRepository {
   }
 
   Future<List<ProductModel>?> productsByCategory(int? categoryId) async {
+    final _condition = {
+      "relation": [],
+      "condition": [
+        {"id": "active", "condition": "=", "value": true}
+      ]
+    };
+
+    if (categoryId != -1) {
+      _condition['relation'] = ["&"];
+      _condition['condition'] = [
+        {"id": "categ_id", "condition": "=", "value": categoryId},
+        {"id": "active", "condition": "=", "value": true}
+      ];
+    }
+
     final _body = {
       "params": {
         "data": {
           "model": "product.template",
-          "conditions": {
-            "relation": ["&"],
-            "condition": [
-              {"id": "categ_id", "condition": "=", "value": categoryId},
-              {"id": "active", "condition": "=", "value": true}
-            ]
-          },
+          "conditions": _condition,
           "fields": [
             {"name": "id", "type": "int"},
             {"name": "name", "type": "str"},
