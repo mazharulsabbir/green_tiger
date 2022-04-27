@@ -24,7 +24,7 @@ class ProfileScreen extends GetView<UserController> {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () => HomeController.to.removeLastWidget(),
+          onPressed: HomeController.to.removeLastWidget,
         ),
         elevation: 0,
       ),
@@ -33,7 +33,7 @@ class ProfileScreen extends GetView<UserController> {
         child: controller.obx(
           (state) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [             
+            children: [
               ListTile(
                 leading: Container(
                   height: 50,

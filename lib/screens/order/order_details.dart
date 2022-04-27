@@ -23,7 +23,7 @@ class OrderDetailsScreen extends StatelessWidget {
             Icons.arrow_back,
             color: Colors.black,
           ),
-          onPressed: () => HomeController.to.removeLastWidget(),
+          onPressed: HomeController.to.removeLastWidget,
         ),
         elevation: 0,
       ),

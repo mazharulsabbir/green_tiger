@@ -6,8 +6,6 @@ import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/utils/common_widgets/common_loading.dart';
-import 'package:green_tiger/utils/common_widgets/common_search_appbar.dart';
-import 'package:green_tiger/utils/common_widgets/common_secondery_appbar.dart';
 import 'package:green_tiger/utils/validations/shipping_address_validation.dart';
 import '../../../constraints/styles.dart';
 import '../../../controller/home_controller.dart';
@@ -42,7 +40,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
               Icons.arrow_back,
               color: Colors.black,
             ),
-            onPressed: () => HomeController.to.removeLastWidget(),
+            onPressed: HomeController.to.removeLastWidget,
           ),
           elevation: 0,
         ),

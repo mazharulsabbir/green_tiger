@@ -19,7 +19,7 @@ class CommonSecondaryAppBar extends StatelessWidget {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () => HomeController.to.removeLastWidget(),
+              onTap: HomeController.to.removeLastWidget,
               child: const Icon(
                 (Icons.arrow_back_ios),
               ),

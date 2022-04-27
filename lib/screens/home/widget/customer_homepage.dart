@@ -156,7 +156,7 @@ class _ProductByCategoryListWidget extends StatelessWidget {
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
           final state = snapshot.data as List<ProductModel>?;
-          if (state?.isEmpty == true) return const SizedBox();
+          if (state?.isEmpty??true) return const SizedBox();
 
           return Column(
             children: [

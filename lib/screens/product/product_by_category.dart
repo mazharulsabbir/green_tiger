@@ -82,10 +82,9 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
                         title: Text(
                           _sort[index],
                           style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black45
-                          ),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black45),
                         ),
                       ),
                     ),
