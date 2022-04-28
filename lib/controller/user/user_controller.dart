@@ -30,6 +30,8 @@ class UserController extends GetxController with StateMixin<UserModel> {
       }
       StorageUtils.setUser(user);
       change(user, status: RxStatus.success());
+      print('User data');
+      print(user.toString());
     }).catchError((error) {
       change(null, status: RxStatus.error(error));
     });
