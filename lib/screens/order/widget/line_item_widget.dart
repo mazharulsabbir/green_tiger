@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
-import 'package:green_tiger/data/model/cart/cart.dart';
 import 'package:green_tiger/data/model/order/order.dart';
 
 import '../../../data/local/storage_utils.dart';

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/model/user/user.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 

@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:green_tiger/controller/auth_controller.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 import 'package:green_tiger/data/repository/auth_repo.dart';
-import 'package:mockito/mockito.dart';
 import 'package:mocktail/mocktail.dart' as tail;
 
 class MockAuthRepo extends tail.Mock implements AuthRepository {
@@ -28,8 +27,6 @@ class MockAuthRepo extends tail.Mock implements AuthRepository {
       );
       return response;
     } catch (e) {
-      print('Error cought');
-      print(e.toString());
       return Future.error("$e");
     }
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/controller/ads_controller.dart';
 import '/controller/auth_controller.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';

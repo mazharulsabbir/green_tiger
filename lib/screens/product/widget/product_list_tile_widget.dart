@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/screens/product/product_details.dart';
 import '../../../data/local/storage_utils.dart';
@@ -114,9 +113,7 @@ class ProductListTileWidget extends StatelessWidget {
                         ),
                       ),
                       itemPadding: const EdgeInsets.only(right: 2.0),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
+                      onRatingUpdate: (rating) {},
                     ),
                     const SizedBox(width: 4),
                     Text(

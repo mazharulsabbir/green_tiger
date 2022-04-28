@@ -1,5 +1,4 @@
 import 'package:green_tiger/data/model/cart/cart.dart';
-import 'package:green_tiger/utils/snack_bars/snack_bars.dart';
 
 import '/constraints/strings.dart';
 import 'package:get_storage/get_storage.dart';

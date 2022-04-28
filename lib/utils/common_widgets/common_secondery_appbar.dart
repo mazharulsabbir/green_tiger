@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:green_tiger/controller/home_controller.dart';
 
 class CommonSecondaryAppBar extends StatelessWidget {

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/model/category/category.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import '../remote/api_service.dart';
@@ -44,7 +43,7 @@ class ProductRepository {
 
   Future<List<ProductModel>?> products() async {
     // todo: check latest date
-    const _date = "2022-02-25";
+    // const _date = "2022-02-25";
     final _body = {
       "params": {
         "data": {

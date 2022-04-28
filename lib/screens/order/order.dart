@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/order/order_controller.dart';
-import 'package:green_tiger/data/local/fake_data_repository.dart';
 
 import '../../controller/home_controller.dart';
 import 'widget/order_item_widget.dart';

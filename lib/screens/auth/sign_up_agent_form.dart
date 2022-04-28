@@ -142,7 +142,7 @@ class _AgentSignUpFormPageState extends State<AgentSignUpFormPage> {
               keyboardType: TextInputType.visiblePassword,
             ),
             const SizedBox(height: 10),
-            PrimaryButtonWidget(
+            const PrimaryButtonWidget(
               text: 'Register',
               // onPressed: () => Get.to(
               //   () => const OtpVerificationPage(),

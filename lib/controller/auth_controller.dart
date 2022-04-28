@@ -90,7 +90,6 @@ class AuthController extends GetxController {
       return Future.value('Login Successful!');
     } on Exception catch (e) {
       _setLoading(false);
-      debugPrint("${e}");
       return Future.error(e.toString());
     } finally {
       _setLoading(false);
