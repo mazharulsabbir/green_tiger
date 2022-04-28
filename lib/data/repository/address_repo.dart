@@ -43,7 +43,6 @@ class AddressRepository {
       );
 
       List<dynamic> _result = response as List;
-
       final _response = _result.map((e) => Country.fromJson(e)).toList();
 
       return _response;
