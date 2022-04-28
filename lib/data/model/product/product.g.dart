@@ -46,6 +46,9 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       productAttributes: (json['attribute_line_ids'] as List<dynamic>?)
           ?.map((e) => ProductAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
+      itemDetails: (json['tab_line_ids'] as List<dynamic>?)
+          ?.map((e) => ProductTabLine.fromJson(e as Map<String, dynamic>))
+          .toList(),
       isFav: json['isFav'] as bool?,
     );
 
@@ -74,6 +77,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) =>
       'product_template_image_ids': instance.productTemplateImages,
       'product_variant_ids': instance.productVariants,
       'attribute_line_ids': instance.productAttributes,
+      'tab_line_ids': instance.itemDetails,
       'isFav': instance.isFav,
     };
 
@@ -172,4 +176,20 @@ Map<String, dynamic> _$$_AttributeValueToJson(_$_AttributeValue instance) =>
       'id': instance.id,
       'name': instance.name,
       'html_color': instance.htmlColor,
+    };
+
+_$_ProductTabLine _$$_ProductTabLineFromJson(Map<String, dynamic> json) =>
+    _$_ProductTabLine(
+      id: json['id'] as int?,
+      sequence: json['sequence'] as int?,
+      tabContent: json['tab_content'] as String?,
+      tabName: json['tab_name'] as String?,
+    );
+
+Map<String, dynamic> _$$_ProductTabLineToJson(_$_ProductTabLine instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'sequence': instance.sequence,
+      'tab_content': instance.tabContent,
+      'tab_name': instance.tabName,
     };

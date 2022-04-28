@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -10,10 +11,12 @@ import 'package:green_tiger/data/model/alternative_product/alternative_product.d
 import 'package:green_tiger/data/model/cart/cart.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/model/product_details/more_time.dart';
+import 'package:green_tiger/data/remote/api_service.dart';
 import 'package:green_tiger/screens/product/widget/product_widget.dart';
 import 'package:green_tiger/screens/write_review/write_review_screen.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 
+import '../../controller/home_controller.dart';
 import '../../data/local/storage_utils.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -42,6 +45,13 @@ class ProductDetailsScreen extends StatelessWidget {
             style: const TextStyle(color: Colors.black),
           ),
           centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () => HomeController.to.removeLastWidget(),
+          ),
           actions: [
             IconButton(
               onPressed: () {},
@@ -125,39 +135,48 @@ class ProductDetailsScreen extends StatelessWidget {
                           .toList(),
                     ),
                     const Gap(),
-                    Column(
-                      children: ListTile.divideTiles(
-                        context: context,
-                        tiles: Iterable.generate(
-                          moreTiles.length,
-                          (index) {
-                            return ExpansionTile(
-                              title: Text(moreTiles[index].title),
-                              children: List.generate(
-                                3,
-                                (index) => ListTile(
-                                  onTap: () {
-                                    Get.to(() => WriteReviewScreen());
-                                  },
-                                  title: Text('Item $index'),
-                                ),
+                    ...List.generate(
+                      productModel?.itemDetails?.length ?? 0,
+                      (index) => ExpansionTile(
+                        title: Text(
+                          productModel?.itemDetails?[index].tabName ?? '',
+                        ),
+                        children: [
+                          Html(
+                            data: productModel?.itemDetails?[index].tabContent,
+                            onImageError: (exception, stackTrace) {
+                              // FirebaseCrashlytics.instance
+                              //     .recordError(exception, stackTrace);
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                            },
+                            customImageRenders: {
+                              networkSourceMatcher(): networkImageRender(
+                                headers: {
+                                  "Cookie": "${StorageUtils.getCookie()}"
+                                },
+                                altWidget: (alt) => Text(alt ?? ""),
+                                loadingWidget: () =>
+                                    const LinearProgressIndicator(),
                               ),
-                            );
-                          },
-                        ),
-                      ).toList()
-                        ..insert(
-                          moreTiles.length,
-                          const Divider(),
-                        ),
+                              (attr, _) =>
+                                      attr["src"] != null &&
+                                      !attr["src"]!.startsWith("http"):
+                                  networkImageRender(headers: {
+                                "Cookie": "${StorageUtils.getCookie()}"
+                              }, mapUrl: (url) => "$baseUrl$url"),
+                            },
+                          )
+                        ],
+                      ),
                     ),
                     const Gap(
                       times: 2,
                     ),
                     Center(
-                      child: _AddToCButton(
-                        productModel: productModel,
-                      ),
+                      child: _AddToCButton(productModel: productModel),
                     ),
                     const Gap(),
                     Visibility(

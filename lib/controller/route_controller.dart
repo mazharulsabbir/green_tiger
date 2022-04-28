@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../data/model/category/category.dart';
 import '../screens/main/index.dart';
+import 'product/product_by_category_controller.dart';
 
 mixin RouteController on GetxController {
   final _widgets = <Widget>[
@@ -21,6 +23,11 @@ mixin RouteController on GetxController {
   int get navIndex => _navIndex.value;
 
   void setCurrentIndex(int index) {
+    if (index == 1) {
+      ProductByCategoryController.to.getProductByCategory(
+        const CategoryModel(id: -1, name: 'All', image: "null"),
+      );
+    }
     _index.value = index;
     _navIndex.value = index;
     _widgets.removeRange(5, _widgets.length);
@@ -47,6 +54,8 @@ mixin RouteController on GetxController {
     );
     update();
   }
+
+  //todo: pushAndReplace, pushAndRemoveUntil, pushAndRemoveUntilWithIndex, pushAndRemoveUntilWithWidget
 
   void clear() {
     _widgets.clear();

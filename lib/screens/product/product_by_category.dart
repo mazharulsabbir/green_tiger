@@ -18,20 +18,30 @@ class ProductByCategoryScreen extends GetView<ProductByCategoryController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: DropdownButtonFormField<CategoryModel>(
-          isExpanded: true,
-          items: List.generate(
-            CategoryController.to.state?.length ?? 0,
-            (index) => DropdownMenuItem(
-              child: Text(CategoryController.to.state?[index].name ?? ''),
-              value: CategoryController.to.state?[index],
-            ),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: DropdownButtonFormField<CategoryModel>(
+            isExpanded: true,
+            items: [
+              const DropdownMenuItem(
+                child: Text('All'),
+                value: CategoryModel(id: -1, name: 'All', image: "null"),
+              ),
+              ...List.generate(
+                CategoryController.to.state?.length ?? 0,
+                (index) => DropdownMenuItem(
+                  child: Text(CategoryController.to.state?[index].name ?? ''),
+                  value: CategoryController.to.state?[index],
+                ),
+              )
+            ],
+            onChanged: (value) {
+              ProductByCategoryController.to.getProductByCategory(value);
+            },
+            value: ProductByCategoryController.to.category ??
+                const CategoryModel(id: -1, name: 'All', image: "null"),
+            decoration: const InputDecoration(border: InputBorder.none),
           ),
-          onChanged: (value) {
-            ProductByCategoryController.to.getProductByCategory(value!);
-          },
-          value: ProductByCategoryController.to.category,
-          decoration: const InputDecoration(border: InputBorder.none),
         ),
         actions: [
           IconButton(
