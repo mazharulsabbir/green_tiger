@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(
-        builder: (controller) => (controller.state?.isDealer ?? false)
+        builder: (controller) => !(controller.state?.isDealer ?? false)
             ? VendorHomepageScreen()
             : const CustomerHomeScreen());
   }

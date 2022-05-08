@@ -13,3 +13,5 @@ const String liBatteryCategoryImage = "assets/category/accumulator.png";
 const String sparePartsCategoryImage = "assets/category/brake.png";
 const String stataticNetIm =
     'https://images-na.ssl-images-amazon.com/images/I/61i9sy00GxS.jpg';
+const String dummyBannerLink =
+    'https://thumbs.dreamstime.com/b/colorful-abstract-banner-template-trend-dummy-text-web-design-landing-page-print-material-story-197340502.jpg';

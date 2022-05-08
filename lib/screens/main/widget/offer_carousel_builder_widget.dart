@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'offer_carousel_item_widget.dart';
 
 class OfferCarouselWidget extends StatefulWidget {
@@ -55,7 +54,7 @@ class _OfferCarouselWidgetState extends State<OfferCarouselWidget>
               child: TabPageSelector(
                 controller: _tabController,
                 color: Colors.white,
-                selectedColor: Colors.black,
+                selectedColor: Colors.green.shade400,
               ),
             ),
           ),

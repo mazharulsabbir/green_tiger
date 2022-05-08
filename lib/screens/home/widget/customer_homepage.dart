@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/product/category_controller.dart';
 import 'package:green_tiger/controller/product/product_controller.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/repository/product_repo.dart';
+import 'package:green_tiger/screens/main/widget/offer_cosual.dart';
 import '../../../utils/common_widgets/product_loading_widget.dart';
 import '/utils/index.dart';
 import '../../product/widget/product_widget.dart';
@@ -27,7 +29,18 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                 height: 180,
               ),
               decoration: BoxDecoration(
-                color: Colors.green,
+                // color: Colors.green,
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.green.shade400,
+                      Colors.green.shade700,
+                    ],
+                    stops: const <double>[
+                      0.2,
+                      0.7,
+                    ]),
                 borderRadius: BorderRadius.circular(8),
               ),
               // margin: const EdgeInsets.all(10),
@@ -42,7 +55,13 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                 ),
                 TextButton(
                   onPressed: null,
-                  child: Text('Sell All'),
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 16,
+                    ),
+                  ),
                 )
               ],
             ),
@@ -85,17 +104,7 @@ class CustomerHomeScreen extends GetView<CategoryController> {
                 child: Text('$e'),
               ),
             ),
-            Container(
-              child: const OfferCarouselWidget(
-                enableIndicator: false,
-                height: 160,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.amberAccent,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              // margin: const EdgeInsets.all(10),
-            ),
+            const OfferCasual(bannerImageLink: dummyBannerLink),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,7 +165,7 @@ class _ProductByCategoryListWidget extends StatelessWidget {
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
           final state = snapshot.data as List<ProductModel>?;
-          if (state?.isEmpty??true) return const SizedBox();
+          if (state?.isEmpty ?? true) return const SizedBox();
 
           return Column(
             children: [
@@ -170,7 +179,10 @@ class _ProductByCategoryListWidget extends StatelessWidget {
                   ),
                   const TextButton(
                     onPressed: null,
-                    child: Text('Sell All'),
+                    child: Text(
+                      'See More',
+                      style: TextStyle(color: Colors.green, fontSize: 16),
+                    ),
                   )
                 ],
               ),
