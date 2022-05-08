@@ -5,6 +5,7 @@ import 'sign_up.dart';
 import '/utils/button/index.dart';
 import '/constraints/index.dart';
 import 'sign_in.dart';
+import 'dart:math' as math show pi;
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -17,30 +18,36 @@ class _SignInPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: const [
-          Positioned(
-            top: 50,
-            left: 0,
-            right: 0,
-            child: TopWidget(),
-          ),
-          Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: BottomWidget(),
-          )
-        ],
+      body: Padding(
+        padding:
+            EdgeInsets.symmetric(vertical: 35, horizontal: Get.width * 0.2),
+        child: Stack(
+          children: const [
+            Positioned(
+              top: 45,
+              left: 0,
+              right: 0,
+              child: _TopWidget(),
+            ),
+            Positioned(
+              bottom: 27,
+              left: 0,
+              right: 0,
+              child: _BottomWidget(),
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
-class TopWidget extends StatelessWidget {
-  const TopWidget({
+class _TopWidget extends StatelessWidget {
+  const _TopWidget({
     Key? key,
   }) : super(key: key);
+
+  double get _imageSize => Get.height * 0.3;
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +55,15 @@ class TopWidget extends StatelessWidget {
       children: [
         Hero(
           tag: appIconTransparent,
-          child: Image.asset(appLogoTransparent, height: 45),
+          child: Image.asset(appLogoTransparent, height: 40),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 40),
+          margin: const EdgeInsets.only(top: 47),
           child: Stack(
             clipBehavior: Clip.none,
             children: [
               Positioned(
-                bottom: -50,
+                bottom: -47,
                 child: Image.asset(
                   bikeBackgroundImage,
                   height: 180,
@@ -68,8 +75,8 @@ class TopWidget extends StatelessWidget {
                 angle: -0.2,
                 child: Image.asset(
                   bikeImage,
-                  height: 200,
-                  width: 200,
+                  height: _imageSize,
+                  width: _imageSize,
                 ),
               ),
             ],
@@ -80,10 +87,12 @@ class TopWidget extends StatelessWidget {
   }
 }
 
-class BottomWidget extends StatelessWidget {
-  const BottomWidget({
+class _BottomWidget extends StatelessWidget {
+  const _BottomWidget({
     Key? key,
   }) : super(key: key);
+
+  double get _buttonW => Get.width * 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -93,16 +102,19 @@ class BottomWidget extends StatelessWidget {
           companyThemeText,
           style: Theme.of(context).textTheme.headline4?.copyWith(
                 color: Colors.black,
+                //FIXME: #5 FontWeight Cannot be made accurate
                 fontWeight: FontWeight.bold,
+                fontSize: 35,
               ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 30),
         PrimaryButtonWidget(
+          weight: _buttonW,
           text: signupString,
           onPressed: () => Get.to(() => const SignUpPage()),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         SecondaryButtonWidget(
           text: loginString,
           onPressed: () => Get.to(() => const SignInPage()),
@@ -124,10 +136,13 @@ class BottomWidget extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               CircleAvatar(
-                child: const Icon(
-                  Icons.keyboard_arrow_right,
-                  color: Colors.white,
-                  size: 18,
+                child: Transform.rotate(
+                  angle: -math.pi,
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 18,
+                  ),
                 ),
                 backgroundColor: primaryColor,
                 radius: 15,

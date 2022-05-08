@@ -5,7 +5,7 @@ ThemeData theme(BuildContext context) => ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.grey[100],
       backgroundColor: Colors.white,
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Poppins',
       textTheme: const TextTheme(
         bodyText1: TextStyle(color: Colors.black),
       ),
