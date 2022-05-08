@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Gap extends StatelessWidget {
-  final int times;
-  const Gap({Key? key, this.times = 1}) : super(key: key);
+class Gap extends SizedBox {
+  const Gap({Key? key, int times = 1}) : super(key: key, height: (times * 20));
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: times * 20,
-    );
-  }
+  Gap.custom({double? height, double? weight})
+      : super(height: height ?? 40, width: weight ?? double.infinity);
 }

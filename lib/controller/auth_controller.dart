@@ -100,5 +100,6 @@ class AuthController extends GetxController {
     StorageUtils.removeLoginStatus();
     _isLoggedIn.value = false;
     Get.offAll(() => const Splash(), binding: GlobalBindings());
+    //FIXME: #6 Routing error catching. Need to fix
   }
 }

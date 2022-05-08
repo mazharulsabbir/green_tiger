@@ -4,6 +4,8 @@ const String bikeImage = "assets/images/bike.png";
 const String cycleImage = "assets/images/cycle.png";
 const String bikeBackgroundImage = "assets/images/bike_background.png";
 const String profilePictureImage = "assets/images/profile_picture.png";
+const String facebookLogo = 'assets/images/facebook-logo.png';
+const String googleLogo = 'assets/images/google-logo.png';
 
 const String eBikeCategoryImage = "assets/category/electric-motor.png";
 const String eCycleCategoryImage = "assets/category/electric-bicycle.png";

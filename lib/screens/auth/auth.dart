@@ -47,10 +47,10 @@ class _TopWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  double get _imageSize => Get.height * 0.3;
-
   @override
   Widget build(BuildContext context) {
+    double _imageSize = context.height * 0.3;
+
     return Column(
       children: [
         Hero(
@@ -92,10 +92,10 @@ class _BottomWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  double get _buttonW => Get.width * 0.5;
-
   @override
   Widget build(BuildContext context) {
+    double _buttonW = context.width * 0.5;
+
     return Column(
       children: [
         Text(
