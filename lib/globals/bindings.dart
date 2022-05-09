@@ -33,17 +33,17 @@ class GlobalBindings extends Bindings {
     Get.put(OrderRepository(Get.find()));
     Get.put(PaymentRepository(Get.find()));
 
-    // controllers
+    // controllers | always loaded
     // Get.put(DeviceInfoController());
     // Get.put(PushNotificationController());
     // Get.put(AdsController());
     Get.put(AuthController(Get.find()));
-    Get.put(UserController(Get.find()));
+    // Get.put(UserController(Get.find()));
 
-    // lazy controllers
+    // lazy controllers | load when needed.
     Get.lazyPut(() => CheckoutController(Get.find(), Get.find()), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
-    // Get.lazyPut(() => UserController(Get.find()), fenix: true);
+    Get.lazyPut(() => UserController(Get.find()), fenix: true);
     Get.lazyPut(() => CategoryController(Get.find()), fenix: true);
     Get.lazyPut(() => ProductByCategoryController(Get.find()), fenix: true);
     Get.lazyPut(() => ProductController(Get.find()), fenix: true);

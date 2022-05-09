@@ -12,21 +12,21 @@ const _staticDunnyOrderMode = OrderCardModel(
     date: '30-01-2023');
 
 class VendorHomepageScreen extends StatelessWidget {
-  VendorHomepageScreen({Key? key}) : super(key: key);
-
-  final List<String> title = ['Delivered', 'Processing', 'Cancelled'];
-  final List<Widget> containers = [
-    const _OrderListWidget(),
-    const Center(
-      child: Text('Tabbar Conatainers'),
-    ),
-    const Center(
-      child: Text('Tabbar Conatainers'),
-    )
-  ];
+  const VendorHomepageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<String> title = ['Delivered', 'Processing', 'Cancelled'];
+    final List<Widget> containers = [
+      const _OrderListWidget(),
+      const Center(
+        child: Text('Tabbar Conatainers'),
+      ),
+      const Center(
+        child: Text('Tabbar Conatainers'),
+      )
+    ];
+
     return Column(
       children: [
         Card(
