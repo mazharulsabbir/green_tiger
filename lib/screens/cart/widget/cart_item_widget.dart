@@ -12,6 +12,26 @@ class CartItemWidget extends GetView<CartController> {
   final CartModel cart;
   const CartItemWidget({Key? key, required this.cart}) : super(key: key);
 
+  Widget _buildQChangeButton(
+      {required void Function()? onClick, required IconData theIcon}) {
+    return InkWell(
+      onTap: onClick,
+      child: Container(
+        width: 30,
+        height: 25,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey.withOpacity(0.2),
+          ),
+        ),
+        child: Icon(
+          theIcon,
+          size: 16,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,10 +78,14 @@ class CartItemWidget extends GetView<CartController> {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {
-                            controller.removeAnItem(cart);
-                          },
-                          child: const Icon(PhosphorIcons.trash))
+                        onTap: () {
+                          controller.removeAnItem(cart);
+                        },
+                        child: const Icon(
+                          PhosphorIcons.trash_simple,
+                          color: Colors.grey,
+                        ),
+                      )
                     ],
                   ),
                   const SizedBox(
@@ -79,23 +103,11 @@ class CartItemWidget extends GetView<CartController> {
                       ),
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () {
+                          _buildQChangeButton(
+                            theIcon: PhosphorIcons.minus,
+                            onClick: () {
                               controller.decreaseQ(cart);
                             },
-                            child: Container(
-                              width: 30,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(0.3),
-                                ),
-                              ),
-                              child: const Icon(
-                                PhosphorIcons.minus,
-                                size: 16,
-                              ),
-                            ),
                           ),
                           Container(
                             width: 30,
@@ -108,24 +120,12 @@ class CartItemWidget extends GetView<CartController> {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
+                          _buildQChangeButton(
+                            theIcon: PhosphorIcons.plus,
+                            onClick: () {
                               controller.increaseItemQ(cart);
                             },
-                            child: Container(
-                              width: 30,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(0.3),
-                                ),
-                              ),
-                              child: const Icon(
-                                PhosphorIcons.plus,
-                                size: 16,
-                              ),
-                            ),
-                          )
+                          ),
                         ],
                       )
                     ],

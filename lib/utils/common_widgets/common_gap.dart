@@ -8,4 +8,7 @@ class Gap extends SizedBox {
             height: height ?? 40,
             width: weight ?? double.infinity,
             child: child);
+
+  Gap.vertiacl(double h) : super(height: h);
+  Gap.horizontal(double w) : super(width: w);
 }

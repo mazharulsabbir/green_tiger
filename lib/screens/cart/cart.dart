@@ -8,6 +8,7 @@ import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/screens/cart/widget/no_item_widget.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/utils/button/index.dart';
+import 'package:green_tiger/utils/index.dart';
 import 'widget/cart_price_widget.dart';
 
 class CartScreen extends StatelessWidget {
@@ -22,11 +23,20 @@ class CartScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Your Cart',
-                style: Theme.of(context).textTheme.headline6?.copyWith(
-                      fontWeight: FontWeight.bold,
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: HomeController.to.removeLastWidget,
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
                     ),
+                  ),
+                  // Gap.horizontal(10),
+                  Text(
+                    'Your Cart',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Column(
@@ -40,12 +50,16 @@ class CartScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      child: const TextField(
+                      height: 60,
+                      child: TextField(
                         decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.only(left: 20, bottom: 10),
                           border: InputBorder.none,
                           hintText: 'Enter coupon code',
-                          prefixIcon: Icon(
-                            PhosphorIcons.tag,
+                          hintStyle: TextStyle(
+                            color: Colors.grey.shade400,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -59,7 +73,7 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 50,
+                    height: 60,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: primaryColor,
@@ -82,10 +96,10 @@ class CartScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const CartPricingWidget(),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               PrimaryButtonWidget(
                 text: 'Check out',
-                height: 50,
+                height: 60,
                 onPressed: () => HomeController.to.addNewWidget(
                   const ShippingAddress(),
                 ),
