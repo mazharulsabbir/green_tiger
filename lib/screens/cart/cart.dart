@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
@@ -8,8 +7,8 @@ import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/screens/cart/widget/no_item_widget.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
 import 'package:green_tiger/utils/button/index.dart';
-import 'package:green_tiger/utils/index.dart';
 import 'widget/cart_price_widget.dart';
+import 'dart:math' as math;
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -27,8 +26,11 @@ class CartScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: HomeController.to.removeLastWidget,
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
+                    icon: Transform.rotate(
+                      angle: math.pi * 2,
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                      ),
                     ),
                   ),
                   // Gap.horizontal(10),
