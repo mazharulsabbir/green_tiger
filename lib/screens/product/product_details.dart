@@ -1,21 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import '../../utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/constraints/images.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
+import 'package:green_tiger/data/model/alternative_product/alternative_product.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
 import 'package:green_tiger/data/model/product/product.dart';
 import 'package:green_tiger/data/model/product_details/more_time.dart';
-import 'dart:math' as math;
+import 'package:green_tiger/data/remote/api_service.dart';
 import 'package:green_tiger/screens/product/widget/product_widget.dart';
 import 'package:green_tiger/screens/write_review/write_review_screen.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 
-String _stataticProductDetails =
-    'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.';
+import '../../controller/home_controller.dart';
+import '../../data/local/storage_utils.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final ProductModel? productModel;
@@ -38,24 +40,25 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-          ),
-          title: const Text(
-            'GT-Vive',
-            style: TextStyle(color: Colors.black),
+          title: Text(
+            '${productModel?.name}',
+            style: const TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          actions: const [
-            Icon(
-              Icons.share,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
               color: Colors.black,
+            ),
+            onPressed: () => HomeController.to.removeLastWidget(),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.share,
+                color: Colors.black,
+              ),
             )
           ],
           backgroundColor: Colors.white,
@@ -64,20 +67,28 @@ class ProductDetailsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                      3,
-                      (index) => _ProductImageWidget(
-                            imagePath: productModel?.imageUrl,
-                          )),
-                ),
-              ),
+              productModel?.productTemplateImages != null
+                  ? SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                          productModel?.productTemplateImages?.length ?? 0,
+                          (index) => _ProductImageWidget(
+                            imagePath: productModel
+                                ?.productTemplateImages?[index].imageUrl,
+                          ),
+                        ),
+                      ),
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: "${productModel?.imageUrl}",
+                      fit: BoxFit.cover,
+                    ),
               const Gap(),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,22 +99,22 @@ class ProductDetailsScreen extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          (productModel?.price).toString(),
+                          "${productModel?.price ?? 0.0} BDT",
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     const Gap(),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: _StarReview(
-                        rating: 3.5,
-                        reviewNumber: 10,
+                        rating: productModel?.rating ?? 0.0,
+                        reviewNumber: productModel?.ratingCount?.toInt() ?? 0,
                       ),
                     ),
                     const Gap(),
-                    Text(_stataticProductDetails),
+                    Text(productModel?.saleDescription ?? 'No description'),
                     const Gap(
                       times: 2,
                     ),
@@ -112,7 +123,9 @@ class ProductDetailsScreen extends StatelessWidget {
                       child: Text(
                         'Color',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                     const Gap(),
@@ -122,74 +135,91 @@ class ProductDetailsScreen extends StatelessWidget {
                           .toList(),
                     ),
                     const Gap(),
-                    Column(
-                      children: ListTile.divideTiles(
-                          context: context,
-                          tiles: Iterable.generate(moreTiles.length, (index) {
-                            return ExpansionTile(
-                              title: Text(moreTiles[index].title),
-                              // trailing: Transform.rotate(
-                              //   angle: math.pi,
-                              //   child: const Icon(Icons.arrow_back_ios),
-                              // ),
-                              onExpansionChanged: (expanded) {
-                                if (expanded) {
-                                  // todo: change arrow icon to down arrow
-                                }
-                              },
+                    ...List.generate(
+                      productModel?.itemDetails?.length ?? 0,
+                      (index) => ExpansionTile(
+                        title: Text(
+                          productModel?.itemDetails?[index].tabName ?? '',
+                        ),
+                        children: [
+                          Html(
+                            data: productModel?.itemDetails?[index].tabContent,
+                            onImageError: (exception, stackTrace) {
+                              // FirebaseCrashlytics.instance
+                              //     .recordError(exception, stackTrace);
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                              debugPrint("Image loading error. $exception");
+                            },
+                            customImageRenders: {
+                              networkSourceMatcher(): networkImageRender(
+                                headers: {
+                                  "Cookie": "${StorageUtils.getCookie()}"
+                                },
+                                altWidget: (alt) => Text(alt ?? ""),
+                                loadingWidget: () =>
+                                    const LinearProgressIndicator(),
+                              ),
+                              (attr, _) =>
+                                      attr["src"] != null &&
+                                      !attr["src"]!.startsWith("http"):
+                                  networkImageRender(headers: {
+                                "Cookie": "${StorageUtils.getCookie()}"
+                              }, mapUrl: (url) => "$baseUrl$url"),
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    const Gap(
+                      times: 2,
+                    ),
+                    Center(
+                      child: _AddToCButton(productModel: productModel),
+                    ),
+                    const Gap(),
+                    Visibility(
+                      visible: productModel?.alternativeProducts != null,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.3,
+                            ),
+                            child: const Divider(
+                              thickness: 5,
+                              endIndent: 20,
+                              color: Colors.black,
+                              height: 20,
+                            ),
+                          ),
+                          const Gap(
+                            times: 2,
+                          ),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'You can also like',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          ),
+                          const Gap(),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
                               children: List.generate(
-                                3,
-                                (index) => ListTile(
-                                  onTap: () {
-                                    Get.to(() => WriteReviewScreen());
-                                  },
-                                  title: Text('Item $index'),
+                                productModel?.alternativeProducts?.length ?? 0,
+                                (index) => ProductWidget(
+                                  product: getProductModel(productModel!
+                                      .alternativeProducts![index]),
                                 ),
                               ),
-                            );
-                          })).toList()
-                        ..insert(moreTiles.length, const Divider())
-                        ..insert(0, const Divider()),
-                    ),
-                    const Gap(
-                      times: 2,
-                    ),
-                    _AddToCButton(
-                      productModel: productModel,
-                    ),
-                    const Gap(),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: Get.width * 0.3),
-                      child: const Divider(
-                        thickness: 5, // thickness of the line
-                        endIndent:
-                            20, // empty space to the trailing edge of the divider.
-                        color: Colors
-                            .black, // The color to use when painting the line.
-                        height: 20, // The divider's height extent.
-                      ),
-                    ),
-                    const Gap(
-                      times: 2,
-                    ),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'You can also like',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
-                    ),
-                    const Gap(),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(
-                            3,
-                            (index) => ProductWidget(
-                                  product: productModel,
-                                )),
+                            ),
+                          )
+                        ],
                       ),
                     )
                   ],
@@ -199,6 +229,19 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
         ));
   }
+
+  ProductModel getProductModel(AlternativeProducts alternativeProducts) =>
+      ProductModel(
+        id: alternativeProducts.id,
+        name: alternativeProducts.name,
+        price: alternativeProducts.listPrice,
+        discount: alternativeProducts.discount,
+        imageUrl: alternativeProducts.imageUrl,
+        rating: alternativeProducts.ratingAvg,
+        ratingCount: alternativeProducts.ratingCount,
+        alternativeProducts: null,
+        isFav: false,
+      );
 }
 
 class _ProductImageWidget extends StatelessWidget {
@@ -209,15 +252,20 @@ class _ProductImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: Get.height * 0.5,
-        width: Get.width * 0.8,
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            image: imagePath != null
-                ? DecorationImage(image: NetworkImage(imagePath!))
-                : const DecorationImage(
-                    image: AssetImage(eBikeCategoryImage))));
+      height: Get.height * 0.4,
+      width: Get.width * 0.7,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(
+            imagePath ?? '',
+            headers: {"Cookie": "${StorageUtils.getCookie()}"},
+            errorListener: () => const AssetImage(eBikeCategoryImage),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -253,7 +301,7 @@ class _StarReview extends StatelessWidget {
             ),
             empty: const Icon(
               PhosphorIcons.star,
-              color: Colors.white,
+              color: Colors.yellow,
             ),
           ),
           itemPadding: const EdgeInsets.only(right: 2.0),
@@ -302,13 +350,16 @@ class _AddToCButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          CartController.to.addAItem(CartModel(
+          CartController.to.addAItem(
+            CartModel(
               name: productModel?.name,
-              description: _stataticProductDetails,
+              description: productModel?.description,
               price: productModel?.price?.toString(),
               imageUrl: productModel?.imageUrl,
               quantity: 1.toString(),
-              total: productModel?.price?.toString()));
+              total: productModel?.price?.toString(),
+            ),
+          );
         },
         child: const Text(
           'ADD TO CART',

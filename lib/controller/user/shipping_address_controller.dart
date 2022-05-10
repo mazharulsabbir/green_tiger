@@ -1,10 +1,9 @@
+import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
+import 'package:green_tiger/data/repository/address_repo.dart';
+import 'package:green_tiger/data/local/address_storage.dart';
+import 'package:green_tiger/data/model/country/country.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/data/local/address_storage.dart';
-import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
-import 'package:green_tiger/data/model/country/country.dart';
-
-import '../../data/repository/address_repo.dart';
 
 class ShippingAddressController extends GetxController {
   final AddressRepository _repository;
@@ -17,13 +16,17 @@ class ShippingAddressController extends GetxController {
   final Rx<Country> _country = const Country().obs;
   Country get country => _country.value;
 
-  final _countries = <Country>[].obs;
+  final RxList<Country> _countries = <Country>[].obs;
   List<Country> get countries => _countries;
   set countries(List<Country> value) => _countries.value = value;
 
-  final Rx<ShippingAddress> _address = const ShippingAddress().obs;
-  ShippingAddress get shippingAddress => _address.value;
-  set shippingAddress(ShippingAddress value) => _address.value = value;
+  final RxList<ShippingAddress> _address = <ShippingAddress>[].obs;
+  List<ShippingAddress> get shippingAddress => _address;
+  set shippingAddress(List<ShippingAddress> value) => _address.value = value;
+
+  final _defaultAddress = (const ShippingAddress()).obs;
+  ShippingAddress? get defaultAddress =>
+      _defaultAddress.value.firstName == null ? null : _defaultAddress.value;
 
   final _selectedCountry = const Country().obs;
   Country get selectedCountry => _selectedCountry.value;
@@ -51,34 +54,35 @@ class ShippingAddressController extends GetxController {
 
   Future<void> getAddress() async {
     try {
-      ShippingAddress? address = AddressStorage.getAvailableAddresses();
-      if (address == null) return;
+      List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
+      if (address.isEmpty) return;
       _address.value = address;
-      if (_address.value.country == null) {
+      if (_address.isNotEmpty) {
+        _defaultAddress.value =
+            address.where((element) => element.isDefault).first;
+        update();
+      }
+      if (_address.first.country == null) {
         _country.value = const Country();
         return;
       }
-
       Country country = countries
-          .where((element) => element.name == _address.value.country)
+          .where((element) => element.name == address.first.country)
           .first;
       _country.value = country;
-      debugPrint(
-        'Getting address ${_address.value} and country ${_country.value}',
-      );
+
       update();
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  Future<void> saveAddress(ShippingAddress shippingAddress) async {
+  Future<void> saveAddress(List<ShippingAddress> shippingAddress) async {
     _isLoading.value = true;
     update();
-    await AddressStorage.setAddress(shippingAddress).catchError((e) {
+    await AddressStorage.setAddresses(shippingAddress).catchError((e) {
       _isLoading.value = false;
       update();
-      print(e.toString());
     }).then((_) {
       _address.value = shippingAddress;
       _isLoading.value = false;
@@ -86,9 +90,23 @@ class ShippingAddressController extends GetxController {
     });
   }
 
+  Future<void> saveDefaultAddress(ShippingAddress? shippingAddress) async {
+    _isLoading.value = true;
+    update();
+    await AddressStorage.setDefaultAddress(shippingAddress!).catchError((e) {
+      _isLoading.value = false;
+      update();
+    }).then((_) {
+      _defaultAddress.value = shippingAddress;
+      _isLoading.value = false;
+      update();
+    });
+  }
+
   void clearAddress() {
     AddressStorage.removeAvailableAddresses();
-    _address.value = const ShippingAddress();
+    _address.value = [];
+    _defaultAddress.value = const ShippingAddress();
     update();
   }
 

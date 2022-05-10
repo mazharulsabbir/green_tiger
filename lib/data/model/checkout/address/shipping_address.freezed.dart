@@ -30,7 +30,8 @@ class _$ShippingAddressTearOff {
       String? state,
       String? country,
       String? zipCode,
-      String? phone}) {
+      String? phone,
+      bool isDefault = false}) {
     return _ShippingAddress(
       firstName: firstName,
       lastName: lastName,
@@ -41,6 +42,7 @@ class _$ShippingAddressTearOff {
       country: country,
       zipCode: zipCode,
       phone: phone,
+      isDefault: isDefault,
     );
   }
 
@@ -63,6 +65,7 @@ mixin _$ShippingAddress {
   String? get country => throw _privateConstructorUsedError;
   String? get zipCode => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  bool get isDefault => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,7 +87,8 @@ abstract class $ShippingAddressCopyWith<$Res> {
       String? state,
       String? country,
       String? zipCode,
-      String? phone});
+      String? phone,
+      bool isDefault});
 }
 
 /// @nodoc
@@ -107,6 +111,7 @@ class _$ShippingAddressCopyWithImpl<$Res>
     Object? country = freezed,
     Object? zipCode = freezed,
     Object? phone = freezed,
+    Object? isDefault = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
@@ -145,6 +150,10 @@ class _$ShippingAddressCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      isDefault: isDefault == freezed
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,7 +174,8 @@ abstract class _$ShippingAddressCopyWith<$Res>
       String? state,
       String? country,
       String? zipCode,
-      String? phone});
+      String? phone,
+      bool isDefault});
 }
 
 /// @nodoc
@@ -190,6 +200,7 @@ class __$ShippingAddressCopyWithImpl<$Res>
     Object? country = freezed,
     Object? zipCode = freezed,
     Object? phone = freezed,
+    Object? isDefault = freezed,
   }) {
     return _then(_ShippingAddress(
       firstName: firstName == freezed
@@ -228,6 +239,10 @@ class __$ShippingAddressCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      isDefault: isDefault == freezed
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -245,7 +260,8 @@ class _$_ShippingAddress extends _ShippingAddress {
       this.state,
       this.country,
       this.zipCode,
-      this.phone})
+      this.phone,
+      this.isDefault = false})
       : super._();
 
   factory _$_ShippingAddress.fromJson(Map<String, dynamic> json) =>
@@ -269,10 +285,13 @@ class _$_ShippingAddress extends _ShippingAddress {
   final String? zipCode;
   @override
   final String? phone;
+  @JsonKey()
+  @override
+  final bool isDefault;
 
   @override
   String toString() {
-    return 'ShippingAddress(firstName: $firstName, lastName: $lastName, streetAddress1: $streetAddress1, streetAddress2: $streetAddress2, city: $city, state: $state, country: $country, zipCode: $zipCode, phone: $phone)';
+    return 'ShippingAddress(firstName: $firstName, lastName: $lastName, streetAddress1: $streetAddress1, streetAddress2: $streetAddress2, city: $city, state: $state, country: $country, zipCode: $zipCode, phone: $phone, isDefault: $isDefault)';
   }
 
   @override
@@ -290,7 +309,8 @@ class _$_ShippingAddress extends _ShippingAddress {
             const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality().equals(other.zipCode, zipCode) &&
-            const DeepCollectionEquality().equals(other.phone, phone));
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.isDefault, isDefault));
   }
 
   @override
@@ -304,7 +324,8 @@ class _$_ShippingAddress extends _ShippingAddress {
       const DeepCollectionEquality().hash(state),
       const DeepCollectionEquality().hash(country),
       const DeepCollectionEquality().hash(zipCode),
-      const DeepCollectionEquality().hash(phone));
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(isDefault));
 
   @JsonKey(ignore: true)
   @override
@@ -327,7 +348,8 @@ abstract class _ShippingAddress extends ShippingAddress {
       String? state,
       String? country,
       String? zipCode,
-      String? phone}) = _$_ShippingAddress;
+      String? phone,
+      bool isDefault}) = _$_ShippingAddress;
   const _ShippingAddress._() : super._();
 
   factory _ShippingAddress.fromJson(Map<String, dynamic> json) =
@@ -351,6 +373,8 @@ abstract class _ShippingAddress extends ShippingAddress {
   String? get zipCode;
   @override
   String? get phone;
+  @override
+  bool get isDefault;
   @override
   @JsonKey(ignore: true)
   _$ShippingAddressCopyWith<_ShippingAddress> get copyWith =>

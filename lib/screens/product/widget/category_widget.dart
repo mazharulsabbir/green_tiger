@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/controller/auth_controller.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/controller/product/product_by_category_controller.dart';
 import '../product_by_category.dart';
 import '/constraints/index.dart';
@@ -16,7 +17,7 @@ class CategoryWidget extends GetView<AuthController> {
     return InkWell(
       onTap: () {
         ProductByCategoryController.to.getProductByCategory(category);
-        Get.to(() => const ProductByCategoryScreen());
+        HomeController.to.addNewWidget(const ProductByCategoryScreen());
       },
       child: Column(
         children: [

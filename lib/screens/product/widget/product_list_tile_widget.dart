@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/screens/product/product_details.dart';
 import '../../../data/local/storage_utils.dart';
 import '/constraints/index.dart';
 import '/data/model/product/product.dart';
+import 'package:cached_network_image/cached_network_image.dart'
+    show CachedNetworkImageProvider;
 
 class ProductListTileWidget extends StatelessWidget {
   final ProductModel? product;
@@ -16,7 +18,9 @@ class ProductListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => ProductDetailsScreen(productModel: product)),
+      onTap: () => HomeController.to.addNewWidget(
+        ProductDetailsScreen(productModel: product),
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -27,22 +31,24 @@ class ProductListTileWidget extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 100,
-              width: 100,
-              padding: const EdgeInsets.all(10),
+              height: 130,
+              width: 130,
+              // padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: productBackgroundColor,
+                image: product?.imageUrl != null
+                    ? DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          '${product?.imageUrl}',
+                          headers: {"Cookie": "${StorageUtils.getCookie()}"},
+                        ),
+                        fit: BoxFit.cover)
+                    : const DecorationImage(
+                        image: AssetImage('assets/images/cycle.png'),
+                        fit: BoxFit.cover,
+                      ),
               ),
-              child: product?.imageUrl == null
-                  ? Image.asset(
-                      'assets/images/cycle.png',
-                      // fit: BoxFit.cover,
-                    )
-                  : CachedNetworkImage(
-                      imageUrl: '${product?.imageUrl}',
-                      httpHeaders: {"Cookie": "${StorageUtils.getCookie()}"},
-                    ),
             ),
             const SizedBox(width: 10),
             Column(
@@ -111,9 +117,7 @@ class ProductListTileWidget extends StatelessWidget {
                         ),
                       ),
                       itemPadding: const EdgeInsets.only(right: 2.0),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
+                      onRatingUpdate: (rating) {},
                     ),
                     const SizedBox(width: 4),
                     Text(

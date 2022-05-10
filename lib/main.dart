@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: GlobalBindings(),
       home: const Splash(),
-      theme: theme(),
+      theme: theme(context),
       // darkTheme: darkTheme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget!),

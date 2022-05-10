@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:green_tiger/data/model/user/user.dart';
 import 'package:green_tiger/data/remote/api_service.dart';
 
@@ -10,11 +9,11 @@ class UserRepository {
     final _body = {
       "params": {
         "data": {
-          "model": "res.partner",
+          "model": "res.users",
           "conditions": {
             "relation": ["&"],
             "condition": [
-              {"id": "id", "condition": "=", "value": uid},
+              {"id": "partner_id.id", "condition": "=", "value": uid},
               {"id": "active", "condition": "=", "value": true}
             ]
           },
@@ -27,6 +26,8 @@ class UserRepository {
             {"name": "type", "type": "str"},
             {"name": "phone", "type": "str"},
             {"name": "mobile", "type": "str"},
+            {"name": "gender", "type": "str"},
+            {"name": "birthday", "type": "str"},
             {"name": "is_dealer", "type": "bool"},
             {
               "name": "country_id",
@@ -99,6 +100,7 @@ class UserRepository {
                 {"name": "mobile", "type": "str"},
                 {"name": "email", "type": "str"},
                 {"name": "phone", "type": "str"},
+                {"name": "type", "type": "str"},
                 {
                   "name": "state_id",
                   "type": "related",
@@ -130,6 +132,7 @@ class UserRepository {
         body: _body,
       );
       final _response = response as List<dynamic>?;
+
       final _address = _response?.first['child_ids'] as List<dynamic>?;
       final _result =
           _address?.map((e) => ContactAndAddress.fromJson(e)).toList();

@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/screens/cart/widget/cart_item_widget.dart';
 import 'package:green_tiger/screens/cart/widget/no_item_widget.dart';
 import 'package:green_tiger/screens/checkout/shipping.dart';
@@ -42,7 +43,7 @@ class CartScreen extends StatelessWidget {
                       child: const TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter cupon code',
+                          hintText: 'Enter coupon code',
                           prefixIcon: Icon(
                             PhosphorIcons.tag,
                           ),
@@ -83,8 +84,11 @@ class CartScreen extends StatelessWidget {
               const CartPricingWidget(),
               const SizedBox(height: 50),
               PrimaryButtonWidget(
-                text: 'Checkout',
-                onPressed: () => Get.to(() => const ShippingAddress()),
+                text: 'Check out',
+                height: 50,
+                onPressed: () => HomeController.to.addNewWidget(
+                  const ShippingAddress(),
+                ),
               ),
               const SizedBox(height: 50),
             ],

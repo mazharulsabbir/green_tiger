@@ -3,11 +3,15 @@ import 'package:green_tiger/constraints/index.dart';
 
 class PrimaryButtonWidget extends StatelessWidget {
   final String text;
+  final double height;
+  final double? weight;
   final Function()? onPressed;
 
   const PrimaryButtonWidget({
     Key? key,
     required this.text,
+    this.height = 48,
+    this.weight,
     this.onPressed,
   }) : super(key: key);
 
@@ -18,8 +22,8 @@ class PrimaryButtonWidget extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width - 20,
-          minHeight: 48,
-          maxHeight: 48,
+          minHeight: height,
+          maxHeight: height,
         ),
         child: Container(
           decoration: BoxDecoration(
@@ -30,9 +34,10 @@ class PrimaryButtonWidget extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.button?.copyWith(
-                    color: Colors.white,
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .button
+                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ),

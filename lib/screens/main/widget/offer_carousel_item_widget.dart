@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '/constraints/index.dart';
 
 class OfferCarouselItemWidget extends StatelessWidget {
@@ -10,7 +11,7 @@ class OfferCarouselItemWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.4,
+          width: Get.width * 0.5,
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           child: Column(
             children: [
@@ -22,21 +23,28 @@ class OfferCarouselItemWidget extends StatelessWidget {
                       ),
                 ),
               ),
-              Row(
-                children: const [
-                  TimerWidget(),
-                  TimerColonWidget(),
-                  TimerWidget(),
-                  TimerColonWidget(),
-                  TimerWidget()
-                ],
+              SizedBox(
+                width: Get.width * 0.5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    TimerWidget(),
+                    TimerColonWidget(),
+                    TimerWidget(),
+                    TimerColonWidget(),
+                    TimerWidget()
+                  ],
+                ),
               )
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(bikeImage),
+        SizedBox(
+          width: Get.width * 0.4,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(bikeImage),
+          ),
         ),
       ],
     );
@@ -73,7 +81,6 @@ class TimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: MediaQuery.of(context).size.width * 0.3,
       height: 40,
       width: 40,
       decoration: BoxDecoration(

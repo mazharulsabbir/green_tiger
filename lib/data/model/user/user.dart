@@ -16,6 +16,8 @@ class UserModel with _$UserModel {
     String? type,
     String? phone,
     String? mobile,
+    String? gender,
+    String? birthday,
     @JsonKey(name: 'is_dealer') bool? isDealer,
     @JsonKey(name: 'country_id') List<Country>? country,
     @JsonKey(name: 'state_id') List<State>? state,
@@ -40,6 +42,7 @@ class ContactAndAddress with _$ContactAndAddress {
     String? zip,
     String? street,
     String? city,
+    String? type,
     @JsonKey(name: 'country_id') Country? country,
     @JsonKey(name: 'state_id') State? state,
   }) = _ContactAndAddress;

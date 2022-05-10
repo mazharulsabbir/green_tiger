@@ -29,6 +29,7 @@ class ContactAndAddressController extends GetxController
         change(null, status: RxStatus.error('No address found'));
         return;
       }
+
       change(address, status: RxStatus.success());
     }).catchError((error) {
       change(null, status: RxStatus.error("Error: $error"));

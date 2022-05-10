@@ -8,7 +8,6 @@ import '/controller/auth_controller.dart';
 import '/screens/wrapper.dart';
 import '/constraints/index.dart';
 import '/utils/button/index.dart';
-
 import 'sign_up.dart';
 import 'widget/social_media_login_widget.dart';
 
@@ -108,7 +107,7 @@ class _SignInPageState extends State<SignInPage> {
                             .then((value) {
                           Get.offAll(() => const Wrapper());
                         }, onError: (error) {
-                          MySnackBar.erorrSnackBar(error.toString());
+                          MySnackBar.errorSnackBar(error.toString());
                         });
                       }
                       // _authController.setUserLoggedInStatus(true);

@@ -9,8 +9,10 @@ class Wrapper extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => controller.isUserLoggedIn ? const HomePage() : const AuthPage(),
+    return SafeArea(
+      child: Obx(
+        () => controller.isUserLoggedIn ? const HomePage() : const AuthPage(),
+      ),
     );
   }
 }

@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/cart_controller.dart';
 import 'package:green_tiger/data/model/cart/cart.dart';
+
+import '../../../data/local/storage_utils.dart';
 
 class CartItemWidget extends GetView<CartController> {
   final CartModel cart;
@@ -28,14 +31,15 @@ class CartItemWidget extends GetView<CartController> {
               borderRadius: BorderRadius.circular(10),
               color: productBackgroundColor,
             ),
-            child: Image.asset(
-              "${cart.imageUrl}",
+            child: CachedNetworkImage(
+              imageUrl: "${cart.imageUrl}",
+              httpHeaders: {"Cookie": "${StorageUtils.getCookie()}"},
               // fit: BoxFit.cover,
             ),
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 children: [
                   Row(

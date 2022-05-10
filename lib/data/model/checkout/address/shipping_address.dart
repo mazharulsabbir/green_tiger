@@ -18,7 +18,9 @@ class ShippingAddress with _$ShippingAddress {
     String? country,
     String? zipCode,
     String? phone,
+    @Default(false) bool isDefault,
   }) = _ShippingAddress;
 
-  factory ShippingAddress.fromJson(Map<String, dynamic> json) => _$ShippingAddressFromJson(json);
+  factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
+      _$ShippingAddressFromJson(json);
 }

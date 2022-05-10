@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:green_tiger/data/repository/auth_repo.dart';
 import 'package:green_tiger/screens/splash.dart';
 
@@ -92,7 +90,6 @@ class AuthController extends GetxController {
       return Future.value('Login Successful!');
     } on Exception catch (e) {
       _setLoading(false);
-      debugPrint("${e}");
       return Future.error(e.toString());
     } finally {
       _setLoading(false);
@@ -103,5 +100,6 @@ class AuthController extends GetxController {
     StorageUtils.removeLoginStatus();
     _isLoggedIn.value = false;
     Get.offAll(() => const Splash(), binding: GlobalBindings());
+    //FIXME: #6 Routing error catching. Need to fix
   }
 }

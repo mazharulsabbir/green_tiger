@@ -14,14 +14,17 @@ class ProductByCategoryController extends GetxController
   CategoryModel? get category => _category;
 
   Future<void> getProductByCategory(
-    CategoryModel category,
+    CategoryModel? category,
   ) async {
     _category = category;
+    update();
     change(null, status: RxStatus.loading());
-    await _repository.productsByCategory(category.id).then(
+    await _repository.productsByCategory(category?.id).then(
           (response) => change(
             response,
-            status: response == null ? RxStatus.empty() : RxStatus.success(),
+            status: response == null || response.isEmpty
+                ? RxStatus.empty()
+                : RxStatus.success(),
           ),
           onError: (err) => change(null, status: RxStatus.error(err)),
         );

@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart' as dio;
+// import 'package:dio/dio.dart' as dio;
 import 'package:green_tiger/data/remote/api_service.dart';
 
 class AuthRepository {
@@ -24,8 +24,6 @@ class AuthRepository {
       );
       return response;
     } catch (e) {
-      print('Error cought');
-      print(e.toString());
       return Future.error("$e");
     }
   }

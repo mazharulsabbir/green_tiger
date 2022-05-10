@@ -15,6 +15,8 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       type: json['type'] as String?,
       phone: json['phone'] as String?,
       mobile: json['mobile'] as String?,
+      gender: json['gender'] as String?,
+      birthday: json['birthday'] as String?,
       isDealer: json['is_dealer'] as bool?,
       country: (json['country_id'] as List<dynamic>?)
           ?.map((e) => Country.fromJson(e as Map<String, dynamic>))
@@ -40,6 +42,8 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'type': instance.type,
       'phone': instance.phone,
       'mobile': instance.mobile,
+      'gender': instance.gender,
+      'birthday': instance.birthday,
       'is_dealer': instance.isDealer,
       'country_id': instance.country,
       'state_id': instance.state,
@@ -59,6 +63,7 @@ _$_ContactAndAddress _$$_ContactAndAddressFromJson(Map<String, dynamic> json) =>
       zip: json['zip'] as String?,
       street: json['street'] as String?,
       city: json['city'] as String?,
+      type: json['type'] as String?,
       country: json['country_id'] == null
           ? null
           : Country.fromJson(json['country_id'] as Map<String, dynamic>),
@@ -78,6 +83,7 @@ Map<String, dynamic> _$$_ContactAndAddressToJson(
       'zip': instance.zip,
       'street': instance.street,
       'city': instance.city,
+      'type': instance.type,
       'country_id': instance.country,
       'state_id': instance.state,
     };

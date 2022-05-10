@@ -75,8 +75,9 @@ class CartPricingWidget extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  (double.parse(getTotal(controller.cartItems)) + 40.0)
-                      .toString(),
+                  '\$' +
+                      (double.parse(getTotal(controller.cartItems)) + 40.0)
+                          .toString(),
                   style: TextStyle(
                     color: primaryColor,
                     fontWeight: FontWeight.bold,
