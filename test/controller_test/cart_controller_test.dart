@@ -18,7 +18,7 @@ void main() {
       CartModel _cartModel = CartModel(
           name: 'Test product',
           description: 'Dummy description',
-          imageUrl: stataticNetIm,
+          imageUrl: staticNetIm,
           price: '20',
           quantity: '1',
           total: '50');
