@@ -11,6 +11,8 @@ class ShippingAddressWidget extends StatelessWidget {
   const ShippingAddressWidget({Key? key, required this.defaultShippingAddress})
       : super(key: key);
   final ShippingAddress? defaultShippingAddress;
+
+  Color get secondaryColor => Colors.grey;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,13 +38,15 @@ class ShippingAddressWidget extends StatelessWidget {
                 children: [
                   InkWell(
                     child: Row(
-                      children: const [
+                      children: [
                         Text(
                           'EDIT',
+                          style: TextStyle(color: secondaryColor),
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Icon(
                           PhosphorIcons.pencil,
+                          color: secondaryColor,
                           size: 16,
                         ),
                       ],
@@ -53,7 +57,10 @@ class ShippingAddressWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 15),
                   InkWell(
-                    child: const Icon(PhosphorIcons.trash),
+                    child: Icon(
+                      PhosphorIcons.trash,
+                      color: secondaryColor,
+                    ),
                     onTap: Get.find<ShippingAddressController>().clearAddress,
                   )
                 ],
@@ -64,12 +71,19 @@ class ShippingAddressWidget extends StatelessWidget {
           defaultShippingAddress?.streetAddress2 == null
               ? Text(
                   '${defaultShippingAddress?.streetAddress1}',
+                  style: TextStyle(color: secondaryColor),
                 )
               : Text(
                   '${defaultShippingAddress?.streetAddress1}, ${defaultShippingAddress?.streetAddress2}',
+                  style: TextStyle(
+                    color: secondaryColor,
+                  ),
                 ),
           const SizedBox(height: 20),
-          Text('${defaultShippingAddress?.phone}'),
+          Text(
+            '${defaultShippingAddress?.phone}',
+            style: TextStyle(color: secondaryColor),
+          ),
         ],
       ),
     );
