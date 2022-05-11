@@ -37,6 +37,7 @@ class ShippingAddressController extends GetxController {
     super.onInit();
     _isLoading.value = true;
     update();
+    //FIXME: #7 Varaiables(even _isLoading) are not updating after this this block
     await getCountries();
     await getAddress();
     _isLoading.value = false;
@@ -47,6 +48,7 @@ class ShippingAddressController extends GetxController {
     try {
       List<Country> countries = await _repository.countries();
       _countries.value = countries;
+      update();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -55,6 +57,7 @@ class ShippingAddressController extends GetxController {
   Future<void> getAddress() async {
     try {
       List<ShippingAddress> address = AddressStorage.getAvailableAddresses();
+
       if (address.isEmpty) return;
       _address.value = address;
       if (_address.isNotEmpty) {

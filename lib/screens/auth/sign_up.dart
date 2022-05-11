@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:green_tiger/screens/auth/widget/my_textfield.dart';
+import 'package:green_tiger/utils/custom_field/my_textfield.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 import '/screens/auth/otp_verification.dart';
 import '/screens/auth/sign_in.dart';

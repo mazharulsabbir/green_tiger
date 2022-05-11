@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
+import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/controller/user/contact_address_controller.dart';
+import 'package:green_tiger/screens/checkout/widget/address_form_widget.dart';
 import 'package:green_tiger/utils/button/index.dart';
 
 import '../../constraints/index.dart';
-import '../../controller/home_controller.dart';
 
 class ContactAndAddressScreen extends GetView<ContactAndAddressController> {
   const ContactAndAddressScreen({Key? key}) : super(key: key);
@@ -17,16 +18,6 @@ class ContactAndAddressScreen extends GetView<ContactAndAddressController> {
       body: controller.obx(
         (state) => Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 30),
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: PrimaryButtonWidget(
-                    onPressed: () {},
-                    text: 'Add Address',
-                    height: 60,
-                  )),
-            ),
             ListView.builder(
               padding: const EdgeInsets.only(top: 8),
               itemCount: state?.length,
@@ -95,6 +86,17 @@ class ContactAndAddressScreen extends GetView<ContactAndAddressController> {
                   ],
                 ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: PrimaryButtonWidget(
+                    onPressed: () =>
+                        HomeController.to.addNewWidget(AddressFormWidget()),
+                    text: 'Add Address',
+                    height: 60,
+                  )),
             ),
           ],
         ),
