@@ -4,10 +4,10 @@ part 'country.freezed.dart';
 part 'country.g.dart';
 
 @freezed
+@JsonSerializable()
 class Country with _$Country {
   const Country._();
 
-  @JsonSerializable()
   const factory Country({
     int? id,
     String? name,
@@ -22,10 +22,10 @@ class Country with _$Country {
 }
 
 @freezed
+@JsonSerializable()
 class Currency with _$Currency {
   const Currency._();
 
-  @JsonSerializable()
   const factory Currency({
     int? id,
     String? name,
@@ -36,10 +36,10 @@ class Currency with _$Currency {
 }
 
 @freezed
+@JsonSerializable()
 class State with _$State {
   const State._();
 
-  @JsonSerializable()
   const factory State({
     int? id,
     String? name,
