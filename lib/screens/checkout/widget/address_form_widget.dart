@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide State;
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/controller/user/shipping_address_controller.dart';
@@ -66,7 +66,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                             controller.defaultAddress?.firstName == null
                         ? null
                         : controller.country,
-                    decoration: textInputDecoration,
+                    decoration: nonFieldInputDecoration,
                     isExpanded: true,
                     isDense: true,
                     items: List.generate(
@@ -86,10 +86,9 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const Gap(),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: firstNameController
                       ..text = controller.defaultAddress?.firstName ?? '',
-                    decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.firstNameValidate,
                   ),
@@ -99,10 +98,9 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: lastNameController
                       ..text = controller.defaultAddress?.lastName ?? '',
-                    decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.lastNameValidate,
                   ),
@@ -112,10 +110,9 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: street1Controller
                       ..text = controller.defaultAddress?.streetAddress1 ?? '',
-                    decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator:
                         ShippingAddressValidations.streetAddress1Validate,
@@ -126,10 +123,9 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: street2Controller
                       ..text = controller.defaultAddress?.streetAddress2 ?? '',
-                    decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator:
                         ShippingAddressValidations.streetAddress2Validate,
@@ -140,10 +136,9 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: cityController
                       ..text = controller.defaultAddress?.city ?? '',
-                    decoration: textInputDecoration,
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.cityValidation,
                   ),
@@ -153,24 +148,41 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    controller: stateController
-                      ..text = controller.defaultAddress?.state ?? '',
-                    decoration: textInputDecoration,
-                    textCapitalization: TextCapitalization.words,
+                  DropdownButtonFormField<State>(
                     validator: ShippingAddressValidations.stateValidation,
+                    value:
+                        controller.state.name == null ? null : controller.state,
+                    decoration: nonFieldInputDecoration,
+                    isExpanded: true,
+                    isDense: true,
+                    items: List.generate(
+                        controller.states.length,
+                        (index) => DropdownMenuItem(
+                              child: Text(
+                                "${controller.states[index].name}",
+                                overflow: TextOverflow.fade,
+                              ),
+                              value: controller.states[index],
+                            )),
+                    onChanged: controller.setState,
                   ),
+
+                  // CustomNonFilledField(
+                  //   controller: stateController
+                  //     ..text = controller.defaultAddress?.state ?? '',
+                  //   textCapitalization: TextCapitalization.words,
+                  //   validator: ShippingAddressValidations.stateValidation,
+                  // ),
                   const SizedBox(height: 10),
                   Text(
-                    'Zip/Postal Code',
+                    'Zip',
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: zipController
                       ..text = controller.defaultAddress?.zipCode ?? '',
-                    decoration: textInputDecoration,
-                    keyboardType: TextInputType.number,
+                    inputType: TextInputType.number,
                     validator: ShippingAddressValidations.zipCodeValidation,
                   ),
                   const SizedBox(height: 10),
@@ -179,11 +191,10 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                     style: formTitleTextStyle,
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  CustomNonFilledField(
                     controller: phoneController
                       ..text = controller.defaultAddress?.phone ?? '',
-                    decoration: textInputDecoration,
-                    keyboardType: TextInputType.number,
+                    inputType: TextInputType.number,
                     validator: ShippingAddressValidations.phoneValidation,
                   ),
                   const Gap(
@@ -206,7 +217,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                               firstName: firstNameController.text,
                               streetAddress1: street1Controller.text,
                               streetAddress2: street2Controller.text,
-                              state: stateController.text,
+                              state: controller.state.name,
                               country: controller.country.name,
                               zipCode: zipController.text,
                               city: cityController.text,

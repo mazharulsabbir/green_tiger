@@ -16,6 +16,13 @@ class ShippingAddressController extends GetxController {
   final Rx<Country> _country = const Country().obs;
   Country get country => _country.value;
 
+  final Rx<State> _state = const State().obs;
+  State get state => _state.value;
+
+  final RxList<State> _states = <State>[].obs;
+  List<State> get states => _states;
+  set states(List<State> value) => _states.value = value;
+
   final RxList<Country> _countries = <Country>[].obs;
   List<Country> get countries => _countries;
   set countries(List<Country> value) => _countries.value = value;
@@ -48,6 +55,7 @@ class ShippingAddressController extends GetxController {
     try {
       List<Country> countries = await _repository.countries();
       _countries.value = countries;
+      print(countries);
       update();
     } catch (e) {
       debugPrint(e.toString());
@@ -113,5 +121,17 @@ class ShippingAddressController extends GetxController {
     update();
   }
 
-  setCountry(Country? value) => _country.value = value ?? const Country();
+  setCountry(Country? value) {
+    if (value != null && value != _country.value) {
+      _state.value = const State();
+      _states.value = value.states ?? [];
+    }
+    _country.value = value ?? const Country();
+
+    update();
+  }
+
+  setState(State? value) {
+    _state.value = value ?? const State();
+  }
 }

@@ -41,13 +41,13 @@ class ShippingAddressValidations {
     }
   }
 
-  static String? stateValidation(String? value) {
-    if (value == null || value.trim() == '') {
-      return 'Enter state';
-    } else {
-      return null;
-    }
-  }
+  // static String? stateValidation(String? value) {
+  //   if (value == null || value.trim() == '') {
+  //     return 'Enter state';
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   static String? zipCodeValidation(String? value) {
     if (value == null || value.trim() == '') {
@@ -68,6 +68,14 @@ class ShippingAddressValidations {
   static String? dropdownValidation(Country? value) {
     if (value == null) {
       return 'Select a country';
+    } else {
+      return null;
+    }
+  }
+
+  static String? stateValidation(State? value) {
+    if (value == null) {
+      return 'Select a state';
     } else {
       return null;
     }
