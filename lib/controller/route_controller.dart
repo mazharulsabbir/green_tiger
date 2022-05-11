@@ -47,8 +47,10 @@ mixin RouteController on GetxController {
   }
 
   void removeLastWidget() {
-    _widgets.removeLast();
-    _index.value = _widgets.length - 1;
+    if (_widgets.length > 5) {
+      _widgets.removeLast();
+      _index.value = _widgets.length - 1;
+    }
     debugPrint(
       "_widgets.length: ${_widgets.length}, Current Index: ${_index.value}, Active Index: $activeIndex",
     );
