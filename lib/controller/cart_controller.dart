@@ -33,10 +33,10 @@ class CartController extends GetxController {
   void addAItem(CartModel cartModel) async {
     CartStorage.addAItem(cartModel).then((value) {
       _cartItems.add(cartModel);
-      MySnackBar.successSnackBar(value);
+      MySnackBar.success(value);
       update();
     }).onError((e, t) {
-      MySnackBar.errorSnackBar('Already added');
+      MySnackBar.error('Already added');
     });
   }
 
@@ -51,9 +51,9 @@ class CartController extends GetxController {
     CartStorage.removeAItem(cartModel).then((_) {
       _cartItems.remove(cartModel);
       update();
-      MySnackBar.successSnackBar('Removed successfully');
+      MySnackBar.success('Removed successfully');
     }).onError((e, t) {
-      MySnackBar.errorSnackBar(t.toString());
+      MySnackBar.error(t.toString());
     });
   }
 
