@@ -4,15 +4,16 @@ import 'package:get/get.dart';
 
 part 'model/my_time_line_model.dart';
 
-///[BublePosition] is to define bubles position
-enum BublePosition {
+///[BubblePosition] is to define bubbles position
+enum BubblePosition {
   middle,
   start,
   end,
 }
+
 enum TimeLineState {
   confirmed,
-  proccessing,
+  processing,
   shipping,
   delivered,
 }
@@ -37,7 +38,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
 
   @override
   void initState() {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!(widget.timeLineState == TimeLineState.shipping ||
           widget.timeLineState == TimeLineState.delivered)) return;
       scrollController.jumpTo(scrollController.position.maxScrollExtent);
@@ -66,9 +67,9 @@ class _MyTimeLineState extends State<MyTimeLine> {
         style: TextStyle(color: _isActive ? Colors.green : Colors.grey),
       );
 
-  Widget _buildConnector(bool _isActive, {double legnth = 50}) {
+  Widget _buildConnector(bool _isActive, {double length = 50}) {
     return Container(
-      width: legnth,
+      width: length,
       height: 5,
       color: _isActive ? Colors.blue : Colors.grey,
     );
@@ -76,12 +77,12 @@ class _MyTimeLineState extends State<MyTimeLine> {
 
   Widget _buildEveryTile(
       {required MyTimeLineModel model,
-      required BublePosition position,
+      required BubblePosition position,
       required bool isActive,
       required bool isFill}) {
     late Widget child;
     switch (position) {
-      case BublePosition.start:
+      case BubblePosition.start:
         child = Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +103,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
           ],
         );
         break;
-      case BublePosition.end:
+      case BubblePosition.end:
         child = Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -159,7 +160,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
           timelines.length,
           (index) => _buildEveryTile(
             model: timelines[index],
-            position: getBubblePoistion(index, timelines.length),
+            position: getBubblePosition(index, timelines.length),
             isActive: index == currentIndex || index < currentIndex,
             isFill: index < currentIndex,
           ),
@@ -168,16 +169,16 @@ class _MyTimeLineState extends State<MyTimeLine> {
     );
   }
 
-  BublePosition getBubblePoistion(int currentIndex, int legnth) {
-    if (currentIndex == 0) return BublePosition.start;
-    if (currentIndex == (legnth - 1)) return BublePosition.end;
-    return BublePosition.middle;
+  BubblePosition getBubblePosition(int currentIndex, int length) {
+    if (currentIndex == 0) return BubblePosition.start;
+    if (currentIndex == (length - 1)) return BubblePosition.end;
+    return BubblePosition.middle;
   }
 
   int getIndex(TimeLineState timeLineState) {
     if (timeLineState == TimeLineState.delivered) return 3;
     if (timeLineState == TimeLineState.shipping) return 2;
-    if (timeLineState == TimeLineState.proccessing) return 1;
+    if (timeLineState == TimeLineState.processing) return 1;
     return 0;
   }
 

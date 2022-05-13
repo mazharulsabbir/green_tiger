@@ -16,17 +16,16 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    if (SchedulerBinding.instance != null) {
-      SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-        if (timeStamp.inSeconds < 3) {
-          Future.delayed(Duration(seconds: 3 - timeStamp.inSeconds), () {
-            Get.offAll(() => const Wrapper());
-          });
-        } else {
-          Get.off(() => const Wrapper());
-        }
-      });
-    }
+    //[SchedulerBinding.instance] is non-nullable after Flutter 3.0.0 . So, removed null checking
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      if (timeStamp.inSeconds < 3) {
+        Future.delayed(Duration(seconds: 3 - timeStamp.inSeconds), () {
+          Get.offAll(() => const Wrapper());
+        });
+      } else {
+        Get.off(() => const Wrapper());
+      }
+    });
   }
 
   @override
