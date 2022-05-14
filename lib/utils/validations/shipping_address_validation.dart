@@ -41,14 +41,6 @@ class ShippingAddressValidations {
     }
   }
 
-  // static String? stateValidation(String? value) {
-  //   if (value == null || value.trim() == '') {
-  //     return 'Enter state';
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   static String? zipCodeValidation(String? value) {
     if (value == null || value.trim() == '') {
       return 'Enter zip code';
