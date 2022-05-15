@@ -129,7 +129,7 @@ class AdsController extends GetxController {
     );
 
     _rewardedAd?.show(
-        onUserEarnedReward: (RewardedAd ad, RewardItem rewardItem) {
+        onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
       // Reward the user for watching an ad.
       _loadRewardVideoAd();
     });

@@ -12,7 +12,7 @@ ThemeData theme(BuildContext context) => ThemeData(
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
-        titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+        titleTextStyle: Theme.of(context).textTheme.headline6?.copyWith(
               color: Colors.black,
               fontFamily: 'Ubuntu',
             ),

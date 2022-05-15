@@ -11,8 +11,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(
         init: UserController(Get.find()),
-        builder: (controller) => !(controller.state?.isDealer ?? false)
-            ? const VendorHomepageScreen()
+        builder: (controller) => (controller.state?.isDealer ?? false)
+            ? VendorHomepageScreen()
             : const CustomerHomeScreen());
   }
 }

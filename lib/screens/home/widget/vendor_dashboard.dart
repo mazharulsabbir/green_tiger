@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_tiger/data/model/order/order_card_model.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
-import 'package:green_tiger/utils/my_tabbar/my_tabbar.dart';
 
 const _staticDunnyOrderMode = OrderCardModel(
     trackingId: 'S88457',
@@ -59,7 +58,7 @@ class VendorHomepageScreen extends StatelessWidget {
             ),
           ),
         ),
-        MyTabbBar(titles: title, containers: containers),
+        // MyTabbBar(titles: title, containers: containers),
       ],
     );
   }
