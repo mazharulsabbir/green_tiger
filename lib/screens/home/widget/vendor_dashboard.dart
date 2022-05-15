@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:green_tiger/data/model/order/order_card_model.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
+import 'package:green_tiger/utils/common_widgets/my_tabbar/mt_tabbar.dart';
 
 const _staticDunnyOrderMode = OrderCardModel(
     trackingId: 'S88457',
@@ -15,7 +16,7 @@ class VendorHomepageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> title = ['Delivered', 'Processing', 'Cancelled'];
+    final List<String> titles = ['Delivered', 'Processing', 'Cancelled'];
     final List<Widget> containers = [
       const _OrderListWidget(),
       const Center(
@@ -58,7 +59,7 @@ class VendorHomepageScreen extends StatelessWidget {
             ),
           ),
         ),
-        // MyTabbBar(titles: title, containers: containers),
+        Expanded(child: MyTabbar(tabTileItems: titles, containers: containers)),
       ],
     );
   }
