@@ -41,7 +41,7 @@ class ShippingAddress extends GetView<ShippingAddressController> {
               () => controller.defaultAddress == null
                   ? const EmptyAddressButton()
                   : ShippingAddressWidget(
-                      defaultShippingAddress: controller.defaultAddress,
+                      contactAndAddress: controller.defaultAddress,
                     ),
             ),
             const SizedBox(height: 20),

@@ -66,10 +66,14 @@ _$_ContactAndAddress _$$_ContactAndAddressFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       country: json['country_id'] == null
           ? null
-          : Country.fromJson(json['country_id'] as Map<String, dynamic>),
+          : json['country_id'].runtimeType == Map
+              ? Country.fromJson(json['country_id'] as Map<String, dynamic>)
+              : Country(),
       state: json['state_id'] == null
           ? null
-          : State.fromJson(json['state_id'] as Map<String, dynamic>),
+          : json['country_id'].runtimeType == Map
+              ? State.fromJson(json['state_id'] as Map<String, dynamic>)
+              : State(),
     );
 
 Map<String, dynamic> _$$_ContactAndAddressToJson(

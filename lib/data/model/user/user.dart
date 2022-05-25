@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 
 import '../country/country.dart';
 
@@ -49,4 +50,14 @@ class ContactAndAddress with _$ContactAndAddress {
 
   factory ContactAndAddress.fromJson(Map<String, dynamic> json) =>
       _$ContactAndAddressFromJson(json);
+  factory ContactAndAddress.formShippingAddressModel(
+          ShippingAddress shippingAddress) =>
+      ContactAndAddress(
+        name: '${shippingAddress.firstName} ${shippingAddress.lastName}',
+        mobile: shippingAddress.phone,
+        zip: shippingAddress.zipCode,
+        state: State(name: shippingAddress.state),
+        street: shippingAddress.streetAddress1,
+        city: shippingAddress.city,
+      );
 }

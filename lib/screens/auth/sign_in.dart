@@ -114,11 +114,14 @@ class _SignInPageState extends State<SignInPage> {
                       // Get.offAll(() => const Wrapper());
                     },
                   ),
+                  const Gap(
+                    times: 3,
+                  ),
+                  SocialMediaLoginWidget()
                 ],
               ),
             ),
           ),
-          bottomNavigationBar: SocialMediaLoginWidget(),
         ),
       );
     });

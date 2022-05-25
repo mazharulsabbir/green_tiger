@@ -1,18 +1,12 @@
-import 'package:green_tiger/controller/home_controller.dart';
-import 'package:green_tiger/controller/user/shipping_address_controller.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-import 'package:green_tiger/constraints/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/data/model/user/user.dart';
-import 'address_form_widget.dart';
-import 'package:get/get.dart';
 
-class ShippingAddressWidget extends StatelessWidget {
-  const ShippingAddressWidget({Key? key, required this.contactAndAddress})
-      : super(key: key);
+class MyRadioTile extends StatelessWidget {
   final ContactAndAddress? contactAndAddress;
-
-  Color get secondaryColor => Colors.grey;
+  const MyRadioTile({Key? key,required this.contactAndAddress}) : super(key: key);
+ Color get secondaryColor => Colors.grey;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,18 +14,18 @@ class ShippingAddressWidget extends StatelessWidget {
         border: Border.all(color: primaryColor),
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Text(
-                '${contactAndAddress?.name}',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                '$contactAndAddress.name}',
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               const Spacer(),
               Row(
@@ -40,7 +34,7 @@ class ShippingAddressWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'EDIT',
+                          'Edit',
                           style: TextStyle(color: secondaryColor),
                         ),
                         const SizedBox(width: 5),
@@ -51,17 +45,15 @@ class ShippingAddressWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () => HomeController.to.addNewWidget(
-                      AddressFormWidget(),
-                    ),
+                    // onTap: () => Get.to(() => AddressFormWidget()),
                   ),
                   const SizedBox(width: 15),
                   InkWell(
                     child: Icon(
-                      PhosphorIcons.trash,
+                      PhosphorIcons.trash_simple,
                       color: secondaryColor,
                     ),
-                    onTap: Get.find<ShippingAddressController>().clearAddress,
+                    onTap: null,
                   )
                 ],
               )
@@ -69,12 +61,12 @@ class ShippingAddressWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            '${contactAndAddress?.street}',
+            '$contactAndAddress.street}',
             style: TextStyle(color: secondaryColor),
           ),
           const SizedBox(height: 20),
           Text(
-            '${contactAndAddress?.phone}',
+            '$contactAndAddress.phone}',
             style: TextStyle(color: secondaryColor),
           ),
         ],

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart' hide State;
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/colors.dart';
 import 'package:green_tiger/controller/user/shipping_address_controller.dart';
-import 'package:green_tiger/data/model/checkout/address/shipping_address.dart';
 import 'package:green_tiger/data/model/country/country.dart';
+import 'package:green_tiger/data/model/user/user.dart';
 import 'package:green_tiger/utils/common_widgets/common_gap.dart';
 import 'package:green_tiger/utils/common_widgets/common_loading.dart';
 import 'package:green_tiger/utils/common_widgets/custom_field/my_textfield.dart';
@@ -12,7 +12,7 @@ import '../../../constraints/styles.dart';
 import '../../../controller/home_controller.dart';
 
 class AddressFormWidget extends GetView<ShippingAddressController> {
-  AddressFormWidget({Key? key}) : super(key: key);
+  AddressFormWidget({Key? key, this.givenAddress}) : super(key: key);
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -24,6 +24,11 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
   final TextEditingController zipController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  final ContactAndAddress? givenAddress;
+
+  String? get firstName => givenAddress?.name?.split(' ').first;
+  String? get lastName => givenAddress?.name?.split(' ').last;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +67,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   DropdownButtonFormField<Country>(
                     validator: ShippingAddressValidations.dropdownValidation,
                     value: controller.countries.isEmpty ||
-                            controller.country.name == null ||
-                            controller.defaultAddress?.firstName == null
+                            controller.country.name == null
                         ? null
                         : controller.country,
                     decoration: nonFieldInputDecoration,
@@ -87,8 +91,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   ),
                   const Gap(),
                   CustomNonFilledField(
-                    controller: firstNameController
-                      ..text = controller.defaultAddress?.firstName ?? '',
+                    controller: firstNameController..text = firstName ?? '',
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.firstNameValidate,
                   ),
@@ -99,8 +102,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   ),
                   const SizedBox(height: 10),
                   CustomNonFilledField(
-                    controller: lastNameController
-                      ..text = controller.defaultAddress?.lastName ?? '',
+                    controller: lastNameController..text = lastName ?? '',
                     textCapitalization: TextCapitalization.words,
                     validator: ShippingAddressValidations.lastNameValidate,
                   ),
@@ -112,7 +114,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   CustomNonFilledField(
                     controller: street1Controller
-                      ..text = controller.defaultAddress?.streetAddress1 ?? '',
+                      ..text = givenAddress?.street ?? '',
                     textCapitalization: TextCapitalization.words,
                     validator:
                         ShippingAddressValidations.streetAddress1Validate,
@@ -124,8 +126,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   ),
                   const SizedBox(height: 10),
                   CustomNonFilledField(
-                    controller: street2Controller
-                      ..text = controller.defaultAddress?.streetAddress2 ?? '',
+                    controller: street2Controller,
                     textCapitalization: TextCapitalization.words,
                     validator:
                         ShippingAddressValidations.streetAddress2Validate,
@@ -149,7 +150,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   ),
                   const SizedBox(height: 10),
                   DropdownButtonFormField<State>(
-                    validator: ShippingAddressValidations.stateValidation,
+                    // validator: ShippingAddressValidations.stateValidation,
                     value:
                         controller.state.name == null ? null : controller.state,
                     decoration: nonFieldInputDecoration,
@@ -166,13 +167,6 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                             )),
                     onChanged: controller.setState,
                   ),
-
-                  // CustomNonFilledField(
-                  //   controller: stateController
-                  //     ..text = controller.defaultAddress?.state ?? '',
-                  //   textCapitalization: TextCapitalization.words,
-                  //   validator: ShippingAddressValidations.stateValidation,
-                  // ),
                   const SizedBox(height: 10),
                   Text(
                     'Zip',
@@ -181,7 +175,7 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                   const SizedBox(height: 10),
                   CustomNonFilledField(
                     controller: zipController
-                      ..text = controller.defaultAddress?.zipCode ?? '',
+                      ..text = controller.defaultAddress?.zip ?? '',
                     inputType: TextInputType.number,
                     validator: ShippingAddressValidations.zipCodeValidation,
                   ),
@@ -210,22 +204,24 @@ class AddressFormWidget extends GetView<ShippingAddressController> {
                           ),
                           primary: primaryColor),
                       onPressed: () async {
-                        if ((_formKey.currentState != null) &&
+                        if (_formKey.currentState != null &&
                             (_formKey.currentState!.validate())) {
-                          ShippingAddress shippingAddress = ShippingAddress(
-                              lastName: lastNameController.text,
-                              firstName: firstNameController.text,
-                              streetAddress1: street1Controller.text,
-                              streetAddress2: street2Controller.text,
-                              state: controller.state.name,
-                              country: controller.country.name,
-                              zipCode: zipController.text,
-                              city: cityController.text,
-                              phone: phoneController.text,
-                              isDefault: true);
+                          ContactAndAddress _address = ContactAndAddress(
+                            name: firstNameController.text +
+                                " " +
+                                lastNameController.text,
+                            street: street1Controller.text +
+                                "," +
+                                street2Controller.text,
+                            state: State(name: stateController.text),
+                            country: controller.country,
+                            zip: zipController.text,
+                            city: cityController.text,
+                            phone: phoneController.text,
+                          );
                           // print(shippingAddress.toJson());
-                          await controller.saveDefaultAddress(shippingAddress);
-                          Get.back();
+                          await controller.saveSingleAddress(_address);
+                          HomeController.to.removeLastWidget();
                         }
                       },
                       child: const Text(

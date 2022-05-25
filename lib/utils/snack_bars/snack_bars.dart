@@ -23,16 +23,7 @@ class MySnackBar extends SnackbarController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
         ));
-  // static successSnackBar(String bodyMessage, [String title = 'Success']) {
-  //   return Get.snackbar(
-  //     title,
-  //     bodyMessage,
-  //     colorText: Colors.white,
-  //     duration: const Duration(seconds: 2),
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     backgroundColor: Colors.green,
-  //   );
-  // }
+
   MySnackBar.error(String _errorMessage, [String title = 'Failed'])
       : super(GetSnackBar(
           message: _errorMessage,
@@ -41,14 +32,4 @@ class MySnackBar extends SnackbarController {
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
         ));
-  // static errorSnackBar(String bodyMessage, [String title = 'Failed']) {
-  //   return Get.snackbar(
-  //     title,
-  //     bodyMessage,
-  //     duration: const Duration(seconds: 2),
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     backgroundColor: Colors.red.shade800,
-  //     colorText: Colors.white,
-  //   );
-  // }
 }

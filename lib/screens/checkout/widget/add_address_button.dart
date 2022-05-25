@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:green_tiger/constraints/index.dart';
 import 'package:green_tiger/controller/checkout_controller.dart';
+import 'package:green_tiger/screens/account/contact_address.dart';
 import '../../../controller/home_controller.dart';
-import 'address_form_widget.dart';
 
 class EmptyAddressButton extends GetView<CheckoutController> {
   const EmptyAddressButton({Key? key}) : super(key: key);
@@ -12,7 +12,8 @@ class EmptyAddressButton extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => HomeController.to.addNewWidget(
-        AddressFormWidget(),
+        ///Try to use mixin
+        const ContactAndAddressScreen(),
       ),
       child: Container(
         decoration: BoxDecoration(
