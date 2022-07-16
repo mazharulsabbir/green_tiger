@@ -57,9 +57,7 @@ class ShippingAddress extends GetView<ShippingAddressController> {
                   return;
                 }
 
-                Get.off(
-                  () => const OrderSuccessScreen(),
-                );
+                Get.to(() => const OrderSuccessScreen());
               },
             ),
             const SizedBox(height: 50),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:green_tiger/controller/home_controller.dart';
 import 'package:green_tiger/utils/button/index.dart';
 
@@ -37,7 +38,10 @@ class OrderFailedScreen extends StatelessWidget {
             const SizedBox(height: 20),
             SecondaryButtonWidget(
               text: 'Back to Home',
-              onPressed: () => HomeController.to.setCurrentIndex(0),
+              onPressed: () {
+                Get.back();
+                HomeController.to.setCurrentIndex(0);
+              },
             ),
           ],
         ),
